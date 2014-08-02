@@ -7,7 +7,9 @@
 .metadata
 bin/
 tmp/
+.idea/
 *.tmp
+*.class
 *.bak
 *.swp
 *~.nib
