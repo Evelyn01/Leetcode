@@ -3,41 +3,11 @@ package com.leetcode.sorting;
 /**
  * Created by bod on 8/2/14.
  */
-public class SelectionSort {
+public class SelectionSort implements Sorter {
 
     public static void main(String[] strings) {
-        SelectionSort selectionSort = new SelectionSort();
-        int[] testArray = new int[]{3,5,1,9,8,7,4};
-        selectionSort.sort(testArray);
-
-        printArray(testArray);
-
-        testArray = new int[]{};
-        selectionSort.sort(null);
-        printArray(testArray);
-
-        testArray = new int[]{};
-        selectionSort.sort(testArray);
-        printArray(testArray);
-
-        testArray = new int[]{1};
-        selectionSort.sort(testArray);
-        printArray(testArray);
-
-        testArray = new int[]{1, 2};
-        selectionSort.sort(testArray);
-        printArray(testArray);
-    }
-
-    private static void printArray(int[] array) {
-        if (array == null || array.length == 0) {
-            System.out.println("empty array");
-        } else {
-            for (int i : array) {
-                System.out.println(i);
-            }
-        }
-        System.out.println("-----------");
+        SortTester tester = new SortTester(new SelectionSort());
+        tester.testSort();
     }
 
     public void sort(int[] input) {
@@ -46,9 +16,9 @@ public class SelectionSort {
         }
 
         int minIndex;
-        for (int i = 0 ; i < input.length ; i ++) {
+        for (int i = 0; i < input.length; i++) {
             minIndex = i;
-            for (int m = i ; m < input.length ; m ++) {
+            for (int m = i; m < input.length; m++) {
                 if (input[m] < input[minIndex]) {
                     minIndex = m;
                 }
