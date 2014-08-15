@@ -70,6 +70,8 @@ public class SolutionCorrect {
         return head;
     }
 
+
+    //------------------merge sort algorithm ----------------------
     ListNode move(ListNode head, int moveBy) {
         while (head != null && moveBy-- > 0)
             head = head.next;
