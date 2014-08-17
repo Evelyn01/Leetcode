@@ -19,6 +19,12 @@ public class PostOrder {
         root.left.left = new TreeNode(3);
         root.left.right = new TreeNode(4);
 
+        root.left.right.left = new TreeNode(7);
+        root.left.right.right = new TreeNode(8);
+
+        root.left.right.left.left = new TreeNode(10);
+        root.left.right.right.left = new TreeNode(9);
+
         root.right.left = new TreeNode(5);
         root.right.right = new TreeNode(6);
 
@@ -34,6 +40,15 @@ public class PostOrder {
 
         PreOrder preOrder = new PreOrder();
         list = preOrder.preorderTraversal(root);
+
+        for(int val : list) {
+            System.out.println(val);
+        }
+
+        System.out.println("------------------");
+
+        InOrder inOrder = new InOrder();
+        list = inOrder.inOrderTraversalRecursive(root);
 
         for(int val : list) {
             System.out.println(val);
