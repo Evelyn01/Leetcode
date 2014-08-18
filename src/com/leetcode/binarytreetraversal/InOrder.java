@@ -1,4 +1,4 @@
-package com.leetcode.binarytree;
+package com.leetcode.binarytreetraversal;
 
 import java.util.ArrayList;
 import java.util.List;

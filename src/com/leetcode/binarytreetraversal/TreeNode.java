@@ -1,4 +1,4 @@
-package com.leetcode.binarytree;
+package com.leetcode.binarytreetraversal;
 
 /**
  * Created by titan-developer on 8/16/14.
