@@ -12,20 +12,20 @@ public class PostOrder {
     public static void main(String[] strings) {
         TreeNode root  = new TreeNode(1);
 
-//        root.left = new TreeNode(1);
+        root.left = new TreeNode(1);
         root.right = new TreeNode(2);
 //
-//        root.left.left = new TreeNode(3);
-//        root.left.right = new TreeNode(4);
-//
-//        root.left.right.left = new TreeNode(7);
-//        root.left.right.right = new TreeNode(8);
-//
-//        root.left.right.left.left = new TreeNode(10);
-//        root.left.right.right.left = new TreeNode(9);
-//
-//        root.right.left = new TreeNode(5);
-//        root.right.right = new TreeNode(6);
+        root.left.left = new TreeNode(3);
+        root.left.right = new TreeNode(4);
+
+        root.left.right.left = new TreeNode(7);
+        root.left.right.right = new TreeNode(8);
+
+        root.left.right.left.left = new TreeNode(10);
+        root.left.right.right.left = new TreeNode(9);
+
+        root.right.left = new TreeNode(5);
+        root.right.right = new TreeNode(6);
 
         PostOrder postOrder = new PostOrder();
 
@@ -37,21 +37,21 @@ public class PostOrder {
 
         System.out.println("------------------");
 
-//        PreOrder preOrder = new PreOrder();
-//        list = preOrder.preorderTraversal(root);
-//
-//        for(int val : list) {
-//            System.out.println(val);
-//        }
-//
-//        System.out.println("------------------");
-//
-//        InOrder inOrder = new InOrder();
-//        list = inOrder.inOrderTraversalRecursive(root);
-//
-//        for(int val : list) {
-//            System.out.println(val);
-//        }
+        PreOrder preOrder = new PreOrder();
+        list = preOrder.preorderTraversal(root);
+
+        for(int val : list) {
+            System.out.println(val);
+        }
+
+        System.out.println("------------------");
+
+        InOrder inOrder = new InOrder();
+        list = inOrder.inOrderTraversalRecursive(root);
+
+        for(int val : list) {
+            System.out.println(val);
+        }
     }
 
     public List<Integer> postOrderTraversalRecursive(TreeNode root) {
