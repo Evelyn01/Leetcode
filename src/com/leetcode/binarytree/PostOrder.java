@@ -58,7 +58,8 @@ public class PostOrder {
         List<Integer> list = new ArrayList<Integer>();
 
         //postOrderRecursive(list, root);
-        postOrderIterative(list, root);
+        //postOrderIterative(list, root);
+        postOrderIterative2Stack(list, root);
 
         return list;
     }
@@ -71,6 +72,38 @@ public class PostOrder {
         postOrderRecursive(list, root.left);
         postOrderRecursive(list, root.right);
         list.add(root.val);
+    }
+
+    private void postOrderIterative2Stack(List<Integer> list, TreeNode root) {
+        if (root == null)
+            return;
+
+        if (root.left == null && root.right == null) {
+            list.add(root.val);
+            return;
+        }
+
+        Stack<TreeNode> stack1 = new Stack<TreeNode>();
+        Stack<TreeNode> stack2 = new Stack<TreeNode>();
+
+        stack1.push(root);
+
+        while (!stack1.empty()) {
+            TreeNode current = stack1.pop();
+            if (current.left != null) {
+                stack1.push(current.left);
+            }
+
+            if (current.right != null) {
+                stack1.push(current.right);
+            }
+
+            stack2.push(current);
+        }
+
+        while (!stack2.empty()) {
+            list.add(stack2.pop().val);
+        }
     }
 
     private void postOrderIterative(List<Integer> list, TreeNode root) {
