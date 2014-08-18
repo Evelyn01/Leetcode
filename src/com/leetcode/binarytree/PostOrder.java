@@ -1,9 +1,8 @@
 package com.leetcode.binarytree;
 
-import com.leetcode.sortlinkedlist.ListNode;
-
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 /**
  * Created by titan-developer on 8/16/14.
@@ -11,22 +10,22 @@ import java.util.List;
 public class PostOrder {
 
     public static void main(String[] strings) {
-        TreeNode root  = new TreeNode(0);
+        TreeNode root  = new TreeNode(1);
 
-        root.left = new TreeNode(1);
+//        root.left = new TreeNode(1);
         root.right = new TreeNode(2);
-
-        root.left.left = new TreeNode(3);
-        root.left.right = new TreeNode(4);
-
-        root.left.right.left = new TreeNode(7);
-        root.left.right.right = new TreeNode(8);
-
-        root.left.right.left.left = new TreeNode(10);
-        root.left.right.right.left = new TreeNode(9);
-
-        root.right.left = new TreeNode(5);
-        root.right.right = new TreeNode(6);
+//
+//        root.left.left = new TreeNode(3);
+//        root.left.right = new TreeNode(4);
+//
+//        root.left.right.left = new TreeNode(7);
+//        root.left.right.right = new TreeNode(8);
+//
+//        root.left.right.left.left = new TreeNode(10);
+//        root.left.right.right.left = new TreeNode(9);
+//
+//        root.right.left = new TreeNode(5);
+//        root.right.right = new TreeNode(6);
 
         PostOrder postOrder = new PostOrder();
 
@@ -38,27 +37,28 @@ public class PostOrder {
 
         System.out.println("------------------");
 
-        PreOrder preOrder = new PreOrder();
-        list = preOrder.preorderTraversal(root);
-
-        for(int val : list) {
-            System.out.println(val);
-        }
-
-        System.out.println("------------------");
-
-        InOrder inOrder = new InOrder();
-        list = inOrder.inOrderTraversalRecursive(root);
-
-        for(int val : list) {
-            System.out.println(val);
-        }
+//        PreOrder preOrder = new PreOrder();
+//        list = preOrder.preorderTraversal(root);
+//
+//        for(int val : list) {
+//            System.out.println(val);
+//        }
+//
+//        System.out.println("------------------");
+//
+//        InOrder inOrder = new InOrder();
+//        list = inOrder.inOrderTraversalRecursive(root);
+//
+//        for(int val : list) {
+//            System.out.println(val);
+//        }
     }
 
     public List<Integer> postOrderTraversalRecursive(TreeNode root) {
         List<Integer> list = new ArrayList<Integer>();
 
-        postOrderRecursive(list, root);
+        //postOrderRecursive(list, root);
+        postOrderIterative(list, root);
 
         return list;
     }
@@ -71,5 +71,72 @@ public class PostOrder {
         postOrderRecursive(list, root.left);
         postOrderRecursive(list, root.right);
         list.add(root.val);
+    }
+
+    private void postOrderIterative(List<Integer> list, TreeNode root) {
+        if (root == null) {
+            return;
+        }
+
+        if (root.left == null && root.right == null) {
+            list.add(root.val);
+            return;
+        }
+
+        Stack<TreeNodeWithType> stack = new Stack<TreeNodeWithType>();
+
+        TreeNode current = root;
+
+        while (current != null) {
+
+            if (current.left != null) {
+                TreeNodeWithType rootNode = new TreeNodeWithType();
+                rootNode.node = current;
+                rootNode.type = TreeNodeWithType.PushStackType.ROOT;
+                stack.push(rootNode);
+
+                current = current.left;
+            } else if (current.right != null) {
+                TreeNodeWithType rootNode = new TreeNodeWithType();
+                rootNode.node = current;
+                rootNode.type = TreeNodeWithType.PushStackType.RIGHT;
+                stack.push(rootNode);
+
+                current = current.right;
+            } else {
+                list.add(current.val);
+
+                while (true) {
+                    if (stack.empty()) {
+                        return;
+                    }
+
+                    TreeNodeWithType localTempNode = stack.pop();
+
+                    if (localTempNode.type.equals(TreeNodeWithType.PushStackType.RIGHT)) {
+                        list.add(localTempNode.node.val);
+                    } else {
+                        if (localTempNode.node.right == null) {
+                            list.add(localTempNode.node.val);
+                            continue;
+                        } else {
+                            current = localTempNode.node.right;
+                            localTempNode.type = TreeNodeWithType.PushStackType.RIGHT;
+                            stack.push(localTempNode);
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    static class TreeNodeWithType {
+        TreeNode node;
+        PushStackType type;
+
+        enum PushStackType {
+            ROOT, RIGHT
+        }
     }
 }

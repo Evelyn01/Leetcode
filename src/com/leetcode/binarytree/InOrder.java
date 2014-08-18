@@ -54,13 +54,13 @@ public class InOrder {
             } else {
                 list.add(current.val);
                 if (stack.empty())
-                    break;
+                    return;
 
                 TreeNode localRoot = stack.pop();
                 list.add(localRoot.val);
                 while (localRoot.right == null) {
                     if (stack.empty()) {
-                        break;
+                        return;
                     }
 
                     localRoot = stack.pop();

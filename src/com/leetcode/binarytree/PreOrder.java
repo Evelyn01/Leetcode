@@ -60,14 +60,14 @@ public class PreOrder {
                 current = current.right;
             } else {
                 if (stack.empty()) {
-                    break;
+                    return;
                 }
 
                 TreeNode parent = stack.pop();
 
                 while (parent.right == null) {
                     if (stack.empty())
-                        break;
+                        return;
 
                     parent = stack.pop();
                 }
