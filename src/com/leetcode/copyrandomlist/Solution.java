@@ -1,5 +1,7 @@
 package com.leetcode.copyrandomlist;
 
+import com.leetcode.sortlinkedlist.ListNode;
+
 import java.util.HashMap;
 
 /**
@@ -75,6 +77,58 @@ public class Solution {
 
             ori = ori.next;
             dest = dest.next;
+        }
+
+        return newHead;
+    }
+
+    public RandomListNode copyRandomListExtra1Space(RandomListNode head) {
+        if (head == null) {
+            return head;
+        }
+
+        RandomListNode ori = head;
+
+        while (ori != null) {
+            RandomListNode copy = new RandomListNode(ori.label);
+
+            RandomListNode next = ori.next;
+
+            ori.next = copy;
+
+            copy.next = next;
+
+            ori = next;
+        }
+
+        ori = head;
+
+        while (ori != null) {
+            if (ori.random == null) {
+                ori.next.random = null;
+            } else {
+                ori.next.random = ori.random.next;
+            }
+
+            ori = ori.next.next;
+        }
+
+        ori = head;
+
+        RandomListNode newHead = ori.next;
+
+        RandomListNode current = newHead;
+
+        while (true) {
+            ori.next = current.next;
+            ori = ori.next;
+
+            if (ori == null) {
+                break;
+            }
+
+            current.next = ori.next;
+            current = current.next;
         }
 
         return newHead;
