@@ -4,6 +4,15 @@ package com.leetcode.candy;
  * Created by titan-developer on 8/19/14.
  */
 public class Solution {
+
+    public static void main(String[] strings) {
+
+        int[] ratings = new int[] {2, 1, 5, 4, 7, 9 , 8, 3};
+
+        Solution solution = new Solution();
+        solution.candy(ratings);
+    }
+
     public int candy(int[] ratings) {
         if (ratings == null) {
             return 0;
@@ -15,14 +24,15 @@ public class Solution {
             candyArray[i] = 1;
             if (i > 0) {
                 int temp = i;
-                while (temp > 1) {
+                while (temp > 0) {
                     if (ratings[temp] > ratings[temp - 1]) {
                         if (candyArray[temp] <= candyArray[temp - 1]) {
                             candyArray[temp] = candyArray[temp - 1] + 1;
+                        } else {
+                            break;
                         }
-                        break;
                     } else if (ratings[temp] < ratings[temp - 1]) {
-                        if (candyArray[temp] >= candyArray[i - 1]) {
+                        if (candyArray[temp] >= candyArray[temp - 1]) {
                             candyArray[temp - 1] = candyArray[temp] + 1;
                         } else {
                             break;
