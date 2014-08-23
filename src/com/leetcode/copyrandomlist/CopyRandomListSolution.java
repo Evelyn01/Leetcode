@@ -1,13 +1,11 @@
 package com.leetcode.copyrandomlist;
 
-import com.leetcode.sortlinkedlist.ListNode;
-
 import java.util.HashMap;
 
 /**
  * Created by titan-developer on 8/18/14.
  */
-public class Solution {
+public class CopyRandomListSolution {
 
     public static void main(String[] string) {
 
@@ -27,9 +25,9 @@ public class Solution {
         node2.random = head;
         node4.random = node2;
 
-        Solution solution = new Solution();
+        CopyRandomListSolution copyRandomListSolution = new CopyRandomListSolution();
 
-        RandomListNode newHead = solution.copyRandomList(head);
+        RandomListNode newHead = copyRandomListSolution.copyRandomList(head);
 
         System.out.println(newHead.label);
     }

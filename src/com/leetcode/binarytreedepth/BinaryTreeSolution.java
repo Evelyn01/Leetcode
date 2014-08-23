@@ -1,6 +1,6 @@
 package com.leetcode.binarytreedepth;
 
-public class Solution {    
+public class BinaryTreeSolution {
 	
 	public int maxDepth(TreeNode root) {
     if (root == null) {

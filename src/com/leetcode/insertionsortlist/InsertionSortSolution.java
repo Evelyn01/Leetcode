@@ -4,11 +4,11 @@ package com.leetcode.insertionsortlist;
  * Created by titan-developer on 8/16/14.
  */
 
-public class Solution {
+public class InsertionSortSolution {
 
     public static void main(String[] strings) {
-        Solution solution = new Solution();
-        solution.insertionSortList(generateList());
+        InsertionSortSolution insertionSortSolution = new InsertionSortSolution();
+        insertionSortSolution.insertionSortList(generateList());
     }
 
     static ListNode generateList() {

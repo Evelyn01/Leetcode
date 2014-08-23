@@ -3,14 +3,14 @@ package com.leetcode.candy;
 /**
  * Created by titan-developer on 8/19/14.
  */
-public class Solution {
+public class CandySolution {
 
     public static void main(String[] strings) {
 
         int[] ratings = new int[] {2, 1, 5, 4, 7, 9 , 8, 3};
 
-        Solution solution = new Solution();
-        solution.candy(ratings);
+        CandySolution candySolution = new CandySolution();
+        candySolution.candy(ratings);
     }
 
     public int candy(int[] ratings) {

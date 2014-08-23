@@ -3,7 +3,7 @@ package com.leetcode.reorderlist;
 /**
  * Created by titan-developer on 8/17/14.
  */
-public class Solution {
+public class RecorderListSolution {
 
     public static void main(String[] strings) {
 
@@ -21,8 +21,8 @@ public class Solution {
         node = node.next;
         node.next = new ListNode(7);
 
-        Solution solution = new Solution();
-        solution.reorderList(head);
+        RecorderListSolution recorderListSolution = new RecorderListSolution();
+        recorderListSolution.reorderList(head);
 
         while (head != null) {
             System.out.println(head.val);

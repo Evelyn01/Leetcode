@@ -1,6 +1,6 @@
 package com.leetcode.zigzag;
 
-public class Solution {
+public class ZigzagSolution {
 
 	public String convert(String s, int nRows) {
 		if (nRows <= 0 || s == null || s.length() <= 0)

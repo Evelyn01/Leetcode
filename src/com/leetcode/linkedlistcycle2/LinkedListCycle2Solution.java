@@ -3,7 +3,7 @@ package com.leetcode.linkedlistcycle2;
 /**
  * Created by titan-developer on 8/17/14.
  */
-public class Solution {
+public class LinkedListCycle2Solution {
 
     public static void main(String[] strings) {
         ListNode node = new ListNode(10);
@@ -25,9 +25,9 @@ public class Solution {
         node = node.next;
         node.next = node9;
 
-        Solution solution = new Solution();
+        LinkedListCycle2Solution linkedListCycle2Solution = new LinkedListCycle2Solution();
 
-        ListNode cycleNode = solution.detectCycle(head);
+        ListNode cycleNode = linkedListCycle2Solution.detectCycle(head);
         System.out.println(cycleNode.val);
     }
 

@@ -3,12 +3,12 @@ package com.leetcode.maxpointsonline;
 
 import java.util.HashMap;
 
-public class Solution {
+public class MaxPointOnLineSolution {
 
     public static void main(String[] strings) {
         Point[] points = initTestPoints3();
-        Solution solution = new Solution();
-        int max = solution.maxPoints(points);
+        MaxPointOnLineSolution maxPointOnLineSolution = new MaxPointOnLineSolution();
+        int max = maxPointOnLineSolution.maxPoints(points);
         System.out.println(max);
     }
 

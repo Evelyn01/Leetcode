@@ -3,7 +3,7 @@ package com.leetcode.singlenumber2;
 /**
  * Created by bod on 8/14/14.
  */
-public class Solution {
+public class SingleNumber2Solution {
 
     static int[] a = new int[] {
             1,
@@ -22,11 +22,11 @@ public class Solution {
     };
 
     public static void main(String[] strings) {
-        Solution solution = new Solution();
-        int x = solution.singleNumber(a);
+        SingleNumber2Solution singleNumber2Solution = new SingleNumber2Solution();
+        int x = singleNumber2Solution.singleNumber(a);
         System.out.println(x);
 
-        x = solution.singleNumber2(a);
+        x = singleNumber2Solution.singleNumber2(a);
         System.out.println(x);
     }
 

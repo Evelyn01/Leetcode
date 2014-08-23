@@ -3,7 +3,7 @@ package com.leetcode.linkedlistcycle;
 /**
  * Created by titan-developer on 8/18/14.
  */
-public class Solution {
+public class LinkedListCycleSolution {
     public boolean hasCycle(ListNode head) {
         if (head == null || head.next == null)
             return false;

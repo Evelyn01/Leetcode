@@ -3,7 +3,7 @@ package com.leetcode.sortlinkedlist;
 /**
  * Created by titan-developer on 8/8/14.
  */
-public class Solution {
+public class SortLinkedListSolution {
 
     private static int[][] cases = {
             {},
@@ -29,11 +29,11 @@ public class Solution {
     };
 
     public static void main(String[] strings) {
-        Solution solution = new Solution();
+        SortLinkedListSolution sortLinkedListSolution = new SortLinkedListSolution();
 
         for (int[] a: cases) {
             ListNode list = generateNode(a);
-            printArray(solution.sortList(list));
+            printArray(sortLinkedListSolution.sortList(list));
         }
     }
 

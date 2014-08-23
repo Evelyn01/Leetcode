@@ -5,15 +5,15 @@ import java.util.Stack;
 /**
  * Created by titan-developer on 8/15/14.
  */
-public class Solution {
+public class ReversePolishNotationSolution {
 
     static String[] array_A = new String[]{"2", "1", "+", "3", "*"};
     static String[] array_B = new String[]{"4", "13", "5", "/", "+"};
 
     public static void main(String[] strings) {
-        Solution solution = new Solution();
-        int a = solution.evalRPN(array_A);
-        int b = solution.evalRPN(array_B);
+        ReversePolishNotationSolution reversePolishNotationSolution = new ReversePolishNotationSolution();
+        int a = reversePolishNotationSolution.evalRPN(array_A);
+        int b = reversePolishNotationSolution.evalRPN(array_B);
 
         System.out.println(a);
         System.out.println(b);

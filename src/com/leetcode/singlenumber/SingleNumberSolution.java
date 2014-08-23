@@ -1,6 +1,6 @@
 package com.leetcode.singlenumber;
 
-public class Solution {
+public class SingleNumberSolution {
 	public int singleNumber(int[] A) {
 
 		if (A == null || A.length < 1) {
