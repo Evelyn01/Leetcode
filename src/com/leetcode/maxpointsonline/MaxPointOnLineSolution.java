@@ -3,6 +3,9 @@ package com.leetcode.maxpointsonline;
 
 import java.util.HashMap;
 
+/**
+ * Given n points on a 2D plane, find the maximum number of points that lie on the same straight line.
+ */
 public class MaxPointOnLineSolution {
 
     public static void main(String[] strings) {

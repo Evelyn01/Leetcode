@@ -2,6 +2,7 @@ package com.leetcode.dynamicprogramming;
 
 /**
  * Created by titan-developer on 8/24/14.
+ * Given a sequence of N numbers - A[1] , A[2] , ..., A[N] . Find the length of the longest non-decreasing sequence.
  */
 public class LongestNonDecreaseSequence {
 

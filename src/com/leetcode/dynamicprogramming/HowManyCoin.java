@@ -2,6 +2,8 @@ package com.leetcode.dynamicprogramming;
 
 /**
  * Created by titan-developer on 8/23/14.
+ * Given coins with values 1, 3, and 5.
+ * And the sum S is set to be 11.
  */
 public class HowManyCoin {
     static int[] coinValue = new int[] {1, 3, 5};

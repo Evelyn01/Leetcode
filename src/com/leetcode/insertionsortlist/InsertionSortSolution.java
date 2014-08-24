@@ -2,6 +2,7 @@ package com.leetcode.insertionsortlist;
 
 /**
  * Created by titan-developer on 8/16/14.
+ * Sort a linked list using insertion sort.
  */
 
 public class InsertionSortSolution {

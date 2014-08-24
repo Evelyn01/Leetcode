@@ -2,6 +2,9 @@ package com.leetcode.linkedlistcycle;
 
 /**
  * Created by titan-developer on 8/18/14.
+ * Given a linked list, determine if it has a cycle in it.
+ * Follow up:
+ * Can you solve it without using extra space?
  */
 public class LinkedListCycleSolution {
     public boolean hasCycle(ListNode head) {
