@@ -1,4 +1,4 @@
-package com.leetcode.backpack;
+package com.leetcode.dynamicprogramming;
 
 /**
  * Created by bod on 8/23/14.
@@ -18,7 +18,10 @@ public class BackPackSample {
 
     public int[] backPackSolution(int[][] diamonds, int packSize) {
 
+        for (int i = 0 ; i <= packSize ; i ++) {
 
+        }
 
+        return null;
     }
 }
