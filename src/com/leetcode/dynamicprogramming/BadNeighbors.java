@@ -10,7 +10,8 @@ public class BadNeighbors {
     public static void main(String[] strings) {
         BadNeighbors badNeighbors = new BadNeighbors();
 
-        int a[] = {5, 23, 3, 7, 29, 2};
+        int a[] = {5, 3, 23, 1, 2, 37, 4};
+        int b[] = {5, 23, 3, 7, 29, 2};
         int d[]={7, 7, 7, 7, 7, 7, 7};
         int e[] = { 10, 3, 2, 5, 7, 8 };
         int f[] = { 1, 2, 3, 4, 5, 1, 2, 3, 4, 5 };
@@ -19,13 +20,13 @@ public class BadNeighbors {
                 52, 72, 37, 51, 1, 81, 45, 435, 7, 36, 57, 86, 81, 72 };
 
         System.out.println(badNeighbors.maxDonations(a));
+        System.out.println(badNeighbors.maxDonations(b));
         System.out.println(badNeighbors.maxDonations(e));
         System.out.println(badNeighbors.maxDonations(f));
         System.out.println(badNeighbors.maxDonations(g));
         System.out.println(badNeighbors.maxDonations(d));
     }
 
-    //wrong solution, I guess.
     public int maxDonations(int[] array) {
         if (array == null || array.length <= 0) {
             return 0;
@@ -57,7 +58,7 @@ public class BadNeighbors {
         dp2[1] = array[0];
         dp2[2] = Math.max(array[1], array[2]);
 
-        for (int i = 2; i < array.length; i++) {
+        for (int i = 3; i < array.length; i++) {
             dp2[i] = Math.max(dp2[i - 2] + array[i], dp2[i - 1]);
         }
 
