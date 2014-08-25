@@ -3,7 +3,6 @@ package com.leetcode.dynamicprogramming;
 /**
  * Created by bod on 8/24/14.
  * Problem description: http://community.topcoder.com/stat?c=problem_statement&pm=2402&rd=5009
- *
  */
 public class BadNeighbors {
 
@@ -12,15 +11,15 @@ public class BadNeighbors {
 
         int a[] = {5, 3, 23, 1, 2, 37, 4};
         int b[] = {5, 23, 3, 7, 29, 2};
-        int d[]={7, 7, 7, 7, 7, 7, 7};
-        int e[] = { 10, 3, 2, 5, 7, 8 };
-        int f[] = { 1, 2, 3, 4, 5, 1, 2, 3, 4, 5 };
-        int g[] = { 94, 40, 49, 65, 21, 21, 106, 80, 92, 81, 679, 4, 61,
+        int d[] = {7, 7, 7, 7, 7, 7, 7};
+        int e[] = {10, 3, 2, 5, 7, 8};
+        int f[] = {1, 2, 3, 4, 5, 1, 2, 3, 4, 5};
+        int g[] = {94, 40, 49, 65, 21, 21, 106, 80, 92, 81, 679, 4, 61,
                 6, 237, 12, 72, 74, 29, 95, 265, 35, 47, 1, 61, 397,
-                52, 72, 37, 51, 1, 81, 45, 435, 7, 36, 57, 86, 81, 72 };
+                52, 72, 37, 51, 1, 81, 45, 435, 7, 36, 57, 86, 81, 72};
 
-        System.out.println(badNeighbors.maxDonations(a));
         System.out.println(badNeighbors.maxDonations(b));
+        System.out.println(badNeighbors.maxDonations(a));
         System.out.println(badNeighbors.maxDonations(e));
         System.out.println(badNeighbors.maxDonations(f));
         System.out.println(badNeighbors.maxDonations(g));
