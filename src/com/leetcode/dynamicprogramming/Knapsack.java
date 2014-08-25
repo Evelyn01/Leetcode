@@ -3,7 +3,7 @@ package com.leetcode.dynamicprogramming;
 /**
  * Created by bod on 8/23/14.
  */
-public class BackPackSample {
+public class Knapsack {
     static int[][] diamonds = new int[][] {
             {2, 10},
             {3, 7},
