@@ -1,6 +1,8 @@
 package com.leetcode.wordbreak;
 
+import java.util.HashSet;
 import java.util.Set;
+import java.util.Stack;
 
 /**
  * Created by bod on 8/19/14.
@@ -14,12 +16,58 @@ import java.util.Set;
  */
 public class WordBreakSolution {
 
+//    static String s = "leeter";
+//    static String[] dict = {"le", "ete", "leet", "er"};
+
+    static String s = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab";
+    static String[] dict = {"a","aa","aaa","aaaa","aaaaa","aaaaaa","aaaaaaa","aaaaaaaa","aaaaaaaaa","aaaaaaaaaa"};
+
+    public static void main(String[] strings) {
+        WordBreakSolution wordBreakSolution = new WordBreakSolution();
+
+        Set<String> set = new HashSet<String>();
+        for (String str : dict) {
+            set.add(str);
+        }
+
+        long time = System.currentTimeMillis();
+
+        boolean canBreak = wordBreakSolution.wordBreak(s, set);
+
+        System.out.println(canBreak + " , " + (System.currentTimeMillis() - time));
+    }
 
     public boolean wordBreak(String s, Set<String> dict) {
-        if (s == null || s.length() <= 1) {
+        if (s == null || s.length() <= 1 || dict == null) {
             return false;
         }
 
+        Stack<Integer> stack = new Stack<Integer>();
+
+        int i = 0;
+        int cursor = 0;
+        while (i < s.length() || (cursor < i && stack.size() > 0)) {
+            if (i > s.length()) {
+                i = stack.pop() + 1;
+                if (stack.size() > 0) {
+                    cursor = stack.peek();
+                } else {
+                    cursor = 0;
+                }
+            }
+
+            String sub = s.subSequence(cursor, i).toString();
+            if (dict.contains(sub)) {
+                stack.push(i);
+                cursor = i;
+                if (cursor == s.length()) {
+                    return true;
+                }
+                i ++;
+            } else {
+                i ++;
+            }
+        }
 
         return false;
     }
