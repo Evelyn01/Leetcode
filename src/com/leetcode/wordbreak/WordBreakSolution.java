@@ -19,8 +19,11 @@ public class WordBreakSolution {
 //    static String s = "leeter";
 //    static String[] dict = {"le", "ete", "leet", "er"};
 
-    static String s = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab";
-    static String[] dict = {"a","aa","aaa","aaaa","aaaaa","aaaaaa","aaaaaaa","aaaaaaaa","aaaaaaaaa","aaaaaaaaaa"};
+//    static String s = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab";
+//    static String[] dict = {"a","aa","aaa","aaaa","aaaaa","aaaaaa","aaaaaaa","aaaaaaaa","aaaaaaaaa","aaaaaaaaaa"};
+
+    static String s = "a";
+    static String[] dict = {"a"};
 
     public static void main(String[] strings) {
         WordBreakSolution wordBreakSolution = new WordBreakSolution();
@@ -39,7 +42,7 @@ public class WordBreakSolution {
 
     //DP
     public boolean wordBreak(String s, Set<String> dict) {
-        if (s == null || s.length() <= 1 || dict == null) {
+        if (s == null || s.length() <= 0 || dict == null) {
             return false;
         }
 
