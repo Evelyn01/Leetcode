@@ -37,7 +37,34 @@ public class WordBreakSolution {
         System.out.println(canBreak + " , " + (System.currentTimeMillis() - time));
     }
 
+    //DP
     public boolean wordBreak(String s, Set<String> dict) {
+        if (s == null || s.length() <= 1 || dict == null) {
+            return false;
+        }
+
+        int length = s.length();
+        boolean[] dp = new boolean[length + 1];
+        for (int i = 0 ; i < dp.length ; i ++) {
+            dp[i] = false;
+        }
+
+        dp[length] = true;
+
+        for (int i = length - 1; i >= 0 ; i --) {
+            for (int j = i ; j < length ; j ++) {
+                String current = s.substring(i, j + 1);
+                if (dict.contains(current) && dp[j + 1]) {
+                    dp[i] = true;
+                    break;
+                }
+            }
+        }
+
+        return dp[0];
+    }
+
+    public boolean wordBreakSlow(String s, Set<String> dict) {
         if (s == null || s.length() <= 1 || dict == null) {
             return false;
         }
