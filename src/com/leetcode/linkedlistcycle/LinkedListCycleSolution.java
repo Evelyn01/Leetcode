@@ -1,5 +1,7 @@
 package com.leetcode.linkedlistcycle;
 
+import com.leetcode.common.ListNode;
+
 /**
  * Created by titan-developer on 8/18/14.
  * Given a linked list, determine if it has a cycle in it.
@@ -27,18 +29,5 @@ public class LinkedListCycleSolution {
         }
 
         return false;
-    }
-
-    /**
-     * Definition for singly-linked list.
-     */
-    static class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
-            next = null;
-        }
     }
 }

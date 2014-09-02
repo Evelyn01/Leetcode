@@ -1,5 +1,7 @@
 package com.leetcode.insertionsortlist;
 
+import com.leetcode.common.ListNode;
+
 /**
  * Created by titan-developer on 8/16/14.
  * Sort a linked list using insertion sort.
@@ -67,18 +69,4 @@ public class InsertionSortSolution {
 
         return mockHead.next;
     }
-
-    /**
-     * Definition for singly-linked list.
-     */
-    static class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
-            next = null;
-        }
-    }
-
 }

@@ -1,5 +1,7 @@
 package com.leetcode.linkedlistcycle2;
 
+import com.leetcode.common.ListNode;
+
 /**
  * Created by titan-developer on 8/17/14.
  * Given a linked list, return the node where the cycle begins. If there is no cycle, return null.
@@ -65,18 +67,4 @@ public class LinkedListCycle2Solution {
 
         return second;
     }
-
-    /**
-     * Definition for singly-linked list.
-     */
-    static class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
-            next = null;
-        }
-    }
-
 }

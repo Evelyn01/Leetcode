@@ -1,5 +1,7 @@
 package com.leetcode.sortlinkedlist;
 
+import com.leetcode.common.ListNode;
+
 /**
  * Created by titan-developer on 8/9/14.
  * Sort a linked list in O(n log n) time using constant space complexity.

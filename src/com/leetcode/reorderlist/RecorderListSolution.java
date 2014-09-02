@@ -1,5 +1,7 @@
 package com.leetcode.reorderlist;
 
+import com.leetcode.common.ListNode;
+
 /**
  * Created by titan-developer on 8/17/14.
  *
@@ -97,18 +99,4 @@ public class RecorderListSolution {
         middle.next = null;
         return reverseNode;
     }
-
-    /**
-     * Definition for singly-linked list.
-     */
-    static class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
-            next = null;
-        }
-    }
-
 }
