@@ -1,13 +1,12 @@
 package com.leetcode.addtwonumber;
 
 import com.leetcode.common.ListNode;
-import com.sun.tools.javac.util.List;
 
 /**
  * Created by bod on 9/1/14.
  * https://oj.leetcode.com/problems/add-two-numbers/
  */
-public class AddTwoNumber {
+public class AddTwoNumberSolution {
 
     public static void main(String[] strings) {
         ListNode a = new ListNode(2);
@@ -18,8 +17,8 @@ public class AddTwoNumber {
         b.next = new ListNode(6);
         b.next.next = new ListNode(4);
 
-        AddTwoNumber addTwoNumber = new AddTwoNumber();
-        ListNode result = addTwoNumber.addTwoNumbers(a, b);
+        AddTwoNumberSolution addTwoNumberSolution = new AddTwoNumberSolution();
+        ListNode result = addTwoNumberSolution.addTwoNumbers(a, b);
 
         while (result != null) {
             System.out.print(result.val + " ");
