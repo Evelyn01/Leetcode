@@ -16,14 +16,14 @@ import java.util.Stack;
  */
 public class WordBreakSolution {
 
-//    static String s = "leeter";
-//    static String[] dict = {"le", "ete", "leet", "er"};
+    static String s = "leeter";
+    static String[] dict = {"le", "ete", "leet", "er"};
 
 //    static String s = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab";
 //    static String[] dict = {"a","aa","aaa","aaaa","aaaaa","aaaaaa","aaaaaaa","aaaaaaaa","aaaaaaaaa","aaaaaaaaaa"};
 
-    static String s = "a";
-    static String[] dict = {"a"};
+//    static String s = "a";
+//    static String[] dict = {"a"};
 
     public static void main(String[] strings) {
         WordBreakSolution wordBreakSolution = new WordBreakSolution();
