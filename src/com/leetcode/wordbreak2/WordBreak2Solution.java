@@ -1,4 +1,4 @@
-package com.leetcode.workbreak2;
+package com.leetcode.wordbreak2;
 
 import java.util.HashSet;
 import java.util.Set;
