@@ -1,8 +1,6 @@
 package com.leetcode.wordbreak2;
 
-import java.util.HashSet;
-import java.util.Set;
-import java.util.Stack;
+import java.util.*;
 
 /**
  * Created by titan-developer on 9/3/14.
@@ -10,8 +8,8 @@ import java.util.Stack;
 public class WordBreak2Solution {
 
 
-    static String s = "leeter";
-    static String[] dict = {"le", "ete", "leet", "er"};
+    static String s = "catsanddog";
+    static String[] dict = {"cat", "cats", "and", "sand", "dog"};
 
 //    static String s = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab";
 //    static String[] dict = {"a","aa","aaa","aaaa","aaaaa","aaaaaa","aaaaaaa","aaaaaaaa","aaaaaaaaa","aaaaaaaaaa"};
@@ -27,17 +25,16 @@ public class WordBreak2Solution {
             set.add(str);
         }
 
-        long time = System.currentTimeMillis();
-
-        boolean canBreak = wordBreakSolution.wordBreak(s, set);
-
-        System.out.println(canBreak + " , " + (System.currentTimeMillis() - time));
+        List<String> list = wordBreakSolution.wordBreak(s, set);
+        for (String breakStr : list) {
+            System.out.println(breakStr);
+        }
     }
 
     //DP
-    public boolean wordBreak(String s, Set<String> dict) {
+    public List<String> wordBreak(String s, Set<String> dict) {
         if (s == null || s.length() <= 0 || dict == null) {
-            return false;
+            return null;
         }
 
         int length = s.length();
@@ -48,17 +45,44 @@ public class WordBreak2Solution {
 
         dp[length] = true;
 
+        Hashtable<Integer, Vector<Integer>> hashtable = new Hashtable<Integer, Vector<Integer>>();
+
         for (int i = length - 1; i >= 0 ; i --) {
             for (int j = i ; j < length ; j ++) {
                 String current = s.substring(i, j + 1);
                 if (dict.contains(current) && dp[j + 1]) {
                     dp[i] = true;
-                    break;
+                    Vector<Integer> vector;
+                    if (hashtable.containsKey(i)) {
+                        vector = hashtable.get(i);
+                    } else {
+                        vector = new Vector<Integer>();
+                    }
+                    vector.add(j + 1);
+                    hashtable.put(i, vector);
                 }
             }
         }
 
-        return dp[0];
+        List<String> list = new ArrayList<String>();
+        collect(hashtable, 0, 0, "", list, s);
+        return list;
+    }
+
+    private void collect(Hashtable<Integer, Vector<Integer>> hashtable, int lastIndex, int index, String prefix, List<String> list, String ori) {
+        String temp = ori.substring(lastIndex, index);
+        prefix = prefix + " " + temp;
+
+        if (index == ori.length()) {
+            list.add(prefix);
+            return;
+        }
+
+        Vector<Integer> nextNode = hashtable.get(index);
+        for (int nextIndex : nextNode) {
+            collect(hashtable, index, nextIndex, prefix, list, ori);
+        }
+
     }
 
     public boolean wordBreakSlow(String s, Set<String> dict) {
