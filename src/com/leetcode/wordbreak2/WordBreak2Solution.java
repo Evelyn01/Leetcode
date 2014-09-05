@@ -90,39 +90,4 @@ public class WordBreak2Solution {
             collect(hashMap, index, nextIndex, prefix, list, ori);
         }
     }
-
-    public boolean wordBreakSlow(String s, Set<String> dict) {
-        if (s == null || s.length() <= 1 || dict == null) {
-            return false;
-        }
-
-        Stack<Integer> stack = new Stack<Integer>();
-
-        int i = 0;
-        int cursor = 0;
-        while (i < s.length() || (cursor < i && stack.size() > 0)) {
-            if (i > s.length()) {
-                i = stack.pop() + 1;
-                if (stack.size() > 0) {
-                    cursor = stack.peek();
-                } else {
-                    cursor = 0;
-                }
-            }
-
-            String sub = s.subSequence(cursor, i).toString();
-            if (dict.contains(sub)) {
-                stack.push(i);
-                cursor = i;
-                if (cursor == s.length()) {
-                    return true;
-                }
-                i ++;
-            } else {
-                i ++;
-            }
-        }
-
-        return false;
-    }
 }
