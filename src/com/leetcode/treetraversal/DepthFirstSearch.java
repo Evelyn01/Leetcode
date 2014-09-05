@@ -2,6 +2,8 @@ package com.leetcode.treetraversal;
 
 import com.leetcode.common.MultipleTreeNode;
 
+import java.util.List;
+import java.util.Stack;
 import java.util.Vector;
 
 /**
@@ -13,7 +15,7 @@ public class DepthFirstSearch {
 
         DepthFirstSearch search = new DepthFirstSearch();
         Vector<MultipleTreeNode> list = new Vector<MultipleTreeNode>();
-        search.dfs(createRoot(), list);
+        search.dfsNonRecursive(createRoot(), list);
 
         for(MultipleTreeNode node : list) {
             System.out.println(node.getValue());
@@ -76,6 +78,29 @@ public class DepthFirstSearch {
 
         for (MultipleTreeNode child : children) {
             dfs(child, list);
+        }
+    }
+
+    public void dfsNonRecursive(MultipleTreeNode root, Vector<MultipleTreeNode> list) {
+        if (root == null || list == null) {
+            return;
+        }
+
+        Stack<MultipleTreeNode> stack = new Stack<MultipleTreeNode>();
+        stack.push(root);
+
+        while (stack.size() > 0) {
+            MultipleTreeNode node = stack.pop();
+            list.add(node);
+
+            List<MultipleTreeNode> children = node.getChildren();
+            if (children != null) {
+                int size = children.size();
+                for (int i = size - 1 ; i >= 0 ; i --) {
+                    MultipleTreeNode child = children.get(i);
+                    stack.push(child);
+                }
+            }
         }
     }
 }
