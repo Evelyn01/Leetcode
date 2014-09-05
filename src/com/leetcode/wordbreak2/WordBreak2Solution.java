@@ -8,14 +8,14 @@ import java.util.*;
 public class WordBreak2Solution {
 
 
-    static String s = "catsanddog";
-    static String[] dict = {"cat", "cats", "and", "sand", "dog"};
+//    static String s = "catsanddog";
+//    static String[] dict = {"cat", "cats", "and", "sand", "dog"};
 
 //    static String s = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab";
 //    static String[] dict = {"a","aa","aaa","aaaa","aaaaa","aaaaaa","aaaaaaa","aaaaaaaa","aaaaaaaaa","aaaaaaaaaa"};
 
-//    static String s = "a";
-//    static String[] dict = {"a"};
+    static String s = "a";
+    static String[] dict = {"b"};
 
     public static void main(String[] strings) {
         WordBreak2Solution wordBreakSolution = new WordBreak2Solution();
@@ -26,15 +26,21 @@ public class WordBreak2Solution {
         }
 
         List<String> list = wordBreakSolution.wordBreak(s, set);
-        for (String breakStr : list) {
-            System.out.println(breakStr);
+        if (list == null || list.size() == 0) {
+            System.out.println("No solution");
+        } else {
+            for (String breakStr : list) {
+                System.out.println(breakStr);
+            }
         }
+
     }
 
     //DP
     public List<String> wordBreak(String s, Set<String> dict) {
-        if (s == null || s.length() <= 0 || dict == null) {
-            return null;
+        List<String> list = new ArrayList<String>();
+        if (s == null || s.length() <= 0 || dict == null || dict.size() == 0) {
+            return list;
         }
 
         int length = s.length();
@@ -45,44 +51,44 @@ public class WordBreak2Solution {
 
         dp[length] = true;
 
-        Hashtable<Integer, Vector<Integer>> hashtable = new Hashtable<Integer, Vector<Integer>>();
+        HashMap<Integer, ArrayList<Integer>> hashMap = new HashMap<Integer, ArrayList<Integer>>();
 
         for (int i = length - 1; i >= 0 ; i --) {
             for (int j = i ; j < length ; j ++) {
                 String current = s.substring(i, j + 1);
                 if (dict.contains(current) && dp[j + 1]) {
                     dp[i] = true;
-                    Vector<Integer> vector;
-                    if (hashtable.containsKey(i)) {
-                        vector = hashtable.get(i);
+                    ArrayList<Integer> arrayList;
+                    if (hashMap.containsKey(i)) {
+                        arrayList = hashMap.get(i);
                     } else {
-                        vector = new Vector<Integer>();
+                        arrayList = new ArrayList<Integer>();
                     }
-                    vector.add(j + 1);
-                    hashtable.put(i, vector);
+                    arrayList.add(j + 1);
+                    hashMap.put(i, arrayList);
                 }
             }
         }
 
-        List<String> list = new ArrayList<String>();
-        collect(hashtable, 0, 0, "", list, s);
+        if (hashMap.containsKey(0)) {
+            collect(hashMap, 0, 0, "", list, s);
+        }
         return list;
     }
 
-    private void collect(Hashtable<Integer, Vector<Integer>> hashtable, int lastIndex, int index, String prefix, List<String> list, String ori) {
+    private void collect(HashMap<Integer, ArrayList<Integer>> hashMap, int lastIndex, int index, String prefix, List<String> list, String ori) {
         String temp = ori.substring(lastIndex, index);
         prefix = prefix + " " + temp;
 
         if (index == ori.length()) {
-            list.add(prefix);
+            list.add(prefix.trim());
             return;
         }
 
-        Vector<Integer> nextNode = hashtable.get(index);
+        ArrayList<Integer> nextNode = hashMap.get(index);
         for (int nextIndex : nextNode) {
-            collect(hashtable, index, nextIndex, prefix, list, ori);
+            collect(hashMap, index, nextIndex, prefix, list, ori);
         }
-
     }
 
     public boolean wordBreakSlow(String s, Set<String> dict) {
