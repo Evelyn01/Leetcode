@@ -7,7 +7,7 @@ import com.leetcode.common.TreeNode;
  */
 public class PostInBuild {
 
-    static int[] TestpostOrder = {3, 4, 1, 2};
+    static int[] TestpostOrder = {3, 4, 2, 1};
     static int[] TestinOrder = {1, 2, 3, 4};
 
     public static void main(String[] strings) {
@@ -58,8 +58,8 @@ public class PostInBuild {
             System.arraycopy(postorder, i, rightPostOrder, 0, rightPostOrder.length);
         }
 
-        rootNode.left = buildTree(leftPostOrder, leftInOrder);
-        rootNode.right = buildTree(rightPostOrder, rightInOrder);
+        rootNode.left = buildTree(leftInOrder, leftPostOrder);
+        rootNode.right = buildTree(rightInOrder, rightPostOrder);
 
         return rootNode;
     }
