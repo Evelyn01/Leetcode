@@ -30,6 +30,7 @@ public class PreInBuild {
                 break;
             }
         }
+
         int[] leftInOrder = null;
         int[] rightInOrder = null;
         int[] leftPreOrder = null;
