@@ -6,13 +6,54 @@ package com.leetcode.longestpalindromic;
  */
 public class LongestPalindromic {
 
+    static String testStr = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabcaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+
     public static void main(String[] strings) {
         LongestPalindromic palindromic = new LongestPalindromic();
 
-        System.out.println(palindromic.longestPalindrome("cxabdbafabdba9o"));
+        long time = System.currentTimeMillis();
+        System.out.println(palindromic.longestPalindromeFailedOne(testStr));
+        System.out.println(System.currentTimeMillis() - time);
     }
 
     public String longestPalindrome(String s) {
+        int n = s.length();
+        if (n<2) return s;
+
+        int start = 0;
+        int end = 0;
+
+        boolean[][] M = new boolean[n][n]; // all intialized to false, by default
+        M[n-1][n-1] = true;
+        for (int i=0; i<n-1; ++i)
+        {
+            M[i][i] = true;
+            M[i][i+1] = (s.charAt(i)==s.charAt(i+1));
+
+            if (M[i][i+1])
+            {
+                start = i;
+                end = i+1;
+            }
+        }
+
+        for (int step=2; step<n; ++step)
+        {
+            for (int i=0; i<=n-1-step; ++i)
+            {
+                M[i][i+step] = M[i+1][i+step-1] && s.charAt(i)==s.charAt(i+step);
+                if (M[i][i+step])
+                {
+                    start = i;
+                    end = i+step;
+                }
+            }
+        }
+
+        return s.substring(start, end+1);
+    }
+
+    public String longestPalindromeFailedOne(String s) {
         if (s == null)
             return null;
 
