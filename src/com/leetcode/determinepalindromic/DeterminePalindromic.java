@@ -14,6 +14,7 @@ public class DeterminePalindromic {
         System.out.println(Math.log10(x));
 
         System.out.println(palindromic.isPalindrome(1234543121));
+        System.out.println(palindromic.isPalindrome(123454321));
     }
 
     public boolean isPalindrome(int x) {
