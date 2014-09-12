@@ -2,6 +2,7 @@ package com.leetcode.determinepalindromic;
 
 /**
  * Created by bod on 9/10/14.
+ * https://oj.leetcode.com/problems/palindrome-number/
  */
 public class DeterminePalindromic {
 
