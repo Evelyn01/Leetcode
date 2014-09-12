@@ -12,7 +12,7 @@ public class LongestPalindromic {
         LongestPalindromic palindromic = new LongestPalindromic();
 
         long time = System.currentTimeMillis();
-        System.out.println(palindromic.longestPalindromeFailedOne(testStr));
+        System.out.println(palindromic.longestPalindrome(testStr));
         System.out.println(System.currentTimeMillis() - time);
     }
 
