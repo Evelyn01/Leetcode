@@ -3,17 +3,17 @@ package com.leetcode.stringtointeger;
 /**
  * Created by titan-developer on 9/13/14.
  */
-public class StringToInteger {
+public class StringToIntegerStandardJava {
 
     public static void main(String[] strings) {
 
-        StringToInteger stringToInteger = new StringToInteger();
+        StringToIntegerStandardJava stringToIntegerStandardJava = new StringToIntegerStandardJava();
 
-        System.out.println(stringToInteger.atoi("-479484"));
-        System.out.println(stringToInteger.atoi("2147483647"));
-        System.out.println(stringToInteger.atoi("-2147483648"));
-        System.out.println(stringToInteger.atoi("-08"));
-        System.out.println(stringToInteger.atoi("+-08"));
+        System.out.println(stringToIntegerStandardJava.atoi("-479484"));
+        System.out.println(stringToIntegerStandardJava.atoi("2147483647"));
+        System.out.println(stringToIntegerStandardJava.atoi("-2147483648"));
+        System.out.println(stringToIntegerStandardJava.atoi("-08"));
+        System.out.println(stringToIntegerStandardJava.atoi("+-08"));
 
         System.out.println(-2147483646 - 5);
         System.out.println(Integer.MAX_VALUE);
