@@ -13,7 +13,7 @@ public class LinkedListCycleSolution {
         if (head == null || head.next == null)
             return false;
 
-        ListNode normal  = head;
+        ListNode normal = head;
         ListNode fast = head;
 
         while (fast != null && normal != null) {

@@ -17,7 +17,7 @@ public class DepthFirstSearch {
         Vector<MultipleTreeNode> list = new Vector<MultipleTreeNode>();
         search.dfsNonRecursive(createRoot(), list);
 
-        for(MultipleTreeNode node : list) {
+        for (MultipleTreeNode node : list) {
             System.out.println(node.getValue());
         }
 
@@ -28,7 +28,7 @@ public class DepthFirstSearch {
         BreathFirstSearch breathFirstSearch = new BreathFirstSearch();
         breathFirstSearch.bfs(createRoot(), list);
 
-        for(MultipleTreeNode node : list) {
+        for (MultipleTreeNode node : list) {
             System.out.println(node.getValue());
         }
     }
@@ -96,7 +96,7 @@ public class DepthFirstSearch {
             List<MultipleTreeNode> children = node.getChildren();
             if (children != null) {
                 int size = children.size();
-                for (int i = size - 1 ; i >= 0 ; i --) {
+                for (int i = size - 1; i >= 0; i--) {
                     MultipleTreeNode child = children.get(i);
                     stack.push(child);
                 }

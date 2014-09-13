@@ -24,19 +24,19 @@ public class DeterminePalindromic {
         } else if (x < 10) {
             return true;
         } else {
-            int max = (int)(Math.log10(x));
+            int max = (int) (Math.log10(x));
             int min = 0;
 
             while (min < max) {
-                int highestInt = x / ((int)Math.pow(10, max));
+                int highestInt = x / ((int) Math.pow(10, max));
 
                 int lowestInt = x / ((int) Math.pow(10, min)) % 10;
 
                 if (highestInt == lowestInt) {
                     x = x - highestInt * ((int) Math.pow(10, max));
 
-                    max --;
-                    min ++;
+                    max--;
+                    min++;
                 } else {
                     return false;
                 }

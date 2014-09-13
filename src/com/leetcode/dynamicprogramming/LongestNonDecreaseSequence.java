@@ -9,11 +9,11 @@ public class LongestNonDecreaseSequence {
     public static void main(String[] strings) {
         LongestNonDecreaseSequence sequence = new LongestNonDecreaseSequence();
 
-        int[] array = new int[] {1, 3, 4, 5, 6, 8, 2, 0};
+        int[] array = new int[]{1, 3, 4, 5, 6, 8, 2, 0};
         int longest = sequence.findLongestNonDecrease(array);
         System.out.println(longest);
 
-        array = new int[] {3, 2, 1, 5, 6, 9, 4 , 2};
+        array = new int[]{3, 2, 1, 5, 6, 9, 4, 2};
         longest = sequence.findLongestNonDecrease(array);
         System.out.println(longest);
     }
@@ -27,7 +27,7 @@ public class LongestNonDecreaseSequence {
 
         int[][] log = new int[array.length][2];
 
-        for (int i = 0 ; i < array.length ; i ++) {
+        for (int i = 0; i < array.length; i++) {
             if (i == 0) {
                 log[0][0] = 1;
                 log[0][1] = array[i];

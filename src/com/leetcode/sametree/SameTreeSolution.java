@@ -61,7 +61,7 @@ public class SameTreeSolution {
             int lastLevel = 1;
             while (true) {
                 int currentLevel = 0;
-                for (int i = 0 ; i < lastLevel ; i ++) {
+                for (int i = 0; i < lastLevel; i++) {
                     TreeNode pTemp = pArray.get(0);
                     TreeNode qTemp = qArray.get(0);
 
@@ -73,7 +73,7 @@ public class SameTreeSolution {
                     } else if (pTemp.left != null && qTemp.left != null) {
                         pArray.add(pTemp.left);
                         qArray.add(qTemp.left);
-                        currentLevel ++;
+                        currentLevel++;
                     } else {
                         return false;
                     }
@@ -82,7 +82,7 @@ public class SameTreeSolution {
                     } else if (pTemp.right != null && qTemp.right != null) {
                         pArray.add(pTemp.right);
                         qArray.add(qTemp.right);
-                        currentLevel ++;
+                        currentLevel++;
                     } else {
                         return false;
                     }

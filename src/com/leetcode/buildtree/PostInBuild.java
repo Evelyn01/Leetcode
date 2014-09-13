@@ -27,14 +27,14 @@ public class PostInBuild {
 
         boolean isMatched = false;
         int i;
-        for (i = 0 ; i < inorder.length ; i ++) {
+        for (i = 0; i < inorder.length; i++) {
             if (inorder[i] == root) {
                 isMatched = true;
                 break;
             }
         }
 
-        if(!isMatched) {
+        if (!isMatched) {
             return null;
         }
 

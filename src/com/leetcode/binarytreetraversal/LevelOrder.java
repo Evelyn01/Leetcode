@@ -55,7 +55,7 @@ public class LevelOrder {
         while (list.size() > 0) {
             ArrayList<Integer> currentLevel = new ArrayList<Integer>();
             currentLevelNumber = 0;
-            for (int i = 0 ; i < lastLevelNumber ; i ++) {
+            for (int i = 0; i < lastLevelNumber; i++) {
                 TreeNode tempNode = list.get(0);
 
                 if (isRightOrder)
@@ -64,12 +64,12 @@ public class LevelOrder {
                     currentLevel.add(tempNode.val);
 
                 if (tempNode.left != null) {
-                    currentLevelNumber ++;
+                    currentLevelNumber++;
                     list.add(tempNode.left);
                 }
 
                 if (tempNode.right != null) {
-                    currentLevelNumber ++;
+                    currentLevelNumber++;
                     list.add(tempNode.right);
                 }
                 list.remove(0);
@@ -97,17 +97,17 @@ public class LevelOrder {
         while (list.size() > 0) {
             ArrayList<Integer> currentLevel = new ArrayList<Integer>();
             currentLevelNumber = 0;
-            for (int i = 0 ; i < lastLevelNumber ; i ++) {
+            for (int i = 0; i < lastLevelNumber; i++) {
                 TreeNode tempNode = list.get(0);
                 currentLevel.add(tempNode.val);
 
                 if (tempNode.left != null) {
-                    currentLevelNumber ++;
+                    currentLevelNumber++;
                     list.add(tempNode.left);
                 }
 
                 if (tempNode.right != null) {
-                    currentLevelNumber ++;
+                    currentLevelNumber++;
                     list.add(tempNode.right);
                 }
                 list.remove(0);
@@ -134,17 +134,17 @@ public class LevelOrder {
         while (list.size() > 0) {
             ArrayList<Integer> currentLevel = new ArrayList<Integer>();
             currentLevelNumber = 0;
-            for (int i = 0 ; i < lastLevelNumber ; i ++) {
+            for (int i = 0; i < lastLevelNumber; i++) {
                 TreeNode tempNode = list.get(0);
                 currentLevel.add(tempNode.val);
 
                 if (tempNode.left != null) {
-                    currentLevelNumber ++;
+                    currentLevelNumber++;
                     list.add(tempNode.left);
                 }
 
                 if (tempNode.right != null) {
-                    currentLevelNumber ++;
+                    currentLevelNumber++;
                     list.add(tempNode.right);
                 }
                 list.remove(0);

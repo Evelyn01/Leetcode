@@ -2,7 +2,7 @@ package com.leetcode.majoritynumber;
 
 /**
  * Created by titan-developer on 9/13/14.
- *
+ * <p/>
  * This algorithm, which Bob Boyer and I invented in 1980 decides which element of a sequence is in the majority,
  * provided there is such an element. How would you determine the majority element
  * (the count of the element is bigger the half of the size of array) of:
@@ -17,7 +17,7 @@ public class MajorityNumber {
         System.out.println(majorityNumber.findMajorityNumber(array));
     }
 
-    public boolean findMajorityNumber (int[] array) {
+    public boolean findMajorityNumber(int[] array) {
 
         if (array == null) {
             return false;
@@ -29,12 +29,12 @@ public class MajorityNumber {
         for (int i : array) {
             if (vote <= 0) {
                 majorityNumber = i;
-                vote ++;
+                vote++;
             } else {
                 if (i == majorityNumber) {
-                    vote ++;
+                    vote++;
                 } else {
-                    vote --;
+                    vote--;
                 }
             }
         }
@@ -43,7 +43,7 @@ public class MajorityNumber {
 
         for (int i : array) {
             if (i == majorityNumber) {
-                count ++;
+                count++;
             }
         }
 

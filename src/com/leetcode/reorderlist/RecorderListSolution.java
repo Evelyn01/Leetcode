@@ -4,12 +4,12 @@ import com.leetcode.common.ListNode;
 
 /**
  * Created by titan-developer on 8/17/14.
- *
+ * <p/>
  * Given a singly linked list L: L0→L1→…→Ln-1→Ln,
  * reorder it to: L0→Ln→L1→Ln-1→L2→Ln-2→…
- *
+ * <p/>
  * You must do this in-place without altering the nodes' values.
- *
+ * <p/>
  * For example,
  * Given {1,2,3,4}, reorder it to {1,4,2,3}.
  */
@@ -87,7 +87,7 @@ public class RecorderListSolution {
         int step = 0;
         while (current.next != null) {
             current = current.next;
-            step ++;
+            step++;
 
             if (step == 2) {
                 step = 0;

@@ -12,7 +12,7 @@ import java.util.Stack;
 public class PreOrder {
 
     public static void main(String[] strings) {
-        TreeNode root  = new TreeNode(1);
+        TreeNode root = new TreeNode(1);
 
         root.right = new TreeNode(2);
 
@@ -21,7 +21,7 @@ public class PreOrder {
         PreOrder preOrder = new PreOrder();
         List<Integer> list = preOrder.preorderTraversal(root);
 
-        for(int val : list) {
+        for (int val : list) {
             System.out.println(val);
         }
     }

@@ -20,7 +20,7 @@ public class TwoSum {
     public int[] twoSum(int[] numbers, int target) {
         HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
         int[] result = new int[2];
-        for (int i = 0 ; i < numbers.length ; i ++) {
+        for (int i = 0; i < numbers.length; i++) {
             int val = numbers[i];
             if (map.containsKey((target - val))) {
                 int firstIndex = map.get((target - val));

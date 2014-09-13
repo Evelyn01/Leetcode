@@ -26,7 +26,7 @@ public class PreInBuild {
         TreeNode rootNode = new TreeNode(root);
 
         int i;
-        for (i = 0 ; i < inOrder.length ; i ++) {
+        for (i = 0; i < inOrder.length; i++) {
             if (inOrder[i] == root) {
                 break;
             }

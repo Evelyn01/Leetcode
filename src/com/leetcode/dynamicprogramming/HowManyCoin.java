@@ -6,7 +6,7 @@ package com.leetcode.dynamicprogramming;
  * And the sum S is set to be 11.
  */
 public class HowManyCoin {
-    static int[] coinValue = new int[] {1, 3, 5};
+    static int[] coinValue = new int[]{1, 3, 5};
 
     public static void main(String[] strings) {
         HowManyCoin howManyCoin = new HowManyCoin();
@@ -25,11 +25,11 @@ public class HowManyCoin {
             minValues = new int[value + 1];
             minValues[0] = 0;
 
-            for (int i = 1 ; i <= value ; i ++) {
+            for (int i = 1; i <= value; i++) {
                 minValues[i] = Integer.MAX_VALUE;
                 int lastCoin = -1;
                 int lastMin = -1;
-                for (int m = 0 ; m < coinValue.length; m ++) {
+                for (int m = 0; m < coinValue.length; m++) {
                     if (coinValue[m] <= i) {
                         if (minValues[i - coinValue[m]] + 1 < minValues[i]) {
                             minValues[i] = minValues[i - coinValue[m]] + 1;

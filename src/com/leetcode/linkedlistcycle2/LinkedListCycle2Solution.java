@@ -47,7 +47,7 @@ public class LinkedListCycle2Solution {
         while (first != null && second != null) {
             first = first.next;
             second = second.next;
-            if(second != null) {
+            if (second != null) {
                 second = second.next;
             }
             if (first == second) {

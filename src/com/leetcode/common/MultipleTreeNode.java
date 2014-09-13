@@ -8,6 +8,7 @@ import java.util.Vector;
 public class MultipleTreeNode {
     Vector<MultipleTreeNode> children;
     int value;
+
     public MultipleTreeNode(int value) {
         this.value = value;
         children = new Vector<MultipleTreeNode>();

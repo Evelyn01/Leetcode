@@ -33,7 +33,7 @@ public class CocktailSort implements Sorter {
 
             end = end - 1;
 
-            for (int m = end ; m >= begin ; m --) {
+            for (int m = end; m >= begin; m--) {
                 if (input[m] > input[m + 1]) {
                     int temp = input[m];
                     input[m] = input[m + 1];
