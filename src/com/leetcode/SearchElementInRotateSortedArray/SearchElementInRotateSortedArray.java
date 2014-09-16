@@ -11,6 +11,39 @@ public class SearchElementInRotateSortedArray {
         SearchElementInRotateSortedArray searchElementInRotateSortedArray = new SearchElementInRotateSortedArray();
         System.out.println(searchElementInRotateSortedArray.rotated_binary_search(array, 4));
         System.out.println(searchElementInRotateSortedArray.rotated_binary_search(array, 7));
+
+
+        int[] array2 = {2, 1};
+        System.out.println(searchElementInRotateSortedArray.rotated_binary_search(array2, 1));
+        System.out.println(searchElementInRotateSortedArray.rotated_binary_search(array2, 2, 1));
+
+    }
+
+    int rotated_binary_search(int A[], int N, int key) {
+        int L = 0;
+        int R = N - 1;
+
+        while (L <= R) {
+            // Avoid overflow, same as M=(L+R)/2
+            int M = L + ((R - L) / 2);
+            if (A[M] == key) return M;
+
+            // the bottom half is sorted
+            if (A[L] <= A[M]) {
+                if (A[L] <= key && key < A[M])
+                    R = M - 1;
+                else
+                    L = M + 1;
+            }
+            // the upper half is sorted
+            else {
+                if (A[M] < key && key <= A[R])
+                    L = M + 1;
+                else
+                    R = M - 1;
+            }
+        }
+        return -1;
     }
 
     /**
@@ -28,7 +61,7 @@ public class SearchElementInRotateSortedArray {
         int left = 0;
         int right = length - 1;
 
-        while (left < right) {
+        while (left <= right) {
             int pivot = (right - left) / 2 + left;
 
             if (array[pivot] == key) {
@@ -36,26 +69,18 @@ public class SearchElementInRotateSortedArray {
             }
 
             //upper sorted array
-            if (array[pivot] < array[right]) {
-                if (key == array[right]) {
-                    return right;
-                }
-
-                if (key > array[pivot] && key < array[right]) {
-                    left = pivot;
+            if (array[pivot] <= array[right]) {
+                if (key > array[pivot] && key <= array[right]) {
+                    left = pivot + 1;
                 } else {
-                    right = pivot;
+                    right = pivot - 1;
                 }
 
-            } else if (array[pivot] > array[left]) {
-                if (key == array[left]) {
-                    return left;
-                }
-
-                if (key < array[pivot] && key > array[left]) {
-                    right = pivot;
+            } else {
+                if (key < array[pivot] && key >= array[left]) {
+                    right = pivot - 1;
                 } else {
-                    left = pivot;
+                    left = pivot + 1;
                 }
             }
 
