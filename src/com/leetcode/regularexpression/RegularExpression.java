@@ -9,32 +9,37 @@ public class RegularExpression {
 
     /*
     Some examples:
-    isMatch("aa","a") → false
-    isMatch("aa","aa") → true
-    isMatch("aaa","aa") → false
-    isMatch("aa", "a*") → true
-    isMatch("aa", ".*") → true
-    isMatch("ab", ".*") → true
-    isMatch("aab", "c*a*b") → true
+    isMatchWrong("aa","a") → false
+    isMatchWrong("aa","aa") → true
+    isMatchWrong("aaa","aa") → false
+    isMatchWrong("aa", "a*") → true
+    isMatchWrong("aa", ".*") → true
+    isMatchWrong("ab", ".*") → true
+    isMatchWrong("aab", "c*a*b") → true
     */
 
     public static void main(String[] strings) {
         RegularExpression regularExpression = new RegularExpression();
-        System.out.println(regularExpression.isMatch("bbbba", ".*a*a"));
-        System.out.println(regularExpression.isMatch("ab", ".*c"));
-        System.out.println(regularExpression.isMatch("aaa", "ab*a*c*a"));
-        System.out.println(regularExpression.isMatch("aaa", "a*a"));
-        System.out.println(regularExpression.isMatch("aa", "a"));
-        System.out.println(regularExpression.isMatch("aa", "aa"));
-        System.out.println(regularExpression.isMatch("aaa", "aa"));
-        System.out.println(regularExpression.isMatch("aa", "a*"));
-        System.out.println(regularExpression.isMatch("aa", ".*"));
-        System.out.println(regularExpression.isMatch("ab", ".*"));
-        System.out.println(regularExpression.isMatch("aab", "c*a*b"));
-
+        System.out.println(regularExpression.isMatchWrong("bbbba", ".*a*a"));
+        System.out.println(regularExpression.isMatchWrong("ab", ".*c"));
+        System.out.println(regularExpression.isMatchWrong("aaa", "ab*a*c*a"));
+        System.out.println(regularExpression.isMatchWrong("aaa", "a*a"));
+        System.out.println(regularExpression.isMatchWrong("aa", "a"));
+        System.out.println(regularExpression.isMatchWrong("aa", "aa"));
+        System.out.println(regularExpression.isMatchWrong("aaa", "aa"));
+        System.out.println(regularExpression.isMatchWrong("aa", "a*"));
+        System.out.println(regularExpression.isMatchWrong("aa", ".*"));
+        System.out.println(regularExpression.isMatchWrong("ab", ".*"));
+        System.out.println(regularExpression.isMatchWrong("aab", "c*a*b"));
     }
 
+
     public boolean isMatch(String s, String p) {
+
+        return false;
+    }
+
+    public boolean isMatchWrong(String s, String p) {
         if (s == null || p == null || s.trim().length() == 0 || p.trim().length() == 0) {
             return false;
         }
@@ -55,15 +60,6 @@ public class RegularExpression {
                 if (wild.equals("*")) {
                     isWild = true;
                     index_p++;
-
-//                    while (index_p < p.length()) {
-//                        String temp = p.substring(index_p, index_p + 1);
-//                        if (temp.equals(p_str) || temp.equals("*")) {
-//                            index_p ++;
-//                        } else {
-//                            break;
-//                        }
-//                    }
                 }
             }
 
