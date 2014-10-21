@@ -2,6 +2,7 @@ package com.leetcode.SearchElementInRotateSortedArray;
 
 /**
  * Created by titan-developer on 9/15/14.
+ * Similar to https://oj.leetcode.com/problems/find-minimum-in-rotated-sorted-array/
  */
 public class FindXForRotateSortedArray {
 
