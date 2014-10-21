@@ -2,10 +2,20 @@ package com.leetcode.SearchElementInRotateSortedArray;
 
 /**
  * Created by titan-developer on 10/20/14.
+ *
+ * Below solution works both for :
  * https://oj.leetcode.com/problems/find-minimum-in-rotated-sorted-array/
+ * https://oj.leetcode.com/problems/find-minimum-in-rotated-sorted-array-ii/
  */
 public class FindMinInRotateSortedArray {
 
+    public static void main(String[] strings) {
+        int array[] = {4, 5, 6, 7, 0, 0, 1, 2, 2, 3};
+
+        FindMinInRotateSortedArray findMin = new FindMinInRotateSortedArray();
+
+        System.out.println(findMin.findMin(array));
+    }
 
     public int findMin(int[] array) {
         if (array == null || array.length == 0) {

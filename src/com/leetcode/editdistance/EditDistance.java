@@ -46,11 +46,11 @@ public class EditDistance {
 			System.out.println(tmp);
 		}*/
 
-
         return arr[word2.length()][word1.length()];
     }
 
     public static void main(String[] args) {
         System.out.println("Result : " + new EditDistance().minDistance("cworker", "aword"));
+        System.out.println("Result : " + new EditDistance().minDistance("park", "spake"));
     }
 }
