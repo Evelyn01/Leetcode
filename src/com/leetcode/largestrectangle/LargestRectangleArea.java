@@ -26,7 +26,7 @@ public class LargestRectangleArea {
         // heights.
         Stack<Integer> stack = new Stack<Integer>();
 
-        int max_area = 0; // Initalize max area
+        int max_area = 0; // Initialize max area
         int tp;  // To store top of stack
         int area_with_top; // To store area with top bar as the smallest bar
 
