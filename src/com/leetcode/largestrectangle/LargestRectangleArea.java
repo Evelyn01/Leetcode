@@ -1,11 +1,10 @@
 package com.leetcode.largestrectangle;
 
-import com.leetcode.integertoroman.IntegerToRoman;
-
 import java.util.Stack;
 
 /**
  * Created by titan-developer on 10/21/14.
+ * https://oj.leetcode.com/problems/largest-rectangle-in-histogram/
  */
 public class LargestRectangleArea {
 
