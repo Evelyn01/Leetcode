@@ -5,6 +5,9 @@ import java.util.Stack;
 /**
  * Created by titan-developer on 10/21/14.
  * https://oj.leetcode.com/problems/largest-rectangle-in-histogram/
+ *
+ * Solution refers to:
+ * http://www.geeksforgeeks.org/largest-rectangle-under-histogram/
  */
 public class LargestRectangleArea {
 
