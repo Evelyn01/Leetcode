@@ -9,10 +9,12 @@ import java.util.Stack;
 public class LargestRectangleArea {
 
     public static void main(String[] strings) {
+        int[] height0 = {2, 2, 3, 3, 4, 3, 2, 2, 2};
         int[] height = {2, 1, 5, 6, 2, 3};
         int[] height1 = {2, 1, 5, 100, 2, 3};
         int[] height2 = {2, 2, 3, 3, 4, 3};
         LargestRectangleArea largestRectangleArea = new LargestRectangleArea();
+        System.out.println(largestRectangleArea.largestRectangleArea(height0));
         System.out.println(largestRectangleArea.largestRectangleArea(height));
         System.out.println(largestRectangleArea.largestRectangleArea(height1));
         System.out.println(largestRectangleArea.largestRectangleArea(height2));
