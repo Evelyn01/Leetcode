@@ -21,13 +21,13 @@ public class CombSort implements Sorter {
 
         boolean isSwapped;
         do {
-            gap = (int)(gap/shrinkFactor);
+            gap = (int) (gap / shrinkFactor);
             if (gap < 1) {
                 gap = 1;
             }
             isSwapped = false;
 
-            for (int i = 0; i + gap < input.length ; i ++) {
+            for (int i = 0; i + gap < input.length; i++) {
                 if (input[i] > input[i + gap]) {
                     int temp = input[i];
                     input[i] = input[i + gap];
@@ -36,6 +36,6 @@ public class CombSort implements Sorter {
                 }
             }
 
-        }while (isSwapped);
+        } while (isSwapped);
     }
 }

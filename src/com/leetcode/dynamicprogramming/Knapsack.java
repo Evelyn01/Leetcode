@@ -4,7 +4,7 @@ package com.leetcode.dynamicprogramming;
  * Created by bod on 8/23/14.
  */
 public class Knapsack {
-    static int[][] diamonds = new int[][] {
+    static int[][] diamonds = new int[][]{
             {2, 10},
             {3, 7},
             {4, 1},
@@ -30,16 +30,16 @@ public class Knapsack {
 
         int[][] m = new int[diamonds.length + 1][packSize + 1];
 
-        for (int j = 0 ; j <= packSize ; j ++ ) {
+        for (int j = 0; j <= packSize; j++) {
             m[0][j] = 0;
         }
 
-        for (int i = 1 ; i < m.length ; i ++) {
-            for (int j = 0 ; j <= packSize ; j ++) {
-                if (diamonds[i-1][0] < j) {
-                    m[i][j] = Math.max(m[i - 1][j], m[i-1][j-diamonds[i-1][0]] + diamonds[i-1][1]);
+        for (int i = 1; i < m.length; i++) {
+            for (int j = 0; j <= packSize; j++) {
+                if (diamonds[i - 1][0] < j) {
+                    m[i][j] = Math.max(m[i - 1][j], m[i - 1][j - diamonds[i - 1][0]] + diamonds[i - 1][1]);
                 } else {
-                    m[i][j] = m[i-1][j];
+                    m[i][j] = m[i - 1][j];
                 }
             }
         }

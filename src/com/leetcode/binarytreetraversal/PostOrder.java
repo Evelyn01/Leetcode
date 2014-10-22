@@ -12,7 +12,7 @@ import java.util.Stack;
 public class PostOrder {
 
     public static void main(String[] strings) {
-        TreeNode root  = new TreeNode(1);
+        TreeNode root = new TreeNode(1);
 
         root.left = new TreeNode(1);
         root.right = new TreeNode(2);
@@ -33,7 +33,7 @@ public class PostOrder {
 
         List<Integer> list = postOrder.postOrderTraversalRecursive(root);
 
-        for(int val : list) {
+        for (int val : list) {
             System.out.println(val);
         }
 
@@ -42,7 +42,7 @@ public class PostOrder {
         PreOrder preOrder = new PreOrder();
         list = preOrder.preorderTraversal(root);
 
-        for(int val : list) {
+        for (int val : list) {
             System.out.println(val);
         }
 
@@ -51,7 +51,7 @@ public class PostOrder {
         InOrder inOrder = new InOrder();
         list = inOrder.inOrderTraversalRecursive(root);
 
-        for(int val : list) {
+        for (int val : list) {
             System.out.println(val);
         }
     }

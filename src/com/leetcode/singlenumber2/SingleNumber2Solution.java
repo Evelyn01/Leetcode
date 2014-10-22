@@ -3,13 +3,13 @@ package com.leetcode.singlenumber2;
 /**
  * Created by bod on 8/14/14.
  * Given an array of integers, every element appears three times except for one. Find that single one.
- *
+ * <p/>
  * Note:
  * Your algorithm should have a linear runtime complexity. Could you implement it without using extra memory?
  */
 public class SingleNumber2Solution {
 
-    static int[] a = new int[] {
+    static int[] a = new int[]{
             1,
             1,
             3,

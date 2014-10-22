@@ -33,23 +33,23 @@ public class SortLinkedListSolution {
     public static void main(String[] strings) {
         SortLinkedListSolution sortLinkedListSolution = new SortLinkedListSolution();
 
-        for (int[] a: cases) {
+        for (int[] a : cases) {
             ListNode list = generateNode(a);
             printArray(sortLinkedListSolution.sortList(list));
         }
     }
 
     private static void printArray(ListNode list) {
-            if (list == null) {
-                System.out.println("empty array");
-            } else {
+        if (list == null) {
+            System.out.println("empty array");
+        } else {
+            System.out.println(list.val);
+            while (list.next != null) {
+                list = list.next;
                 System.out.println(list.val);
-                while (list.next != null) {
-                    list = list.next;
-                    System.out.println(list.val);
-                }
             }
-            System.out.println("-----------");
+        }
+        System.out.println("-----------");
     }
 
     private static ListNode generateNode(int[] a) {

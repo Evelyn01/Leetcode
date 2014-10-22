@@ -49,7 +49,7 @@ public class AddTwoNumberSolution {
 
                 int val = 0;
                 if (needCarryOver) {
-                    val ++;
+                    val++;
                     needCarryOver = false;
                 }
 

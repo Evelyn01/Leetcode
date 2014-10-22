@@ -68,17 +68,17 @@ public class MaxPointOnLineSolution {
 
         HashMap<Double, Integer> hashMap = new HashMap<Double, Integer>();
         int max = 0;
-        for (int i = 0 ; i < points.length ; i ++) {
+        for (int i = 0; i < points.length; i++) {
             hashMap.clear();
             int localMax = 0;
             int vertical = 1;
             int overlap = 0;
-            for (int j = 0 ; j < points.length ; j ++) {
+            for (int j = 0; j < points.length; j++) {
                 if (i != j) {
                     if (points[i].x == points[j].x) { //vertical line case
-                        vertical ++;
+                        vertical++;
                         if (points[i].y == points[j].y) {
-                            overlap ++;
+                            overlap++;
                         }
                     } else {
                         double slope = calcSlope(points[i], points[j]);
@@ -87,7 +87,7 @@ public class MaxPointOnLineSolution {
                             count = hashMap.get(slope);
                         }
 
-                        count ++;
+                        count++;
                         if (count > localMax) {
                             localMax = count;
                         }
@@ -111,7 +111,7 @@ public class MaxPointOnLineSolution {
     }
 
     double calcSlope(Point a, Point b) {
-        return ((double)b.y - (double)a.y) / ((double)b.x - (double)a.x);
+        return ((double) b.y - (double) a.y) / ((double) b.x - (double) a.x);
     }
 
 

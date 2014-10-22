@@ -7,11 +7,11 @@ import java.util.Stack;
 /**
  * Created by bod on 8/19/14.
  * Given a string s and a dictionary of words dict, determine if s can be segmented into a space-separated sequence of one or more dictionary words.
- *
+ * <p/>
  * For example, given
  * s = "leetcode",
  * dict = ["leet", "code"].
- *
+ * <p/>
  * Return true because "leetcode" can be segmented as "leet code".
  */
 public class WordBreakSolution {
@@ -48,14 +48,14 @@ public class WordBreakSolution {
 
         int length = s.length();
         boolean[] dp = new boolean[length + 1];
-        for (int i = 0 ; i < dp.length ; i ++) {
+        for (int i = 0; i < dp.length; i++) {
             dp[i] = false;
         }
 
         dp[length] = true;
 
-        for (int i = length - 1; i >= 0 ; i --) {
-            for (int j = i ; j < length ; j ++) {
+        for (int i = length - 1; i >= 0; i--) {
+            for (int j = i; j < length; j++) {
                 String current = s.substring(i, j + 1);
                 if (dict.contains(current) && dp[j + 1]) {
                     dp[i] = true;
@@ -93,9 +93,9 @@ public class WordBreakSolution {
                 if (cursor == s.length()) {
                     return true;
                 }
-                i ++;
+                i++;
             } else {
-                i ++;
+                i++;
             }
         }
 

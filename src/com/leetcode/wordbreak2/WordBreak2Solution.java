@@ -45,7 +45,7 @@ public class WordBreak2Solution {
 
         int length = s.length();
         boolean[] dp = new boolean[length + 1];
-        for (int i = 0 ; i < dp.length ; i ++) {
+        for (int i = 0; i < dp.length; i++) {
             dp[i] = false;
         }
 
@@ -53,8 +53,8 @@ public class WordBreak2Solution {
 
         HashMap<Integer, ArrayList<Integer>> hashMap = new HashMap<Integer, ArrayList<Integer>>();
 
-        for (int i = length - 1; i >= 0 ; i --) {
-            for (int j = i ; j < length ; j ++) {
+        for (int i = length - 1; i >= 0; i--) {
+            for (int j = i; j < length; j++) {
                 String current = s.substring(i, j + 1);
                 if (dict.contains(current) && dp[j + 1]) {
                     dp[i] = true;

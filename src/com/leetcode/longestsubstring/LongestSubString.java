@@ -24,7 +24,7 @@ public class LongestSubString {
         int maxLength = 0;
 
         StringBuffer currentStr = new StringBuffer();
-        for (int i = 0 ; i < s.length() ; i ++) {
+        for (int i = 0; i < s.length(); i++) {
             String c = s.substring(i, i + 1);
             int index = currentStr.indexOf(c);
             if (index == -1) {

@@ -18,39 +18,34 @@ public class LongestPalindromic {
 
     public String longestPalindrome(String s) {
         int n = s.length();
-        if (n<2) return s;
+        if (n < 2) return s;
 
         int start = 0;
         int end = 0;
 
         boolean[][] M = new boolean[n][n]; // all intialized to false, by default
-        M[n-1][n-1] = true;
-        for (int i=0; i<n-1; ++i)
-        {
+        M[n - 1][n - 1] = true;
+        for (int i = 0; i < n - 1; ++i) {
             M[i][i] = true;
-            M[i][i+1] = (s.charAt(i)==s.charAt(i+1));
+            M[i][i + 1] = (s.charAt(i) == s.charAt(i + 1));
 
-            if (M[i][i+1])
-            {
+            if (M[i][i + 1]) {
                 start = i;
-                end = i+1;
+                end = i + 1;
             }
         }
 
-        for (int step=2; step<n; ++step)
-        {
-            for (int i=0; i<=n-1-step; ++i)
-            {
-                M[i][i+step] = M[i+1][i+step-1] && s.charAt(i)==s.charAt(i+step);
-                if (M[i][i+step])
-                {
+        for (int step = 2; step < n; ++step) {
+            for (int i = 0; i <= n - 1 - step; ++i) {
+                M[i][i + step] = M[i + 1][i + step - 1] && s.charAt(i) == s.charAt(i + step);
+                if (M[i][i + step]) {
                     start = i;
-                    end = i+step;
+                    end = i + step;
                 }
             }
         }
 
-        return s.substring(start, end+1);
+        return s.substring(start, end + 1);
     }
 
     public String longestPalindromeFailedOne(String s) {
@@ -60,7 +55,7 @@ public class LongestPalindromic {
         int length = s.length();
         int[][] f = new int[length][length];
         for (int i = 0; i < length; i++) {
-            for(int m = 0 ; m < length ; m++) {
+            for (int m = 0; m < length; m++) {
                 f[i][m] = -1;
             }
             f[i][i] = 2;
@@ -88,7 +83,7 @@ public class LongestPalindromic {
                     }
                 } else {
                     if (gap > 1) {
-                        if (f[i + 1][i + gap -1] > 0) {
+                        if (f[i + 1][i + gap - 1] > 0) {
                             if (s.subSequence(i, i + 1).equals(s.subSequence(i + gap, i + gap + 1))) {
                                 f[i][i + gap] = 1;
 
