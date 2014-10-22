@@ -20,8 +20,7 @@ public class LargestRectangleArea {
 
     // The main function to find the maximum rectangular area under given
     // histogram with n bars
-    public int largestRectangleArea(int hist[])
-    {
+    public int largestRectangleArea(int hist[]) {
         // Create an empty stack. The stack holds indexes of hist[] array
         // The bars stored in stack are always in increasing order of their
         // heights.
@@ -33,8 +32,7 @@ public class LargestRectangleArea {
 
         // Run through all bars of given histogram
         int i = 0;
-        while (i < hist.length)
-        {
+        while (i < hist.length) {
             // If this bar is higher than the bar on top stack, push it to stack
             if (stack.empty() || hist[stack.peek()] <= hist[i])
                 stack.push(i++);
@@ -42,8 +40,7 @@ public class LargestRectangleArea {
                 // If this bar is lower than top of stack, then calculate area of rectangle
                 // with stack top as the smallest (or minimum height) bar. 'i' is
                 // 'right index' for the top and element before top in stack is 'left index'
-            else
-            {
+            else {
                 tp = stack.peek();  // store the top index
                 stack.pop();  // pop the top
 
@@ -58,8 +55,7 @@ public class LargestRectangleArea {
 
         // Now pop the remaining bars from stack and calculate area with every
         // popped bar as the smallest bar
-        while (!stack.empty())
-        {
+        while (!stack.empty()) {
             tp = stack.peek();
             stack.pop();
             area_with_top = hist[tp] * (stack.empty() ? i : i - stack.peek() - 1);
@@ -73,6 +69,7 @@ public class LargestRectangleArea {
 
     /**
      * Big O N2
+     *
      * @param height
      * @return
      */
@@ -90,14 +87,14 @@ public class LargestRectangleArea {
 
         maxHeight[0][0] = height[0];
         max = height[0];
-        for (int i = 1; i < height.length ; i ++) {
+        for (int i = 1; i < height.length; i++) {
             maxHeight[i][i] = height[i];
             if (height[i] > max) {
                 max = height[i];
             }
 
-            for (int j = 0; j < i ; j ++) {
-                maxHeight[j][i] = Math.min(maxHeight[j][i-1], height[i]);
+            for (int j = 0; j < i; j++) {
+                maxHeight[j][i] = Math.min(maxHeight[j][i - 1], height[i]);
                 int rectSize = (i - j + 1) * maxHeight[j][i];
                 if (rectSize > max) {
                     max = rectSize;
