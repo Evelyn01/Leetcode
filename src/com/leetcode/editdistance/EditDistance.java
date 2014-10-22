@@ -39,7 +39,7 @@ public class EditDistance {
 
 
 		/*for (int i = 0; i < word2.length() + 1; i++) {
-			String tmp = "";
+            String tmp = "";
 			for (int j = 0; j < word1.length() + 1; j++) {
 				tmp += arr[i][j] + " ";
 			}

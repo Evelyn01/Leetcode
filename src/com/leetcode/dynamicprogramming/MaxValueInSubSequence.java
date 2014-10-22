@@ -4,7 +4,7 @@ package com.leetcode.dynamicprogramming;
  * Created by bod on 8/26/14.
  * Maximum Value Contiguous Subsequence. Given a sequence of n real numbers A(1) ... A(n),
  * determine a contiguous subsequence A(i) ... A(j) for which the sum of elements in the subsequence is maximized.
- *
+ * <p/>
  * https://oj.leetcode.com/problems/maximum-product-subarray/
  */
 public class MaxValueInSubSequence {

@@ -24,16 +24,16 @@ public class ReverseInteger {
             x = -x;
         }
 
-        int bit = (int)Math.log10(x) + 1;
+        int bit = (int) Math.log10(x) + 1;
 
-        int dest  = 0;
+        int dest = 0;
 
-        for (int i = 0 ; i < bit ; i ++) {
+        for (int i = 0; i < bit; i++) {
             int temp = x % 10;
             dest += temp * Math.pow(10, (bit - i - 1));
             x = x / 10;
         }
 
-        return isNegative ? - dest : dest;
+        return isNegative ? -dest : dest;
     }
 }

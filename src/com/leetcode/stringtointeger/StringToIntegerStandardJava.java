@@ -29,7 +29,7 @@ public class StringToIntegerStandardJava {
         int length = str.length();
 
         boolean isNegative = false;
-        boolean isHasSymbol= false;
+        boolean isHasSymbol = false;
         for (int i = 0; i < length; i++) {
             char c = str.charAt(i);
 
@@ -49,9 +49,9 @@ public class StringToIntegerStandardJava {
 
         int intValue = 0;
         int endValue = isHasSymbol ? 1 : 0;
-        for (int i = length - 1 ; i >= endValue ; i --) {
+        for (int i = length - 1; i >= endValue; i--) {
             char c = str.charAt(i);
-            int temp = charToInt(c) * (int)Math.pow(10, length - i - 1);
+            int temp = charToInt(c) * (int) Math.pow(10, length - i - 1);
             if (isNegative) {
                 temp = -temp;
             }

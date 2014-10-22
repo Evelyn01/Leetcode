@@ -5,20 +5,21 @@ package com.leetcode.romantointeger;
  */
 public class RomanToInteger {
 
-    /** examples
-     X          10
-     MMXIV      2014
-     MCMLIV     1954
-     MCMXC      1990
-     MLXVI      1066
-     CMVIII     908
-     MCMX       1910
+    /**
+     * examples
+     * X          10
+     * MMXIV      2014
+     * MCMLIV     1954
+     * MCMXC      1990
+     * MLXVI      1066
+     * CMVIII     908
+     * MCMX       1910
      */
 
     public static void main(String[] strings) {
         RomanToInteger romanToInteger = new RomanToInteger();
 
-        String[] romanStrings = {"X", "MMXIV", "MCMLIV", "MCMXC", "MLXVI", "CMVIII", "MCMX", };
+        String[] romanStrings = {"X", "MMXIV", "MCMLIV", "MCMXC", "MLXVI", "CMVIII", "MCMX",};
         for (String romanStr : romanStrings) {
             System.out.println(romanToInteger.romanToInt(romanStr));
         }
@@ -31,7 +32,7 @@ public class RomanToInteger {
 
         int num = 0;
 
-        for (int i = 0 ; i < s.length() ; i ++) {
+        for (int i = 0; i < s.length(); i++) {
             char bit0 = s.charAt(i);
             char bit1 = '-';
 
@@ -43,7 +44,7 @@ public class RomanToInteger {
             num += result[0];
 
             if (result[1] == 1) {
-                i ++;
+                i++;
             }
         }
 

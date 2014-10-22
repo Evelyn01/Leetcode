@@ -2,7 +2,10 @@ package com.leetcode.treetraversal;
 
 import com.leetcode.common.MultipleTreeNode;
 
-import java.util.*;
+import java.util.ArrayDeque;
+import java.util.List;
+import java.util.Queue;
+import java.util.Vector;
 
 /**
  * Created by bod on 9/4/14.

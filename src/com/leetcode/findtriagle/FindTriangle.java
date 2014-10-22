@@ -44,7 +44,7 @@ public class FindTriangle {
                                 count++;
                         }
 
-                        tempV ++;
+                        tempV++;
                     }
                 }
             }
