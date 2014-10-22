@@ -1,4 +1,4 @@
-package com.leetcode.SearchElementInRotateSortedArray;
+package com.leetcode.searchrotatesortedarray;
 
 /**
  * Created by titan-developer on 9/15/14.
