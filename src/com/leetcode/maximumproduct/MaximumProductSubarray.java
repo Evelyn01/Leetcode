@@ -13,23 +13,23 @@ public class MaximumProductSubarray {
         System.out.println(maxProduct.maxProduct(a));
     }
 
-//    public int maxProduct2(int[] array) {
-//        int maxProduct = Integer.MIN_VALUE;
-//
-//        if (array == null || array.length < 2) {
-//            return maxProduct;
-//        }
-//
-//        int minus = 0;
-//
-//        int current = 0;
-//
-//        for (int i = 0 ; i < array.length ; i ++) {
-//            if (array[i])
-//        }
-//
-//        return maxProduct;
-//    }
+    public int maxProduct2(int[] array) {
+        int maxProduct = Integer.MIN_VALUE;
+
+        if (array == null || array.length < 2) {
+            return maxProduct;
+        }
+
+        int cursor[] = new int[3];
+        int currentStatus = 0;
+        int currentProduct = 0;
+
+        for (int i = 0; i < array.length; i++) {
+
+        }
+
+        return maxProduct;
+    }
 
     public int maxProduct(int[] array) {
         int maxProduct = Integer.MIN_VALUE;
@@ -43,7 +43,7 @@ public class MaximumProductSubarray {
         int maxLastIndex = 1;
         int currentMax = 0;
 
-        for (int i = 2 ; i < array.length ; i ++) {
+        for (int i = 2; i < array.length; i++) {
             if (maxProduct < 0) {
                 minus = maxProduct;
                 if (array[i] <= 0) {
