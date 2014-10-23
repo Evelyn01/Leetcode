@@ -9,7 +9,8 @@ import java.util.LinkedList;
 public class MaximumProductSubarray {
 
     public static void main(String[] strings) {
-        int[] a = {-3, -4, -5, -7, -1, 6, 7};
+        int[] a = {2, -3, -4, -5, -7, -2, 6, -1};
+        //int[] a = {-3, -4, -5, -7, -1, 6, 7};
         //int[] a = {-3, -4, -5, 2, 3, -1, -2};
         //int[] a = {-3, -4, -5, 0, 3, -1, -2};
         //int[] a = {-3, 4, 0, -1, 3, 0, -1, 2};
@@ -58,6 +59,8 @@ public class MaximumProductSubarray {
                 max_ending_here = Math.max(min_ending_here * arr[i], 1);
                 min_ending_here = temp * arr[i];
             }
+
+            System.out.println(max_ending_here + ", " + min_ending_here);
 
             // update max_so_far, if needed
             if (max_so_far < max_ending_here)
