@@ -18,8 +18,7 @@ public class MaximumProductSubarray {
         System.out.println(maxProduct.maxProduct(a));
     }
 
-    public int maxProduct(int arr[])
-    {
+    public int maxProduct(int arr[]) {
         // max positive product ending at the current position
         int max_ending_here = 1;
 
@@ -32,21 +31,18 @@ public class MaximumProductSubarray {
         /* Traverse throught the array. Following values are maintained after the ith iteration:
            max_ending_here is always 1 or some positive product ending with arr[i]
            min_ending_here is always 1 or some negative product ending with arr[i] */
-        for (int i = 0; i < arr.length; i++)
-        {
+        for (int i = 0; i < arr.length; i++) {
             /* If this element is positive, update max_ending_here. Update
                min_ending_here only if min_ending_here is negative */
-            if (arr[i] > 0)
-            {
-                max_ending_here = max_ending_here*arr[i];
-                min_ending_here = Math.min (min_ending_here * arr[i], 1);
+            if (arr[i] > 0) {
+                max_ending_here = max_ending_here * arr[i];
+                min_ending_here = Math.min(min_ending_here * arr[i], 1);
             }
 
             /* If this element is 0, then the maximum product cannot
                end here, make both max_ending_here and min_ending_here 0
                Assumption: Output is alway greater than or equal to 1. */
-            else if (arr[i] == 0)
-            {
+            else if (arr[i] == 0) {
                 max_ending_here = 1;
                 min_ending_here = 1;
             }
@@ -57,16 +53,15 @@ public class MaximumProductSubarray {
                next min_ending_here will always be prev. max_ending_here * arr[i]
                next max_ending_here will be 1 if prev min_ending_here is 1, otherwise
                next max_ending_here will be prev min_ending_here * arr[i] */
-            else
-            {
+            else {
                 int temp = max_ending_here;
-                max_ending_here = Math.max (min_ending_here * arr[i], 1);
+                max_ending_here = Math.max(min_ending_here * arr[i], 1);
                 min_ending_here = temp * arr[i];
             }
 
             // update max_so_far, if needed
-            if (max_so_far <  max_ending_here)
-                max_so_far  =  max_ending_here;
+            if (max_so_far < max_ending_here)
+                max_so_far = max_ending_here;
         }
 
         return max_so_far;
@@ -77,15 +72,11 @@ public class MaximumProductSubarray {
         int maxProduct = A[0];
         int minProduct = A[0];
         int maxRes = A[0];
-        for (int i = 1; i < A.length; i++)
-        {
-            if (A[i] >= 0)
-            {
+        for (int i = 1; i < A.length; i++) {
+            if (A[i] >= 0) {
                 maxProduct = Math.max(maxProduct * A[i], A[i]);
                 minProduct = Math.min(minProduct * A[i], A[i]);
-            }
-            else
-            {
+            } else {
                 int temp = maxProduct;
                 maxProduct = Math.max(minProduct * A[i], A[i]);
                 minProduct = Math.min(temp * A[i], A[i]);
@@ -222,7 +213,7 @@ public class MaximumProductSubarray {
             if ((segment.end - segment.start + 1) % 2 == 0) {
                 segment.isPositive = true;
 
-                if(cursorsList.peekLast() != null) {
+                if (cursorsList.peekLast() != null) {
                     Segment ori = cursorsList.peekLast();
                     ori.end = segment.end;
                     return ori;
@@ -272,7 +263,7 @@ public class MaximumProductSubarray {
             if (segment1.start == segment1.end && segment2.start == segment2.end) {
                 product = array[segment1.start] * array[segment2.start];
             } else if (segment1.isPositive) {
-                for (int i = segment1.start; i <= segment2.end -1; i++) {
+                for (int i = segment1.start; i <= segment2.end - 1; i++) {
                     product *= array[i];
                 }
                 segment1.end = segment2.end - 1;
@@ -305,7 +296,7 @@ public class MaximumProductSubarray {
                 }
 
                 if (Math.abs(value1 * segment2.start) > Math.abs(value3 * segment2.end)) {
-                    for (int i = segment2.start ; i <= segment2.end - 1 ; i ++) {
+                    for (int i = segment2.start; i <= segment2.end - 1; i++) {
                         value1 = value1 * array[i];
                     }
                     product = value1;
@@ -315,7 +306,7 @@ public class MaximumProductSubarray {
                     cursorsList.add(segment1);
                     cursorsList.add(segment2);
                 } else {
-                    for (int i = segment2.start + 1; i < segment2.end ; i ++) {
+                    for (int i = segment2.start + 1; i < segment2.end; i++) {
                         value3 = value3 * array[i];
                     }
                     product = value3;
