@@ -9,16 +9,113 @@ import java.util.LinkedList;
 public class MaximumProductSubarray {
 
     public static void main(String[] strings) {
-        //int[] a = {-3, -4, -5, 6, 7};
+        int[] a = {-3, -4, -5, 6, 7};
         //int[] a = {-3, -4, -5, 2, 3, -1, -2};
         //int[] a = {-3, -4, -5, 0, 3, -1, -2};
-        int[] a = {-3, 4, 0, -1, 3, 0, -1, 2};
+        //int[] a = {-3, 4, 0, -1, 3, 0, -1, 2};
 
         MaximumProductSubarray maxProduct = new MaximumProductSubarray();
         System.out.println(maxProduct.maxProduct(a));
     }
 
-    public int maxProduct(int[] array) {
+    public int maxProduct(int arr[])
+    {
+        // max positive product ending at the current position
+        int max_ending_here = 1;
+
+        // min negative product ending at the current position
+        int min_ending_here = 1;
+
+        // Initialize overall max product
+        int max_so_far = 1;
+
+    /* Traverse throught the array. Following values are maintained after the ith iteration:
+       max_ending_here is always 1 or some positive product ending with arr[i]
+       min_ending_here is always 1 or some negative product ending with arr[i] */
+        for (int i = 0; i < arr.length; i++)
+        {
+        /* If this element is positive, update max_ending_here. Update
+           min_ending_here only if min_ending_here is negative */
+            if (arr[i] > 0)
+            {
+                max_ending_here = max_ending_here*arr[i];
+                min_ending_here = Math.min (min_ending_here * arr[i], 1);
+            }
+
+        /* If this element is 0, then the maximum product cannot
+           end here, make both max_ending_here and min_ending_here 0
+           Assumption: Output is alway greater than or equal to 1. */
+            else if (arr[i] == 0)
+            {
+                max_ending_here = 1;
+                min_ending_here = 1;
+            }
+
+        /* If element is negative. This is tricky
+           max_ending_here can either be 1 or positive. min_ending_here can either be 1
+           or negative.
+           next min_ending_here will always be prev. max_ending_here * arr[i]
+           next max_ending_here will be 1 if prev min_ending_here is 1, otherwise
+           next max_ending_here will be prev min_ending_here * arr[i] */
+            else
+            {
+                int temp = max_ending_here;
+                max_ending_here = Math.max (min_ending_here * arr[i], 1);
+                min_ending_here = temp * arr[i];
+            }
+
+            // update max_so_far, if needed
+            if (max_so_far <  max_ending_here)
+                max_so_far  =  max_ending_here;
+        }
+
+        return max_so_far;
+    }
+
+    public int maxProduct2(int A[]) {
+        if (A.length == 0) return 0;
+        int maxProduct = A[0];
+        int minProduct = A[0];
+        int maxRes = A[0];
+        for (int i = 1; i < A.length; i++)
+        {
+            if (A[i] >= 0)
+            {
+                maxProduct = Math.max(maxProduct * A[i], A[i]);
+                minProduct = Math.min(minProduct * A[i], A[i]);
+            }
+            else
+            {
+                int temp = maxProduct;
+                maxProduct = Math.max(minProduct * A[i], A[i]);
+                minProduct = Math.min(temp * A[i], A[i]);
+            }
+            maxRes = Math.max(maxRes, maxProduct);
+        }
+        return maxRes;
+    }
+
+    public int maxProduct3(int[] A) {
+        if (A.length == 0) {
+            return 0;
+        }
+
+        int maxherepre = A[0];
+        int minherepre = A[0];
+        int maxsofar = A[0];
+        int maxhere, minhere;
+
+        for (int i = 1; i < A.length; i++) {
+            maxhere = Math.max(Math.max(maxherepre * A[i], minherepre * A[i]), A[i]);
+            minhere = Math.min(Math.min(maxherepre * A[i], minherepre * A[i]), A[i]);
+            maxsofar = Math.max(maxhere, maxsofar);
+            maxherepre = maxhere;
+            minherepre = minhere;
+        }
+        return maxsofar;
+    }
+
+    public int maxProductMine(int[] array) {
         int maxProduct = Integer.MIN_VALUE;
 
         if (array == null || array.length < 2) {
