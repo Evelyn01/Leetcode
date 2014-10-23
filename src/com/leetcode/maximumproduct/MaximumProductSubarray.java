@@ -9,7 +9,7 @@ import java.util.LinkedList;
 public class MaximumProductSubarray {
 
     public static void main(String[] strings) {
-        int[] a = {-3, -4, -5, 6, 7};
+        int[] a = {-3, -4, -5, -7, -1, 6, 7};
         //int[] a = {-3, -4, -5, 2, 3, -1, -2};
         //int[] a = {-3, -4, -5, 0, 3, -1, -2};
         //int[] a = {-3, 4, 0, -1, 3, 0, -1, 2};
