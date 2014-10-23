@@ -8,12 +8,12 @@ import java.util.List;
  * Created by titan-developer on 10/19/14.
  * https://oj.leetcode.com/problems/3sum/
  */
-public class Sum3 {
+public class ThreeSum {
 
     public static void main(String string[]) {
         int value[] = {-1, 0, 1, 2, -1, -4};
-        Sum3 sum3 = new Sum3();
-        List<List<Integer>> list = sum3.threeSum(value);
+        ThreeSum threeSum = new ThreeSum();
+        List<List<Integer>> list = threeSum.threeSum(value);
 
         for (List<Integer> integers : list) {
             System.out.println(integers);
