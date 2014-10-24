@@ -4,6 +4,7 @@ import com.leetcode.common.ListNode;
 
 /**
  * Created by titan-developer on 10/24/14.
+ * https://oj.leetcode.com/problems/remove-nth-node-from-end-of-list/
  */
 public class RemoveNthNode {
 
