@@ -9,11 +9,20 @@ public class FindConcatenation {
 
     public static void main(String[] strings) {
 
-//        String s = "barfoothefoobarman";
-//        String[] words = {"foo", "bar"};
+        String s = "barfoothefoobarman";
+        String[] words = {"foo", "bar"};
 //
-        String s = "aaa";
-        String[] words = {"a", "a"};
+//        String s = "abaababbaba";
+//        String[] words = {"ab","ba","ab","ba"};
+
+//        String s = "sheateateseatea";
+//        String[] words = {"sea","tea","ate"};
+
+//        String s = "a";
+//        String[] words = {"a"};
+
+//        String s = "aaa";
+//        String[] words = {"a", "a"};
 
         FindConcatenation concatenation = new FindConcatenation();
         System.out.println(concatenation.findSubstring(s, words));
@@ -46,7 +55,7 @@ public class FindConcatenation {
 
         int lastIndex = -1;
         int matchCount = 0;
-        for (int i = wordLength ; i < s.length() ; i ++) {
+        for (int i = wordLength ; i <= s.length() ; i ++) {
             String tmp = s.substring(i - wordLength, i);
             if (hashMap.containsKey(tmp)) {
                 CountNode node = hashMap.get(tmp);
@@ -54,23 +63,24 @@ public class FindConcatenation {
 
                 if (node.count > node.target) {
                     resetCount(hashMap);
-                    i = lastIndex + 1;
+                    i = lastIndex + wordLength;
                     lastIndex = -1;
                     matchCount = 0;
+                    continue;
                 } else {
+                    if (lastIndex < 0) {
+                        lastIndex = i - wordLength;
+                    }
                     if (node.count == node.target) {
                         matchCount += node.count;
                         if (matchCount == wordsListSize) {
                             results.add(lastIndex);
+                            i = lastIndex + wordLength;
                             lastIndex = -1;
-                            i = i + wordLength - 1;
                             resetCount(hashMap);
                             matchCount = 0;
                             continue;
                         }
-                    }
-                    if (lastIndex < 0) {
-                        lastIndex = i - wordLength;
                     }
 
                     i = i + wordLength - 1;
@@ -78,7 +88,7 @@ public class FindConcatenation {
             } else {
                 if (lastIndex >= 0) {
                     resetCount(hashMap);
-                    i = lastIndex;
+                    i = lastIndex + wordLength;
                     lastIndex = -1;
                     matchCount = 0;
                 }
