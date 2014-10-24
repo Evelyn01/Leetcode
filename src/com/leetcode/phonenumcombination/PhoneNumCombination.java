@@ -10,7 +10,7 @@ public class PhoneNumCombination {
 
     public static void main(String[] strings) {
 
-        String num = "237";
+        String num = "22";
 
         PhoneNumCombination combination = new PhoneNumCombination();
 
@@ -30,7 +30,78 @@ public class PhoneNumCombination {
     static char[] map_8 = {'t', 'u', 'v'};
     static char[] map_9 = {'w', 'x', 'y', 'z'};
 
+    protected char[] getCharArray(char c) {
+        switch (c) {
+            case '2':
+                return map_2;
+            case '3':
+                return map_3;
+            case '4':
+                return map_4;
+            case '5':
+                return map_5;
+            case '6':
+                return map_6;
+            case '7':
+                return map_7;
+            case '8':
+                return map_8;
+            case '9':
+                return map_9;
+        }
+
+        return null;
+    }
+
     public List<String> letterCombinations(String digits) {
+        ArrayList<String> list = new ArrayList<String>();
+
+        if (digits == null)
+            return list;
+
+        digits = digits.replace("0", "");
+        digits = digits.replace("1", "");
+        digits = digits.replace("*", "");
+        digits = digits.replace("#", "");
+
+        if (digits.length() == 0) {
+            list.add("");
+            return list;
+        }
+
+        recursiveLetterCombination(digits, list);
+
+        return list;
+    }
+
+    private void recursiveLetterCombination(String digits, ArrayList<String> list) {
+        if (digits.length() == 0) {
+            return;
+        }
+
+        char c = digits.charAt(0);
+        char[] chars = getCharArray(c);
+        int size = list.size();
+
+        if (size == 0) {
+            for (char x : chars) {
+                String str = "" + x;
+                list.add(str);
+            }
+        } else {
+            for (int i = size - 1; i >= 0; i--) {
+                String str = list.get(i);
+                list.remove(i);
+                for (char x : chars) {
+                    list.add(str + x);
+                }
+            }
+        }
+
+        recursiveLetterCombination(digits.substring(1), list);
+    }
+
+    public List<String> letterCombinations_Recurrence(String digits) {
         ArrayList<String> list = new ArrayList<String>();
 
         if (digits == null)
@@ -77,27 +148,4 @@ public class PhoneNumCombination {
         return list;
     }
 
-
-    protected char[] getCharArray(char c) {
-        switch (c) {
-            case '2':
-                return map_2;
-            case '3':
-                return map_3;
-            case '4':
-                return map_4;
-            case '5':
-                return map_5;
-            case '6':
-                return map_6;
-            case '7':
-                return map_7;
-            case '8':
-                return map_8;
-            case '9':
-                return map_9;
-        }
-
-        return null;
-    }
 }
