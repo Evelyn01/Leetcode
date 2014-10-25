@@ -23,7 +23,7 @@ public class LongestPalindromic {
         int start = 0;
         int end = 0;
 
-        boolean[][] M = new boolean[n][n]; // all intialized to false, by default
+        boolean[][] M = new boolean[n][n]; // all initialized to false, by default
         M[n - 1][n - 1] = true;
         for (int i = 0; i < n - 1; ++i) {
             M[i][i] = true;
