@@ -2,6 +2,10 @@ package com.leetcode.sudokusolver;
 
 /**
  * Created by titan-developer on 10/25/14.
+ * https://oj.leetcode.com/problems/sudoku-solver/
+ *
+ * Solution:
+ * http://www.cnblogs.com/easonliu/p/3662904.html
  */
 public class SudokuSolver {
 

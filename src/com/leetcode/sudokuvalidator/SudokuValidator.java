@@ -2,6 +2,7 @@ package com.leetcode.sudokuvalidator;
 
 /**
  * Created by titan-developer on 10/25/14.
+ * https://oj.leetcode.com/problems/valid-sudoku/
  */
 public class SudokuValidator {
 
