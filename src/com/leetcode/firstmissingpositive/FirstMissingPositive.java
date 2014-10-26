@@ -16,6 +16,36 @@ public class FirstMissingPositive {
         System.out.println(missingPositive.firstMissingPositive(a));
         System.out.println(missingPositive.firstMissingPositive(b));
         System.out.println(missingPositive.firstMissingPositive(c));
+
+        System.out.println(missingPositive.firstMissingPositive(a, a.length));
+        System.out.println(missingPositive.firstMissingPositive(b, b.length));
+        System.out.println(missingPositive.firstMissingPositive(c, c.length));
+    }
+
+    public int firstMissingPositive(int A[], int n) {
+        for (int i = 0; i < n; ++i)
+        {
+            int num = A[i];
+            while (num <= n && num > 0 && A[num - 1] != num)
+            {
+                swap(A, num - 1, i);
+                num = A[i];
+            }
+        }
+        for (int i = 0; i < n; ++i)
+        {
+            if (A[i] != i + 1)
+            {
+                return i + 1;
+            }
+        }
+        return n + 1;
+    }
+
+    protected void swap(int[] num, int i, int j) {
+        int tmp = num[i];
+        num[i] = num[j];
+        num[j] = tmp;
     }
 
     public int firstMissingPositive(int[] a) {
