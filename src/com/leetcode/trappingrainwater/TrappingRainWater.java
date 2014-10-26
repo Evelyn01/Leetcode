@@ -13,21 +13,20 @@ public class TrappingRainWater {
         System.out.println(trappingRainWater.trap(a));
     }
 
-    public int trap(int[] A){
-        int a=0;
-        int b=A.length-1;
-        int max=0;
-        int leftmax=0;
-        int rightmax=0;
-        while(a<=b){
-            leftmax=Math.max(leftmax,A[a]);
-            rightmax=Math.max(rightmax,A[b]);
-            if(leftmax<rightmax){
-                max+=(leftmax-A[a]);       // leftmax is smaller than rightmax, so the (leftmax-A[a]) water can be stored
+    public int trap(int[] A) {
+        int a = 0;
+        int b = A.length - 1;
+        int max = 0;
+        int leftmax = 0;
+        int rightmax = 0;
+        while (a <= b) {
+            leftmax = Math.max(leftmax, A[a]);
+            rightmax = Math.max(rightmax, A[b]);
+            if (leftmax < rightmax) {
+                max += (leftmax - A[a]);       // leftmax is smaller than rightmax, so the (leftmax-A[a]) water can be stored
                 a++;
-            }
-            else{
-                max+=(rightmax-A[b]);
+            } else {
+                max += (rightmax - A[b]);
                 b--;
             }
         }
@@ -46,7 +45,7 @@ public class TrappingRainWater {
         int base = 0;
         int span = 0;
 
-        for (int i = 0 ; i < a.length ; i ++) {
+        for (int i = 0; i < a.length; i++) {
             if (lastFrame < 0) {
                 if (a[i] > 0) {
                     lastFrame = a[i];
@@ -61,7 +60,7 @@ public class TrappingRainWater {
                     maxIndex = i;
                 } else {
                     base += a[i];
-                    span ++;
+                    span++;
                 }
 
             }
@@ -71,7 +70,7 @@ public class TrappingRainWater {
         span = 0;
         lastFrame = -1;
 
-        for (int i = a.length - 1; i >= maxIndex ; i --) {
+        for (int i = a.length - 1; i >= maxIndex; i--) {
             if (lastFrame < 0) {
                 if (a[i] > 0) {
                     lastFrame = a[i];
@@ -84,7 +83,7 @@ public class TrappingRainWater {
                     span = 0;
                 } else {
                     base += a[i];
-                    span ++;
+                    span++;
                 }
 
             }
