@@ -47,7 +47,6 @@ public class LongestValidParentheses {
             return maxLength;
         }
 
-        //LinkedList<Character> linkedList = new LinkedList<Character>();
         Stack<BracketInfo> stack = new Stack<BracketInfo>();
 
         char[] charsArray = s.toCharArray();
