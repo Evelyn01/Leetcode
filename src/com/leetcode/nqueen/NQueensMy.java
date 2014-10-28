@@ -1,7 +1,9 @@
 package com.leetcode.nqueen;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Vector;
 
 /**
  * Created by bod on 10/27/14.
@@ -31,12 +33,17 @@ public class NQueensMy {
 
         boolean[][] board = new boolean[n][n];
 
-        boolean isSucc = scanBoard(board, 0);
+        List<boolean[][]> solutions = new ArrayList<boolean[][]>();
+
+        boolean isSucc = scanBoard(solutions, board, 0);
 
         if (isSucc) {
-            for (int x = 0; x < n; x++) {
-                for (int y = 0; y < n; y++) {
-                    System.out.print(board[x][y] + ", ");
+            for (boolean[][] solution : solutions) {
+                for (int x = 0; x < n; x++) {
+                    for (int y = 0; y < n; y++) {
+                        System.out.print(solution[x][y] ? "1, " : "0, ");
+                    }
+                    System.out.println();
                 }
                 System.out.println();
             }
@@ -45,23 +52,39 @@ public class NQueensMy {
         return list;
     }
 
-    private boolean scanBoard(boolean[][] board, int col) {
+    private boolean scanBoard(List<boolean[][]> solutions, boolean[][] board, int col) {
         int size = board.length;
         if (col >= size) {
+            solutions.add(copyBoard(board));
+
             return true;
         }
+
+        boolean isSucc = false;
 
         //try to put on each row
         for (int i = 0; i < size; i++) {
             if (checkQueensLeftSide(board, i, col)) {
                 board[i][col] = true;
-                if (scanBoard(board, col + 1))
-                    return true;
+                if (scanBoard(solutions, board, col + 1))
+                    isSucc = true;
                 board[i][col] = false;
             }
         }
 
-        return false;
+        return isSucc;
+    }
+
+    private boolean[][] copyBoard(boolean[][] board) {
+        int size = board.length;
+
+        boolean[][] newBoard = new boolean[size][size];
+
+        for (int i = 0 ; i < size; i ++) {
+            newBoard[i] = Arrays.copyOf(board[i], size);
+        }
+
+        return newBoard;
     }
 
     protected boolean checkQueensLeftSide(boolean[][] board, int row, int col) {
