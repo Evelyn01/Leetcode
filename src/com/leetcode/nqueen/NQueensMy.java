@@ -13,6 +13,7 @@ public class NQueensMy {
         NQueensMy nQueensMy = new NQueensMy();
         List<String[]> list = nQueensMy.solveNQueens(4);
 
+
         for (String[] queens : list) {
             for (String b : queens) {
                 System.out.print(b + ", ");
@@ -28,72 +29,60 @@ public class NQueensMy {
             return list;
         }
 
-        int[][] table = new int[n][n];
+        boolean[][] board = new boolean[n][n];
 
-        scanTable(table, 0);
+        boolean isSucc = scanBoard(board, 0);
+
+        if (isSucc) {
+            for (int x = 0; x < n; x++) {
+                for (int y = 0; y < n; y++) {
+                    System.out.print(board[x][y] + ", ");
+                }
+                System.out.println();
+            }
+        }
 
         return list;
     }
 
-    private boolean scanTable(int[][] table, int pos) {
-        int size = table.length;
-        if (pos == size * size) {
+    private boolean scanBoard(boolean[][] board, int col) {
+        int size = board.length;
+        if (col >= size) {
             return true;
         }
 
-        int i = pos / size;
-        int j = pos % size;
-
-        if (table[i][j] > 0) {
-            return scanTable(table, pos + 1);
-        } else {
-            table[i][j] = 1;
-            if (checkQueens(table, pos)) {
-                if (scanTable(table, pos + 1))
+        //try to put on each row
+        for (int i = 0; i < size; i++) {
+            if (checkQueensLeftSide(board, i, col)) {
+                board[i][col] = true;
+                if (scanBoard(board, col + 1))
                     return true;
+                board[i][col] = false;
             }
-            table[i][j] = 0;
         }
+
         return false;
     }
 
-    protected boolean checkQueens(int[][] table, int pos) {
-        int size = table.length;
+    protected boolean checkQueensLeftSide(boolean[][] board, int row, int col) {
+        int size = board.length;
 
-        int i = pos / size;
-        int j = pos % size;
-
-
-        //check row
-        for (int m = 0; m != j && m < size; m ++) {
-            if (table[i][m] > 0)
+        /* Check this row on left side */
+        for (int i = 0; i < col; i++) {
+            if (board[row][i])
                 return false;
         }
 
-        //check column
-        for (int m = 0; m != i && m < size; m ++) {
-            if (table[m][j] > 0)
+        /* Check upper diagonal on left side */
+        for (int i = row, j = col; i >= 0 && j >= 0; i--, j--) {
+            if (board[i][j])
                 return false;
         }
 
-        //check diagonal, left-top
-        if (i > 0 && j > 0 && table[i - 1][j - 1] > 0) {
-            return false;
-        }
-
-        //check diagonal, left-bottom
-        if (i < size - 1 && j > 1 && table[i + 1][j - 1] > 0) {
-            return false;
-        }
-
-        //check diagonal, right-top
-        if (i > 0 && j < size - 1 && table[i - 1][j + 1] > 0) {
-            return false;
-        }
-
-        //check diagonal, right-bottom
-        if (i < size - 1 && j < size - 1 && table[i + 1][j + 1] > 0) {
-            return false;
+        /* Check lower diagonal on left side */
+        for (int i = row, j = col; j >= 0 && i < size; i++, j--) {
+            if (board[i][j])
+                return false;
         }
 
         return true;
