@@ -28,52 +28,72 @@ public class NQueensMy {
             return list;
         }
 
-        int[][] pos = new int[n][n];
+        int[][] table = new int[n][n];
 
+        scanTable(table, 0);
 
         return list;
     }
 
-    protected boolean checkQueens(int[][] pos) {
-        int size = pos.length;
+    private boolean scanTable(int[][] table, int pos) {
+        int size = table.length;
+        if (pos == size * size) {
+            return true;
+        }
 
-        for (int i = 0; i < size; i++) {
-            for (int j = 0; j < size; j++) {
-                if (pos[i][j] <= 0)
-                    continue;
+        int i = pos / size;
+        int j = pos % size;
 
-                //check row
-                for (int m = 0; m != j && m < size; m ++) {
-                    if (pos[i][m] > 0)
-                        return false;
-                }
-
-                //check column
-                for (int m = 0; m != i && m < size; m ++) {
-                    if (pos[m][j] > 0)
-                        return false;
-                }
-
-                //check diagonal, left-top
-                if (i > 0 && j > 0 && pos[i - 1][j - 1] > 0) {
-                    return false;
-                }
-
-                //check diagonal, left-bottom
-                if (i < size - 1 && j > 1 && pos[i + 1][j - 1] > 0) {
-                    return false;
-                }
-
-                //check diagonal, right-top
-                if (i > 0 && j < size - 1 && pos[i - 1][j + 1] > 0) {
-                    return false;
-                }
-
-                //check diagonal, right-bottom
-                if (i < size - 1 && j < size - 1 && pos[i + 1][j + 1] > 0) {
-                    return false;
-                }
+        if (table[i][j] > 0) {
+            return scanTable(table, pos + 1);
+        } else {
+            table[i][j] = 1;
+            if (checkQueens(table, pos)) {
+                if (scanTable(table, pos + 1))
+                    return true;
             }
+            table[i][j] = 0;
+        }
+        return false;
+    }
+
+    protected boolean checkQueens(int[][] table, int pos) {
+        int size = table.length;
+
+        int i = pos / size;
+        int j = pos % size;
+
+
+        //check row
+        for (int m = 0; m != j && m < size; m ++) {
+            if (table[i][m] > 0)
+                return false;
+        }
+
+        //check column
+        for (int m = 0; m != i && m < size; m ++) {
+            if (table[m][j] > 0)
+                return false;
+        }
+
+        //check diagonal, left-top
+        if (i > 0 && j > 0 && table[i - 1][j - 1] > 0) {
+            return false;
+        }
+
+        //check diagonal, left-bottom
+        if (i < size - 1 && j > 1 && table[i + 1][j - 1] > 0) {
+            return false;
+        }
+
+        //check diagonal, right-top
+        if (i > 0 && j < size - 1 && table[i - 1][j + 1] > 0) {
+            return false;
+        }
+
+        //check diagonal, right-bottom
+        if (i < size - 1 && j < size - 1 && table[i + 1][j + 1] > 0) {
+            return false;
         }
 
         return true;
