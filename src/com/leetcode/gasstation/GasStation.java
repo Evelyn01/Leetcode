@@ -6,11 +6,11 @@ package com.leetcode.gasstation;
 public class GasStation {
 
     public static void main(String[] strings) {
-        int[] gas = {4, 5, 4, 3};
-        int[] cost = {5, 6, 2, 3};
+//        int[] gas = {4, 5, 4, 3};
+//        int[] cost = {5, 6, 2, 3};
 
-//        int[] gas = {1, 2, 3, 3};
-//        int[] cost = {2, 1, 5, 1};
+        int[] gas = {1, 2, 3, 3};
+        int[] cost = {2, 1, 5, 1};
 
         GasStation gasStation = new GasStation();
         System.out.println(gasStation.canCompleteCircuit(gas, cost));
@@ -33,13 +33,9 @@ public class GasStation {
                         break;
                     }
                 } else {
-                    remaining = remaining - gas[start] + cost[start];
-                    start++;
-                    if (start >= cost.length) {
-                        start = -1;
-                        break;
-                    }
-                    count--;
+                    start = -1;
+                    remaining = 0;
+                    count = 0;
                 }
             } else {
                 if (start < 0) {
