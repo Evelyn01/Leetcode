@@ -15,48 +15,36 @@ public class NQueensMy {
         NQueensMy nQueensMy = new NQueensMy();
         List<String[]> list = nQueensMy.solveNQueens(4);
 
-
-        for (String[] queens : list) {
-            for (String b : queens) {
-                System.out.print(b + ", ");
+        for (String[] solution : list) {
+            for (int x = 0; x < solution[0].length(); x++) {
+                System.out.println(solution[x]);
             }
-            System.out.println("");
+            System.out.println();
         }
     }
 
     public List<String[]> solveNQueens(int n) {
-        List<String[]> list = new ArrayList<String[]>();
+        List<String[]> solutions = new ArrayList<String[]>();
 
-        if (n < 4) {
-            return list;
+        if (n == 1) {
+            String[] a = {"Q"};
+            solutions.add(a);
+            return solutions;
+        } else if (n < 4) {
+            return solutions;
         }
 
         boolean[][] board = new boolean[n][n];
 
-        List<boolean[][]> solutions = new ArrayList<boolean[][]>();
+        scanBoard(solutions, board, 0);
 
-        boolean isSucc = scanBoard(solutions, board, 0);
-
-        if (isSucc) {
-            for (boolean[][] solution : solutions) {
-                for (int x = 0; x < n; x++) {
-                    for (int y = 0; y < n; y++) {
-                        System.out.print(solution[x][y] ? "1, " : "0, ");
-                    }
-                    System.out.println();
-                }
-                System.out.println();
-            }
-        }
-
-        return list;
+        return solutions;
     }
 
-    private boolean scanBoard(List<boolean[][]> solutions, boolean[][] board, int col) {
+    private boolean scanBoard(List<String[]> solutions, boolean[][] board, int col) {
         int size = board.length;
         if (col >= size) {
             solutions.add(copyBoard(board));
-
             return true;
         }
 
@@ -75,16 +63,24 @@ public class NQueensMy {
         return isSucc;
     }
 
-    private boolean[][] copyBoard(boolean[][] board) {
+    private String[] copyBoard(boolean[][] board) {
         int size = board.length;
 
-        boolean[][] newBoard = new boolean[size][size];
+        String[] solution = new String[size];
 
         for (int i = 0 ; i < size; i ++) {
-            newBoard[i] = Arrays.copyOf(board[i], size);
+            String row = "";
+            for (int j = 0 ; j < size ; j ++) {
+                if (board[i][j]) {
+                    row += "Q";
+                } else {
+                    row += ".";
+                }
+            }
+            solution[i] = row;
         }
 
-        return newBoard;
+        return solution;
     }
 
     protected boolean checkQueensLeftSide(boolean[][] board, int row, int col) {
