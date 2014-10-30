@@ -21,17 +21,31 @@ public class RegularExpression {
     public static void main(String[] strings) {
         RegularExpression regularExpression = new RegularExpression();
 
-        System.out.println(regularExpression.isMatch("bbbba", ".*a*a"));
-        System.out.println(regularExpression.isMatch("ab", ".*c"));
-        System.out.println(regularExpression.isMatch("aaa", "ab*a*c*a"));
-        System.out.println(regularExpression.isMatch("aaa", "a*a"));
-        System.out.println(regularExpression.isMatch("aa", "a"));
-        System.out.println(regularExpression.isMatch("aa", "aa"));
-        System.out.println(regularExpression.isMatch("aaa", "aa"));
-        System.out.println(regularExpression.isMatch("aa", "a*"));
-        System.out.println(regularExpression.isMatch("aa", ".*"));
-        System.out.println(regularExpression.isMatch("ab", ".*"));
-        System.out.println(regularExpression.isMatch("aab", "c*a*b"));
+        System.out.println(regularExpression.isMatchRecursive("bbbba", ".*a*a"));
+        System.out.println(regularExpression.isMatchRecursive("ab", ".*c"));
+        System.out.println(regularExpression.isMatchRecursive("aaa", "ab*a*c*a"));
+        System.out.println(regularExpression.isMatchRecursive("aaa", "a*a"));
+        System.out.println(regularExpression.isMatchRecursive("aa", "a"));
+        System.out.println(regularExpression.isMatchRecursive("aa", "aa"));
+        System.out.println(regularExpression.isMatchRecursive("aaa", "aa"));
+        System.out.println(regularExpression.isMatchRecursive("aa", "a*"));
+        System.out.println(regularExpression.isMatchRecursive("aa", ".*"));
+        System.out.println(regularExpression.isMatchRecursive("ab", ".*"));
+        System.out.println(regularExpression.isMatchRecursive("aab", "c*a*b"));
+
+
+        System.out.println(regularExpression.isMatchDP("bbbba", ".*a*a"));
+        System.out.println(regularExpression.isMatchDP("ab", ".*c"));
+        System.out.println(regularExpression.isMatchDP("aaa", "ab*a*c*a"));
+        System.out.println(regularExpression.isMatchDP("aaa", "a*a"));
+        System.out.println(regularExpression.isMatchDP("aa", "a"));
+        System.out.println(regularExpression.isMatchDP("aa", "aa"));
+        System.out.println(regularExpression.isMatchDP("aaa", "aa"));
+        System.out.println(regularExpression.isMatchDP("aa", "a*"));
+        System.out.println(regularExpression.isMatchDP("aa", ".*"));
+        System.out.println(regularExpression.isMatchDP("ab", ".*"));
+        System.out.println(regularExpression.isMatchDP("aab", "c*a*b"));
+
 
         System.out.println(regularExpression.isMatchWrong("bbbba", ".*a*a"));
         System.out.println(regularExpression.isMatchWrong("ab", ".*c"));
@@ -46,7 +60,47 @@ public class RegularExpression {
         System.out.println(regularExpression.isMatchWrong("aab", "c*a*b"));
     }
 
-    boolean matchFirst(String s, String p) {
+    //------------------------------------------------------------
+
+
+    public boolean isMatchDP(String s, String p) {
+        if (s == null || p == null) {
+            return false;
+        }
+
+        int m = s.length();
+        int n = p.length();
+
+        boolean[][] OPT = new boolean[m+1][n+1];
+        OPT[0][0] = true;
+
+        for (int i = 1; i <= m; i++) {
+            OPT[i][0] = false;
+        }
+        for (int j = 1; j <= n; j++) {
+            OPT[0][j] = (p.charAt(j-1) == '*') && (j-2 >= 0) && OPT[0][j-2];
+        }
+
+        for (int i = 1; i <= m; i++) {
+            for (int j = 1; j <= n; j++) {
+                OPT[i][j] = ((OPT[i-1][j-1]) && equals(s, p, i-1, j-1))
+                        ||  ((OPT[i-1][j] || OPT[i][j-1])
+                        && (p.charAt(j-1) == '*')
+                        && equals(s, p, i-1, j-2))
+                        ||  ((p.charAt(j-1) == '*') && (j-2 >= 0) && OPT[i][j-2]);
+            }
+        }
+
+        return OPT[m][n];
+    }
+
+    private boolean equals(String s, String p, int si, int pi) {
+        return (s.charAt(si) == p.charAt(pi) || p.charAt(pi) == '.');
+    }
+
+    //------------------------------------------------------------
+
+    private boolean matchFirst(String s, String p) {
         if (s.length() == 0 && p.length() == 0) {
             return true;
         }
@@ -58,7 +112,7 @@ public class RegularExpression {
         return false;
     }
 
-    public boolean isMatch(String s, String p) {
+    public boolean isMatchRecursive(String s, String p) {
         if (s == null || p == null) {
             return false;
         }
@@ -68,12 +122,12 @@ public class RegularExpression {
         }
 
         if (p.length() > 1 && p.substring(1, 2).equals("*")) {
-            if (isMatch(s, p.substring(2))) {
+            if (isMatchRecursive(s, p.substring(2))) {
                 return true;
             } else {
                 while (matchFirst(s, p)) {
                     s = s.substring(1);
-                    if (isMatch(s, p.substring(2))) {
+                    if (isMatchRecursive(s, p.substring(2))) {
                         return true;
                     }
                 }
@@ -84,7 +138,7 @@ public class RegularExpression {
             }
 
             if (matchFirst(s, p)) {
-                return isMatch(s.substring(1), p.substring(1));
+                return isMatchRecursive(s.substring(1), p.substring(1));
             } else {
                 return false;
             }
@@ -92,6 +146,8 @@ public class RegularExpression {
 
         return false;
     }
+
+    //------------------------------------------------------------
 
     public boolean isMatchWrong(String s, String p) {
         if (s == null || p == null || s.trim().length() == 0 || p.trim().length() == 0) {
