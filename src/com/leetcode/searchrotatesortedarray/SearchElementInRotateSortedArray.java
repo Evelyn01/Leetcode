@@ -2,19 +2,19 @@ package com.leetcode.searchrotatesortedarray;
 
 /**
  * Created by titan-developer on 9/15/14.
- * http://leetcode.com/2010/04/searching-element-in-rotated-array.html
+ * https://oj.leetcode.com/problems/search-in-rotated-sorted-array/
  */
 public class SearchElementInRotateSortedArray {
 
     public static void main(String[] strings) {
         int[] array = {6, 7, 0, 1, 2, 4, 5};
         SearchElementInRotateSortedArray searchElementInRotateSortedArray = new SearchElementInRotateSortedArray();
-        System.out.println(searchElementInRotateSortedArray.rotated_binary_search(array, 4));
-        System.out.println(searchElementInRotateSortedArray.rotated_binary_search(array, 7));
+        System.out.println(searchElementInRotateSortedArray.search(array, 4));
+        System.out.println(searchElementInRotateSortedArray.search(array, 7));
 
 
         int[] array2 = {2, 1};
-        System.out.println(searchElementInRotateSortedArray.rotated_binary_search(array2, 1));
+        System.out.println(searchElementInRotateSortedArray.search(array2, 1));
         System.out.println(searchElementInRotateSortedArray.rotated_binary_search(array2, 2, 1));
 
     }
@@ -51,7 +51,7 @@ public class SearchElementInRotateSortedArray {
      * @param key
      * @return index of the key
      */
-    int rotated_binary_search(int array[], int key) {
+    public int search(int array[], int key) {
         if (array == null || array.length == 0) {
             return -1;
         }
