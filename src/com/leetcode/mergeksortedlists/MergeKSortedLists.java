@@ -1,7 +1,6 @@
 package com.leetcode.mergeksortedlists;
 
 import com.leetcode.common.ListNode;
-import com.leetcode.mergeksortedlist.MergeKSortedList;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,27 +28,77 @@ public class MergeKSortedLists {
         list.add(head1);
         list.add(head2);
 
-        MergeKSortedList merger = new MergeKSortedList();
+        MergeKSortedLists merger = new MergeKSortedLists();
 
         ListNode head = merger.mergeKLists(list);
 
         while (head != null) {
             System.out.print(head.val + ", ");
+            head = head.next;
         }
     }
 
     public ListNode mergeKLists(List<ListNode> lists) {
-        if (lists == null) {
+        if (lists == null || lists.size() == 0) {
             return null;
         } else if (lists.size() < 2) {
             return lists.get(0);
         }
 
-        ListNode head = null;
+        while (lists.size() > 1) {
+            int size = lists.size();
 
-        int size  = lists.size();
+            for (int i = size - 1; i >= 0; i--) {
+                if (i >= 1) {
+                    ListNode a = lists.get(i);
+                    ListNode b = lists.get(i -1);
 
-        for (int i = size; i > )
+                    ListNode c = mergeList(a, b);
+                    lists.remove(i);
+                    lists.remove(i - 1);
+                    lists.add(c);
+                    i --;
+                }
+            }
+        }
+
+        return lists.get(0);
+    }
+
+    private ListNode mergeList(ListNode a, ListNode b) {
+        ListNode head, current;
+
+        if (a == null) {
+            return b;
+        } else if (b == null) {
+            return a;
+        }
+
+        if (a.val < b.val) {
+            head = a;
+            a = a.next;
+        } else {
+            head = b;
+            b = b.next;
+        }
+
+        current = head;
+        while (a != null && b != null) {
+            if (a.val < b.val) {
+                current.next = a;
+                a = a.next;
+            } else {
+                current.next = b;
+                b = b.next;
+            }
+            current = current.next;
+        }
+
+        if (a != null) {
+            current.next = a;
+        } else {
+            current.next = b;
+        }
 
         return head;
     }
