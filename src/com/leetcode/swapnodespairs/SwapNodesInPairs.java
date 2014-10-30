@@ -10,6 +10,7 @@ public class SwapNodesInPairs {
 
     public static void main(String[] strings) {
         ListNode head = new ListNode(1);
+        ListNode h = head;
 
         head.next = new ListNode(2);
         head = head.next;
@@ -23,7 +24,7 @@ public class SwapNodesInPairs {
         head.next = new ListNode(5);
 
         SwapNodesInPairs swapNodesInPairs = new SwapNodesInPairs();
-        head = swapNodesInPairs.swapPairs(head);
+        head = swapNodesInPairs.swapPairs(h);
 
         while (head != null) {
             System.out.print(head.val + ", ");
@@ -32,6 +33,30 @@ public class SwapNodesInPairs {
     }
 
     public ListNode swapPairs(ListNode head) {
-        return null;
+
+        ListNode fakeHead = new ListNode(-1);
+        fakeHead.next = head;
+
+        ListNode start, a, b, end;
+        start = fakeHead;
+        while (start.next != null) {
+            a = start.next;
+            b = a.next;
+            if (b == null) {
+                break;
+            } else {
+                end = b.next;
+                swap(start, a, b, end);
+                start = a;
+            }
+        }
+
+        return fakeHead.next;
+    }
+
+    private void swap(ListNode start, ListNode a, ListNode b, ListNode end) {
+        start.next = b;
+        b.next = a;
+        a.next = end;
     }
 }
