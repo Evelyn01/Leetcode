@@ -12,10 +12,11 @@ import java.util.List;
 public class RecoverBinarySTree {
 
     public static void main(String[] strings) {
-        TreeNode root = createTree2();
 
         RecoverBinarySTree recover = new RecoverBinarySTree();
-        recover.recoverTree(root);
+//        recover.recoverTree(createTree());
+//        recover.recoverTree(createTree2());
+        recover.recoverTree(createTree3());
     }
 
     private static TreeNode createTree() {
@@ -52,6 +53,13 @@ public class RecoverBinarySTree {
 
 
         return root_10;
+    }
+
+    private static TreeNode createTree3() {
+        TreeNode treeNode = new TreeNode(0);
+        treeNode.left = new TreeNode(1);
+
+        return treeNode;
     }
 
     private static TreeNode createTree2() {
@@ -94,7 +102,12 @@ public class RecoverBinarySTree {
         TreeNode[] lastNodes = new TreeNode[1];
         TreeNode[] swapNodes = new TreeNode[1];
 
-        recoverTraversal(root, lastNodes, swapNodes);
+        boolean isSwapped = recoverTraversal(root, lastNodes, swapNodes);
+        if (!isSwapped) {
+            int val = lastNodes[0].val;
+            lastNodes[0].val = swapNodes[0].val;
+            swapNodes[0].val = val;
+        }
 
         List<TreeNode> list = new ArrayList<TreeNode>();
         middleTraversal(root, list);
@@ -102,6 +115,7 @@ public class RecoverBinarySTree {
         for (TreeNode node : list) {
             System.out.print(node.val + ", ");
         }
+        System.out.println();
     }
 
     private void middleTraversal(TreeNode root, List<TreeNode> list) {
@@ -150,48 +164,5 @@ public class RecoverBinarySTree {
         }
 
         return isSwapped;
-    }
-
-    private void findBrokenNodes(TreeNode root, List<TreeNode> brokenList) {
-        if (brokenList.size() == 4) {
-            return;
-        }
-
-        if (root.left != null) {
-            findBrokenNodes(root.left, brokenList);
-            if (root.left.val > root.val) {
-
-            }
-        }
-
-        if (root.right != null) {
-            findBrokenNodes(root.right, brokenList);
-        }
-    }
-
-    private void swapNodes(TreeNode a_parent, TreeNode a, TreeNode b_parent, TreeNode b) {
-        if (a_parent != null) {
-            if (a_parent.right == a) {
-                a_parent.right = b;
-            } else {
-                a_parent.left = b;
-            }
-        }
-
-        if (b_parent != null) {
-            if (b_parent.right == b) {
-                b_parent.right = a;
-            } else {
-                b_parent.left = a;
-            }
-        }
-
-        TreeNode temp = a.left;
-        a.left = b.left;
-        b.left = temp;
-
-        temp = a.right;
-        a.right = b.right;
-        b.right = temp;
     }
 }
