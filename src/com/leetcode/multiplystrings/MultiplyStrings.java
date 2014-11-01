@@ -9,7 +9,7 @@ public class MultiplyStrings {
 
         MultiplyStrings multiplyStrings = new MultiplyStrings();
 
-        String a = multiplyStrings.multiply("234", "455666");
+        String a = multiplyStrings.multiply("0", "0");
 
         System.out.println(a);
     }
@@ -36,7 +36,7 @@ public class MultiplyStrings {
 
         }
         int start = l1 + l2 - 1;
-        while (v[start] == 0) start--;
+        while (start >= 0 && v[start] == 0) start--;
         if (start == -1) return "0";
 
         String s = "";
