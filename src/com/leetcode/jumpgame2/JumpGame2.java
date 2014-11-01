@@ -2,6 +2,7 @@ package com.leetcode.jumpgame2;
 
 /**
  * Created by titan-developer on 10/31/14.
+ * https://oj.leetcode.com/problems/jump-game-ii/
  */
 public class JumpGame2 {
 
