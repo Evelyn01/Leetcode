@@ -35,6 +35,11 @@ public class JumpGame2 {
                     max = i + a[i];
                 }
             }
+
+            if (max <= range[1]) {
+                return -1;
+            }
+
             range[0] = range[1] + 1;
             range[1] = max;
             step ++;
