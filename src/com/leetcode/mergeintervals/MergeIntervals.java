@@ -19,49 +19,42 @@ public class MergeIntervals {
         }
 
         MergeIntervals merger = new MergeIntervals();
-        merger.merge(list);
+        List<Interval> result = merger.merge(list);
 
-        for (Interval interval : list) {
+        for (Interval interval : result) {
             System.out.println(interval.start + " , " + interval.end);
         }
     }
 
     public List<Interval> merge(List<Interval> intervals) {
-        if (intervals == null || intervals.size() < 2) {
+        if (intervals.size() <= 1)
             return intervals;
-        }
 
-        Interval[] intervalsArray = new Interval[intervals.size()];
-        for (int x = 0 ; x < intervals.size() ; x ++) {
-            intervalsArray[x] = intervals.get(x);
-        }
+        // Sort by ascending starting point using an anonymous Comparator
+        Collections.sort(intervals, new Comparator<Interval>() {
+            @Override
+            public int compare(Interval i1, Interval i2) {
+                return Integer.compare(i1.start, i2.start);
+            }
+        });
 
-        Arrays.sort(intervalsArray, new IntervalComparator());
-        intervals.clear();
+        List<Interval> result = new LinkedList<Interval>();
+        int start = intervals.get(0).start;
+        int end = intervals.get(0).end;
 
-        int min = -1, max = -1;
-        for (int i = 0 ; i < intervalsArray.length ; i ++) {
-            Interval interval = intervalsArray[i];
-
-            if (min < 0 && max < 0) {
-                min = interval.start;
-                max = interval.end;
-            } else {
-                if (interval.start <= max) {
-                    if (interval.end > max) {
-                        max = interval.end;
-                    }
-                } else {
-                    intervals.add(new Interval(min, max));
-
-                    min = interval.start;
-                    max = interval.end;
-                }
+        for (Interval interval : intervals) {
+            if (interval.start <= end) // Overlapping intervals, move the end if needed
+                end = Math.max(end, interval.end);
+            else {                     // Disjoint intervals, add the previous one and reset bounds
+                result.add(new Interval(start, end));
+                start = interval.start;
+                end = interval.end;
             }
         }
-        intervals.add(new Interval(min, max));
 
-        return intervals;
+        // Add the last interval
+        result.add(new Interval(start, end));
+        return result;
     }
 
     static class Interval {
