@@ -2,6 +2,7 @@ package com.leetcode.permutationsequence;
 
 /**
  * Created by titan-developer on 11/1/14.
+ * https://oj.leetcode.com/problems/permutation-sequence/
  */
 public class PermutationSequence {
 
