@@ -2,7 +2,7 @@ package com.leetcode.nextpermutation;
 
 /**
  * Created by titan-developer on 10/23/14.
- * https://oj.leetcode.com/problems/next-permutation/
+ * https://oj.leetcode.com/problems/next-permutations/
  *
  * Samples
  1, 2, 3, 3, 4
