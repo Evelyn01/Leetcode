@@ -6,12 +6,12 @@ import com.leetcode.common.ListNode;
  * Created by titan-developer on 11/2/14.
  * https://oj.leetcode.com/problems/remove-duplicates-from-sorted-list-ii/
  */
-public class RemoveDuplicates2 {
+public class DeleteDuplicates2 {
     public static void main(String[] strings) {
 
         ListNode head = ListNode.createList("2->2->3->3->4->4->5->5");
 
-        RemoveDuplicates2 deleteDuplicates = new RemoveDuplicates2();
+        DeleteDuplicates2 deleteDuplicates = new DeleteDuplicates2();
 
         ListNode.print(deleteDuplicates.deleteDuplicates(head));
     }
