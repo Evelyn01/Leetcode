@@ -4,6 +4,7 @@ import com.leetcode.common.ListNode;
 
 /**
  * Created by titan-developer on 11/2/14.
+ * https://oj.leetcode.com/problems/remove-duplicates-from-sorted-list/
  */
 public class DeleteDuplicates {
 
