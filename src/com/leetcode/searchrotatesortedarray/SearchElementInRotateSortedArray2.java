@@ -19,6 +19,11 @@ public class SearchElementInRotateSortedArray2 {
         int R = N - 1;
 
         while (L <= R) {
+            if (A[L] == A[R] && A[L] != key) {
+                R--;
+                continue;
+            }
+
             // Avoid overflow, same as M=(L+R)/2
             int M = L + ((R - L) / 2);
             if (A[M] == key) return M != -1;
