@@ -8,23 +8,27 @@ package com.leetcode.dynamicprogramming;
  */
 public class MaxValueInSubSequence {
 
-//    static int[] a = {
-//            -1,
-//            0,
-//            -2,
-//            3,
-//            4,
-//            5,
-//            -1,
-//            -3,
-//            9,
-//            -2,
-//            8
-//    };
-
     static int[] a = {
-            -2, -1
+            -1,
+            0,
+            -2,
+            3,
+            4,
+            5,
+            -1,
+            -3,
+            9,
+            -2,
+            8
     };
+
+//    static int[] a = {
+//            -2, 1, -3, 4, -1, 2, 1, -5, 4
+//    };
+//
+//    static int[] a = {
+//            -2, 1, -3, 4, -1, 2, 1, -5, 4
+//    };
 
     public static void main(String[] strings) {
         MaxValueInSubSequence subSequence = new MaxValueInSubSequence();
@@ -33,6 +37,38 @@ public class MaxValueInSubSequence {
     }
 
     public int findMaxValue(int[] array) {
+        if (array == null) {
+            return Integer.MIN_VALUE;
+        }
+
+        int max = Integer.MIN_VALUE;
+
+        int currentValue = Integer.MIN_VALUE;
+        for (int i = 0; i < array.length; i ++) {
+            if (array[i] < 0) {
+                if (array[i] > max) {
+                    max = array[i];
+                } else if (currentValue > 0) {
+                    currentValue += array[i];
+                }
+            } else {
+                if (currentValue < 0) {
+                    currentValue = array[i];
+                } else {
+                    currentValue += array[i];
+                }
+            }
+
+            if (currentValue > max)  {
+                max = currentValue;
+            }
+        }
+
+        return max;
+    }
+
+    //incorrect DP.
+    public int findMaxValueDP(int[] array) {
         if (array == null) {
             return Integer.MIN_VALUE;
         }
