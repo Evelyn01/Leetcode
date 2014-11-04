@@ -5,22 +5,25 @@ package com.leetcode.dynamicprogramming;
  * Maximum Value Contiguous Subsequence. Given a sequence of n real numbers A(1) ... A(n),
  * determine a contiguous subsequence A(i) ... A(j) for which the sum of elements in the subsequence is maximized.
  * <p/>
- * https://oj.leetcode.com/problems/maximum-product-subarray/
  */
 public class MaxValueInSubSequence {
 
+//    static int[] a = {
+//            -1,
+//            0,
+//            -2,
+//            3,
+//            4,
+//            5,
+//            -1,
+//            -3,
+//            9,
+//            -2,
+//            8
+//    };
+
     static int[] a = {
-            -1,
-            0,
-            -2,
-            3,
-            4,
-            5,
-            -1,
-            -3,
-            9,
-            -2,
-            8
+            -2, -1
     };
 
     public static void main(String[] strings) {
@@ -57,7 +60,11 @@ public class MaxValueInSubSequence {
                     }
                 }
             } else if (array[i] < 0) {
-                max[i] = max[i - 1];
+                if (array[i] > max[i - 1]) {
+                    max[i] = array[i];
+                } else {
+                    max[i] = max[i - 1];
+                }
                 minus += array[i];
             } else {
                 if (max[i - 1] < 0) {
