@@ -10,7 +10,10 @@ public class SimplifyPath {
 
     public static void main(String[] strings) {
         SimplifyPath simplifier = new SimplifyPath();
+        System.out.println(simplifier.simplifyPath("/home/../../.."));
+        System.out.println(simplifier.simplifyPath("/abc/..."));
         System.out.println(simplifier.simplifyPath("/..."));
+        System.out.println(simplifier.simplifyPath("/."));
         System.out.println(simplifier.simplifyPath("//home//"));
         System.out.println(simplifier.simplifyPath("/a/./b/../../c/"));
         System.out.println(simplifier.simplifyPath("/a/./b/../../c/"));
@@ -50,8 +53,17 @@ public class SimplifyPath {
             }
         }
 
-        if (left > 0 && right < path.length()) {
-            stack.push(path.substring(left));
+        if (left > 0) {
+            right = path.length() - 1;
+            if (right == left && path.charAt(right) == '.') {
+                //do nothing;
+            } else if (right - left + 1 == 2 && path.charAt(right) == '.' && path.charAt(right - 1) == '.') {
+                if (!stack.empty()) {
+                    stack.pop();
+                }
+            } else {
+                stack.push(path.substring(left));
+            }
         }
 
         if (stack.isEmpty()) {
@@ -60,8 +72,8 @@ public class SimplifyPath {
 
         StringBuilder builder = new StringBuilder();
         while (!stack.empty()) {
-            builder.append('/');
-            builder.insert(1, stack.pop());
+            builder.insert(0, stack.pop());
+            builder.insert(0, '/');
         }
 
         return builder.toString();
