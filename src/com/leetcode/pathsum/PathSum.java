@@ -4,24 +4,23 @@ import com.leetcode.common.TreeNode;
 
 /**
  * Created by titan-developer on 11/9/14.
+ * https://oj.leetcode.com/problems/path-sum/
  */
 public class PathSum {
 
     public static void main(String[] strings) {
-        TreeNode root = new TreeNode(1);
-//        root.left = new TreeNode(2);
-//        TreeNode root = new TreeNode(10);
-//
-//        root.left = new TreeNode(5);
-//        root.right = new TreeNode(15);
-//
-//        root.right.left = new TreeNode(6);
-//        root.right.left.left = new TreeNode(7);
-//        root.right.right = new TreeNode(20);
+        TreeNode root = new TreeNode(10);
+
+        root.left = new TreeNode(5);
+        root.right = new TreeNode(15);
+
+        root.right.left = new TreeNode(6);
+        root.right.left.left = new TreeNode(7);
+        root.right.right = new TreeNode(20);
 
 
         PathSum pathSum = new PathSum();
-        System.out.println(pathSum.hasPathSum(root, 1));
+        System.out.println(pathSum.hasPathSum(root, 38));
     }
 
     public boolean hasPathSum(TreeNode root, int sum) {
