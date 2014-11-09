@@ -30,14 +30,14 @@ public class MaximumRectangle {
         h[cLen] = 0;
         int max = 0;
 
-
         for (int row = 0; row < rLen; row++) {
             Stack<Integer> s = new Stack<Integer>();
             for (int i = 0; i < cLen + 1; i++) {
                 if (i < cLen)
                     if (matrix[row][i] == '1')
                         h[i] += 1;
-                    else h[i] = 0;
+                    else
+                        h[i] = 0;
 
                 if (s.isEmpty() || h[s.peek()] <= h[i])
                     s.push(i);
