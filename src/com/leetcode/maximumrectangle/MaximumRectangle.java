@@ -4,6 +4,7 @@ import java.util.Stack;
 
 /**
  * Created by titan-developer on 11/7/14.
+ * https://oj.leetcode.com/problems/maximal-rectangle/
  */
 public class MaximumRectangle {
 
