@@ -13,7 +13,7 @@ public class PascalTriangle {
 
         PascalTriangle pascalTriangle = new PascalTriangle();
 
-        outputList(pascalTriangle.generate(5));
+        outputList(pascalTriangle.generate(7));
     }
 
     public static void outputList(List<List<Integer>> list) {
