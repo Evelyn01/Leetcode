@@ -16,7 +16,7 @@ public class Subsets {
         int[] s = {1, 2, 3};
 
         Subsets subsets = new Subsets();
-        List<List<Integer>> lists = subsets.subsets(s);
+        List<List<Integer>> lists = subsets.subsets2(s);
 
         for (List<Integer> list : lists) {
             for (int a : list) {
@@ -40,6 +40,24 @@ public class Subsets {
             collection.add(set);
         }
         return collection;
+    }
+
+    public List<List<Integer>> subsets2(int[] S) {
+        Arrays.sort(S);
+
+        List<List<Integer>> result = new ArrayList<List<Integer>>();
+        List<Integer> list = new ArrayList<Integer>();
+        result.add(list);
+
+        for (int i = 0; i < S.length; ++i) {
+            int j = result.size();
+            while (j-- > 0) {
+                ArrayList<Integer> newList = new ArrayList<Integer>(result.get(j));
+                newList.add((S[i]));
+                result.add(newList);
+            }
+        }
+        return result;
     }
 
 }
