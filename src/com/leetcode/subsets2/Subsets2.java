@@ -11,6 +11,7 @@ public class Subsets2 {
 
     public static void main(String[] strings) {
 
+
         int[] s = {1, 2, 2};
 
         Subsets2 subsets = new Subsets2();
