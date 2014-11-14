@@ -2,8 +2,17 @@ package com.leetcode.validnum;
 
 /**
  * Created by titan-developer on 11/5/14.
+ * https://oj.leetcode.com/problems/valid-number/
  */
 public class ValidNumber {
+
+    public static void main(String[] strings) {
+        ValidNumber validNumber = new ValidNumber();
+        System.out.println(validNumber.isNumber("3."));
+        System.out.println(validNumber.isNumber("01"));
+        System.out.println(validNumber.isNumber(".1"));
+        System.out.println(validNumber.isNumber("e"));
+    }
 
     public boolean isNumber(String s) {
         if(s == null || s.length() == 0) {
@@ -11,20 +20,5 @@ public class ValidNumber {
         }
 
         return s.matches("(\\s*)[+-]?((\\.[0-9]+)|([0-9]+(\\.[0-9]*)?))(e[+-]?[0-9]+)?(\\s*)");
-    }
-
-    public boolean isNumberNonRegular(String s) {
-        try {
-            s = s.trim();
-            int n = s.length();
-            if ( n == 0 || (s.charAt(n-1) != '.' && (s.charAt(n-1) - '0' < 0 || s.charAt(n-1) - '0' > 9 )) ) {
-                return false;
-            }
-            double i = Double.parseDouble(s);
-            return true;
-        }
-        catch (NumberFormatException e) {
-            return false;
-        }
     }
 }
