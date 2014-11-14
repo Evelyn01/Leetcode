@@ -12,6 +12,10 @@ public class ValidNumber {
         System.out.println(validNumber.isNumber("01"));
         System.out.println(validNumber.isNumber(".1"));
         System.out.println(validNumber.isNumber("e"));
+        System.out.println(validNumber.isNumber("005047e+6"));
+        System.out.println(validNumber.isNumber("-."));
+        System.out.println(validNumber.isNumber("6+1"));
+        System.out.println(validNumber.isNumber("0e"));
     }
 
     public boolean isNumber(String s) {
