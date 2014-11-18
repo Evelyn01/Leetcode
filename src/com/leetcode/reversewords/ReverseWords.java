@@ -32,8 +32,8 @@ public class ReverseWords {
         System.out.println("reverseWordsWithStringBuffer : " + (System.currentTimeMillis() - time));
 
         time = System.currentTimeMillis();
-        s = reverseWordsNormalString(s);
-        System.out.println("reverseWordsNormalString : " + (System.currentTimeMillis() - time));
+        s = reverseWordsWithoutSplit(s);
+        System.out.println("reverseWordsWithoutSplit : " + (System.currentTimeMillis() - time));
     }
 
     public static String reverseWordsWithStringBuffer(String s) {
@@ -54,7 +54,7 @@ public class ReverseWords {
     public static String reverseWordsWithStringBuilder(String s) {
         String[] res = s.trim().split(" ");
         StringBuilder builder = new StringBuilder();
-        for (int i = res.length - 1; i >= 0; i--) {
+            for (int i = res.length - 1; i >= 0; i--) {
             String temp = res[i];
             if (!temp.trim().equals("")) {
                 builder.append(temp + " ");
@@ -64,6 +64,22 @@ public class ReverseWords {
             builder.deleteCharAt(builder.length() - 1);
         }
         return builder.toString();
+    }
+
+    public static String reverseWordsWithoutSplit(String s) {
+        StringBuilder reversed = new StringBuilder();
+        int j = s.length();
+        for (int i = s.length() - 1; i >= 0; i--) {
+            if (s.charAt(i) == ' ') {
+                j = i;
+            } else if (i == 0 || s.charAt(i - 1) == ' ') {
+                if (reversed.length() != 0) {
+                    reversed.append(' ');
+                }
+                reversed.append(s.substring(i, j));
+            }
+        }
+        return reversed.toString();
     }
 
     public static String reverseWordsNormalString(String s) {
