@@ -19,21 +19,21 @@ public class InsertInterval {
 
     public static void main(String[] strings) {
         List<Interval> intervals = new ArrayList<Interval>();
-        intervals.add(new Interval(1, 2));
-        intervals.add(new Interval(3, 5));
-        intervals.add(new Interval(6, 7));
-        intervals.add(new Interval(8, 10));
-        intervals.add(new Interval(12, 16));
+        intervals.add(new Interval(1, 5));
+        intervals.add(new Interval(6, 8));
+//        intervals.add(new Interval(6, 7));
+//        intervals.add(new Interval(8, 10));
+//        intervals.add(new Interval(12, 16));
 
         InsertInterval insert = new InsertInterval();
-        intervals = insert.insert(intervals, new Interval(4, 9));
+        intervals = insert.insert(intervals, new Interval(5, 6));
 
         for (Interval interval : intervals) {
             System.out.print("[" + interval.start + ", " + interval.end + "], ");
         }
     }
 
-    public List<Interval> insert(List<Interval> intervals, Interval newInterval) {
+    public List<Interval> insert3rd(List<Interval> intervals, Interval newInterval) {
         List<Interval> results = new ArrayList<Interval>();
         if (intervals == null || intervals.size() == 0) {
             results.add(newInterval);
@@ -64,7 +64,83 @@ public class InsertInterval {
         return results;
     }
 
-    private int findIndex(List<Interval> intervalList, Interval newInterval, boolean isStart) {
-        return 0;
+    public List<Interval> insert(List<Interval> intervals, Interval newInterval) {
+        if (intervals == null || intervals.size() == 0) {
+            intervals = new ArrayList<Interval>();
+            intervals.add(newInterval);
+            return intervals;
+        }
+
+        int index = 0;
+        int leftIndex = -1;
+        int rightIndex = -1;
+        for (int i = 0; i < intervals.size(); i ++) {
+            Interval current = intervals.get(i);
+
+            if (leftIndex == -1) {
+                if (newInterval.start < current.start) {
+                    leftIndex = index;
+                } else if (newInterval.start <= current.end) {
+                    leftIndex = index + 1;
+                }
+            }
+
+            if (rightIndex == -1) {
+                if (newInterval.end < current.start) {
+                    rightIndex = index;
+                } else if (newInterval.end <= current.end) {
+                    rightIndex = index + 1;
+                }
+            }
+
+            index += 2;
+
+            if (leftIndex != -1 && rightIndex != -1) {
+                break;
+            }
+        }
+
+        if (leftIndex == -1) {
+            leftIndex = intervals.size() * 2;
+        }
+
+        if (rightIndex == -1) {
+            rightIndex = intervals.size() * 2;
+        }
+
+        if (leftIndex == rightIndex) {
+            if (leftIndex % 2 == 0) {
+                intervals.add(leftIndex / 2, newInterval);
+            }
+        } else {
+            int start, end;
+            int mergeLeftBorder = leftIndex / 2;
+            int mergeRightBorder;
+
+            if (leftIndex % 2 == 0) {
+                start = newInterval.start;
+            } else {
+                start = intervals.get(mergeLeftBorder).start;
+            }
+
+            if (rightIndex % 2 == 0) {
+                mergeRightBorder = rightIndex / 2 - 1;
+                end = newInterval.end;
+            } else {
+                mergeRightBorder = rightIndex / 2;
+                end = intervals.get(mergeRightBorder).end;
+            }
+
+            for (int i = mergeRightBorder; i >= mergeLeftBorder; i --) {
+                intervals.remove(i);
+            }
+
+            newInterval.start = start;
+            newInterval.end = end;
+
+            intervals.add(mergeLeftBorder, newInterval);
+        }
+
+        return intervals;
     }
 }
