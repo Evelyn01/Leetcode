@@ -1,4 +1,4 @@
-package com.leetcode.RotateList;
+package com.leetcode.rotateList;
 
 import com.leetcode.common.ListNode;
 

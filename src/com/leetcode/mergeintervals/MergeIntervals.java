@@ -1,7 +1,5 @@
 package com.leetcode.mergeintervals;
 
-import sun.jvm.hotspot.utilities.Interval;
-
 import java.util.*;
 
 /**

@@ -1,7 +1,5 @@
 package com.leetcode.rotateimage;
 
-import com.leetcode.RotateList.RotateList;
-
 /**
  * Created by titan-developer on 11/3/14.
  */
