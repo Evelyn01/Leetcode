@@ -23,12 +23,13 @@ public class LinkedListCycle2Solution {
         node.next = new ListNode(8);
         node = node.next;
         node.next = new ListNode(7);
+        ListNode node7 = node.next;
         node = node.next;
         node.next = new ListNode(6);
         node = node.next;
         node.next = new ListNode(5);
         node = node.next;
-        node.next = node9;
+        node.next = node7;
 
         LinkedListCycle2Solution linkedListCycle2Solution = new LinkedListCycle2Solution();
 
