@@ -22,7 +22,7 @@ public class SortListSolution {
 
         ListNode current;
 
-        ListNode leftList = null, rightList = null;
+        ListNode leftList = null, rightList = null, lastTail = null;
 
         while (length < 0 || span < length) {
             count = 0;
@@ -40,7 +40,7 @@ public class SortListSolution {
                 }
 
                 ListNode next = current.next;
-                if (count == span) {
+                if (count == span || next == null) {
                     count = 0;
                     current.next = null;
 
@@ -49,9 +49,13 @@ public class SortListSolution {
 
                         if (head == null) {
                             head = result.head;
+                        } else if (lastTail != null) {
+                            lastTail.next = result.head;
                         }
 
                         result.tail.next = next;
+
+                        lastTail = result.tail;
 
                         leftList = rightList = null;
                     }
