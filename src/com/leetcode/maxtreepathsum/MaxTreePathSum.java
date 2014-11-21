@@ -36,7 +36,7 @@ public class MaxTreePathSum {
 
         //choose the max path, either left or right
         int value = node.val;
-        int sumWhole = checkMax(value, numl + numr);
+        checkMax(value, numl + numr);
         int sumLeft = numl > 0 ? checkMax(value, numl) : value;
         int sumRight = numr > 0 ? checkMax(value, numr) : value;
 
