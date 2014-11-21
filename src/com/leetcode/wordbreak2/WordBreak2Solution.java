@@ -25,7 +25,7 @@ public class WordBreak2Solution {
             set.add(str);
         }
 
-        List<String> list = wordBreakSolution.wordBreak(s, set);
+        List<String> list = wordBreakSolution.wordBreakDP2(s, set);
         if (list == null || list.size() == 0) {
             System.out.println("No solution");
         } else {
@@ -38,8 +38,8 @@ public class WordBreak2Solution {
 
     Map<String, List<String>> results = new HashMap<String, List<String>>();
 
-    //DFS
-    public List<String> wordBreakDFS(String s, Set<String> dict) {
+    //DP2
+    public List<String> wordBreakDP2(String s, Set<String> dict) {
         List<String> words = new ArrayList<String>();
 
         int len = s.length();
@@ -51,7 +51,7 @@ public class WordBreak2Solution {
                 } else {
                     String remain = s.substring(i, len);
                     List<String> remainSet = results.containsKey(remain) ?
-                            results.get(remain) : wordBreak(remain, dict);
+                            results.get(remain) : wordBreakDP2(remain, dict);
                     if (remainSet != null) {
                         for (String item : remainSet) {
                             words.add(front + " " + item);
