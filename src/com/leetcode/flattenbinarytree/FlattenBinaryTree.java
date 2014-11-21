@@ -14,6 +14,7 @@ public class FlattenBinaryTree {
         TreeNode root = TreeNodeCreator.createTreeNode("1, 2, 5, 3, 4, #, 6");
         TreeNodePrinter.printNode(root);
 
+
         FlattenBinaryTree flattenBinaryTree = new FlattenBinaryTree();
         flattenBinaryTree.flatten(root);
     }
