@@ -9,30 +9,12 @@ import com.leetcode.common.ListNode;
 public class ReverseNodesInKGroup {
 
     public static void main(String[] strings) {
-        ListNode head = new ListNode(1);
-        ListNode h = head;
-
-        head.next = new ListNode(2);
-        head = head.next;
-
-        head.next = new ListNode(3);
-        head = head.next;
-
-        head.next = new ListNode(4);
-        head = head.next;
-
-        head.next = new ListNode(5);
-        head = head.next;
-
-        head.next = new ListNode(6);
+        ListNode head = ListNode.createList("1->2->3->4->5->6");
 
         ReverseNodesInKGroup reverser = new ReverseNodesInKGroup();
-        head = reverser.reverseKGroup(h, 2);
+        head = reverser.reverseKGroup(head, 2);
 
-        while (head != null) {
-            System.out.print(head.val + ", ");
-            head = head.next;
-        }
+        ListNode.print(head);
     }
 
     public ListNode reverseKGroup(ListNode head, int k) {

@@ -11,27 +11,7 @@ public class InsertionSortSolution {
 
     public static void main(String[] strings) {
         InsertionSortSolution insertionSortSolution = new InsertionSortSolution();
-        insertionSortSolution.insertionSortList(generateList());
-    }
-
-    static ListNode generateList() {
-        ListNode head = new ListNode(5);
-        ListNode temp = new ListNode(3);
-        head.next = temp;
-
-        temp.next = new ListNode(4);
-        temp = temp.next;
-
-        temp.next = new ListNode(1);
-        temp = temp.next;
-
-        temp.next = new ListNode(7);
-        temp = temp.next;
-
-        temp.next = new ListNode(9);
-        temp = temp.next;
-
-        return head;
+        insertionSortSolution.insertionSortList(ListNode.createList("5->3->4->1->7->9"));
     }
 
     public ListNode insertionSortList(ListNode head) {

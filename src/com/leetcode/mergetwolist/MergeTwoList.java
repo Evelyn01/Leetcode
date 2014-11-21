@@ -8,15 +8,8 @@ import com.leetcode.common.ListNode;
 public class MergeTwoList {
 
     public static void main(String[] strings) {
-        ListNode head0 = new ListNode(2);
-        head0.next = new ListNode(4);
-        head0.next.next = new ListNode(6);
-
-        ListNode head1 = new ListNode(1);
-        head1.next = new ListNode(3);
-        head1.next.next = new ListNode(5);
-        head1.next.next.next = new ListNode(7);
-        head1.next.next.next.next = new ListNode(10);
+        ListNode head0 = ListNode.createList("2->4->6");
+        ListNode head1 = ListNode.createList("1->3->5->7->10");
 
         MergeTwoList merger = new MergeTwoList();
 

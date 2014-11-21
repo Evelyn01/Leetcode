@@ -10,18 +10,10 @@ public class RemoveNthNode {
 
     public static void main(String[] strings) {
 
-        ListNode head = new ListNode(1);
-        ListNode oriHead = head;
-        head.next = new ListNode(2);
-//        head = head.next;
-//        head.next = new ListNode(3);
-//        head = head.next;
-//        head.next = new ListNode(4);
-//        head = head.next;
-//        head.next = new ListNode(5);
+        ListNode head = ListNode.createList("1->2->3->4->5");
 
         RemoveNthNode remover = new RemoveNthNode();
-        remover.removeNthFromEnd(oriHead, 2);
+        remover.removeNthFromEnd(head, 2);
     }
 
     public ListNode removeNthFromEnd(ListNode head, int n) {

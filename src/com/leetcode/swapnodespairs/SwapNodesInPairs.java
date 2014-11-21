@@ -9,27 +9,12 @@ import com.leetcode.common.ListNode;
 public class SwapNodesInPairs {
 
     public static void main(String[] strings) {
-        ListNode head = new ListNode(1);
-        ListNode h = head;
-
-        head.next = new ListNode(2);
-        head = head.next;
-
-        head.next = new ListNode(3);
-        head = head.next;
-
-        head.next = new ListNode(4);
-        head = head.next;
-
-        head.next = new ListNode(5);
+        ListNode head = ListNode.createList("1->2->3->4->5");
 
         SwapNodesInPairs swapNodesInPairs = new SwapNodesInPairs();
-        head = swapNodesInPairs.swapPairs(h);
+        head = swapNodesInPairs.swapPairs(head);
 
-        while (head != null) {
-            System.out.print(head.val + ", ");
-            head = head.next;
-        }
+        ListNode.print(head);
     }
 
     public ListNode swapPairs(ListNode head) {
