@@ -1,6 +1,7 @@
 package com.leetcode.binarytreetraversal;
 
 import com.leetcode.common.TreeNode;
+import com.leetcode.common.TreeNodeCreator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,15 +15,7 @@ import java.util.List;
 public class LevelOrder {
 
     public static void main(String[] strings) {
-        TreeNode root = new TreeNode(3);
-
-        root.left = new TreeNode(9);
-        root.right = new TreeNode(20);
-
-        root.left.left = new TreeNode(8);
-
-        root.right.left = new TreeNode(15);
-        root.right.right = new TreeNode(7);
+        TreeNode root = TreeNodeCreator.createTreeNode("3, 9, 20, 8, #, 15, 7");
 
         LevelOrder order = new LevelOrder();
         outputList(order.levelOrder(root));

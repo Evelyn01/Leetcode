@@ -1,6 +1,8 @@
 package com.leetcode.binarytreetraversal;
 
 import com.leetcode.common.TreeNode;
+import com.leetcode.common.TreeNodeCreator;
+import com.leetcode.common.TreeNodePrinter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,22 +14,10 @@ import java.util.Stack;
 public class PostOrder {
 
     public static void main(String[] strings) {
-        TreeNode root = new TreeNode(1);
 
-        root.left = new TreeNode(1);
-        root.right = new TreeNode(2);
+        TreeNode root = TreeNodeCreator.createTreeNode("1, 1, 2, 3, 4, 5, 6, #, #, 7, 8, #, #, #, #, 10, #, 9");
 
-        root.left.left = new TreeNode(3);
-        root.left.right = new TreeNode(4);
-
-        root.left.right.left = new TreeNode(7);
-        root.left.right.right = new TreeNode(8);
-
-        root.left.right.left.left = new TreeNode(10);
-        root.left.right.right.left = new TreeNode(9);
-
-        root.right.left = new TreeNode(5);
-        root.right.right = new TreeNode(6);
+        TreeNodePrinter.printNode(root);
 
         PostOrder postOrder = new PostOrder();
 

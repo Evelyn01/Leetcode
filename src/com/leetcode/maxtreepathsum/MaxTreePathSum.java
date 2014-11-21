@@ -1,6 +1,8 @@
 package com.leetcode.maxtreepathsum;
 
 import com.leetcode.common.TreeNode;
+import com.leetcode.common.TreeNodeCreator;
+import com.leetcode.common.TreeNodePrinter;
 
 /**
  * Created by titan-developer on 11/12/14.
@@ -9,14 +11,8 @@ import com.leetcode.common.TreeNode;
 public class MaxTreePathSum {
 
     public static void main(String[] strings) {
-        TreeNode root = new TreeNode(10);
-
-        root.left = new TreeNode(5);
-        root.right = new TreeNode(15);
-
-        root.right.left = new TreeNode(6);
-        root.right.left.left = new TreeNode(7);
-        root.right.right = new TreeNode(20);
+        TreeNode root = TreeNodeCreator.createTreeNode("10, 5, 15, #, #, 6, 20, 7");
+        TreeNodePrinter.printNode(root);
 
         MaxTreePathSum pathSum = new MaxTreePathSum();
         System.out.println(pathSum.maxPathSum(root));

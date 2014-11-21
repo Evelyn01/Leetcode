@@ -1,6 +1,8 @@
 package com.leetcode.flattenbinarytree;
 
 import com.leetcode.common.TreeNode;
+import com.leetcode.common.TreeNodeCreator;
+import com.leetcode.common.TreeNodePrinter;
 
 /**
  * Created by bod on 8/31/14.
@@ -9,15 +11,8 @@ import com.leetcode.common.TreeNode;
 public class FlattenBinaryTree {
 
     public static void main(String[] strings) {
-
-        TreeNode root = new TreeNode(1);
-        root.left = new TreeNode(2);
-        root.right = new TreeNode(5);
-
-        root.left.left = new TreeNode(3);
-        root.left.right = new TreeNode(4);
-
-        root.right.right = new TreeNode(6);
+        TreeNode root = TreeNodeCreator.createTreeNode("1, 2, 5, 3, 4, #, 6");
+        TreeNodePrinter.printNode(root);
 
         FlattenBinaryTree flattenBinaryTree = new FlattenBinaryTree();
         flattenBinaryTree.flatten(root);

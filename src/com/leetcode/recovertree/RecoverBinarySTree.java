@@ -1,6 +1,8 @@
 package com.leetcode.recovertree;
 
 import com.leetcode.common.TreeNode;
+import com.leetcode.common.TreeNodeCreator;
+import com.leetcode.common.TreeNodePrinter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,88 +16,21 @@ public class RecoverBinarySTree {
     public static void main(String[] strings) {
 
         RecoverBinarySTree recover = new RecoverBinarySTree();
-//        recover.recoverTree(createTree());
-//        recover.recoverTree(createTree2());
-        recover.recoverTree(createTree3());
-    }
 
-    private static TreeNode createTree() {
-        TreeNode root_10 = new TreeNode(10);
-        TreeNode node_7 = new TreeNode(7);
-        TreeNode node_3 = new TreeNode(3);
-        TreeNode node_4 = new TreeNode(4);
-        TreeNode node_5 = new TreeNode(5);
-        TreeNode node_6 = new TreeNode(6);
-        TreeNode node_11 = new TreeNode(11);
-        TreeNode node_13 = new TreeNode(13);
-        TreeNode node_15 = new TreeNode(15);
-        TreeNode node_14 = new TreeNode(14);
-        TreeNode node_17 = new TreeNode(17);
-        TreeNode node_19 = new TreeNode(19);
+        TreeNode treeNode1 = TreeNodeCreator.createTreeNode("10, 5, 15, #, #, 6, 20, 7");
+        TreeNodePrinter.printNode(treeNode1);
+        recover.recoverTree(treeNode1);
+        TreeNodePrinter.printNode(treeNode1);
 
-        root_10.left = node_7;
-        root_10.right = node_15;
+        TreeNode treeNode2 = TreeNodeCreator.createTreeNode("0, 1");
+        TreeNodePrinter.printNode(treeNode2);
+        recover.recoverTree(treeNode2);
+        TreeNodePrinter.printNode(treeNode2);
 
-        node_7.left = node_13;
-
-        node_13.left = node_3;
-        node_13.right = node_5;
-
-        node_5.right = node_6;
-
-        node_15.left = node_4;
-        node_15.right = node_17;
-
-        node_4.left = node_11;
-        node_4.right = node_14;
-
-        node_17.right = node_19;
-
-
-        return root_10;
-    }
-
-    private static TreeNode createTree3() {
-        TreeNode treeNode = new TreeNode(0);
-        treeNode.left = new TreeNode(1);
-
-        return treeNode;
-    }
-
-    private static TreeNode createTree2() {
-        TreeNode root_10 = new TreeNode(10);
-        TreeNode node_7 = new TreeNode(7);
-        TreeNode node_3 = new TreeNode(3);
-        TreeNode node_4 = new TreeNode(4);
-        TreeNode node_5 = new TreeNode(5);
-        TreeNode node_6 = new TreeNode(6);
-        TreeNode node_11 = new TreeNode(11);
-        TreeNode node_13 = new TreeNode(13);
-        TreeNode node_15 = new TreeNode(15);
-        TreeNode node_14 = new TreeNode(14);
-        TreeNode node_17 = new TreeNode(17);
-        TreeNode node_19 = new TreeNode(19);
-
-        node_11.left = node_7;
-        node_11.right = node_15;
-
-        node_7.left = node_4;
-
-        node_4.left = node_3;
-        node_4.right = node_5;
-
-        node_5.right = node_6;
-
-        node_15.left = node_13;
-        node_15.right = node_17;
-
-        node_13.left = root_10;
-        node_13.right = node_14;
-
-        node_17.right = node_19;
-
-
-        return node_11;
+        TreeNode treeNode3 = TreeNodeCreator.createTreeNode("11, 7, 15, 4, #, 13, 17, 3, 5, 10, 14, #, 19, #, 6");
+        TreeNodePrinter.printNode(treeNode3);
+        recover.recoverTree(treeNode3);
+        TreeNodePrinter.printNode(treeNode3);
     }
 
     public void recoverTree(TreeNode root) {

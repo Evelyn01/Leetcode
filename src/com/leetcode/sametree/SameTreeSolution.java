@@ -1,6 +1,7 @@
 package com.leetcode.sametree;
 
 import com.leetcode.common.TreeNode;
+import com.leetcode.common.TreeNodeCreator;
 
 import java.util.ArrayList;
 
@@ -11,19 +12,8 @@ import java.util.ArrayList;
 public class SameTreeSolution {
 
     public static void main(String[] strings) {
-        TreeNode rootP = new TreeNode(1);
-        rootP.left = new TreeNode(2);
-        rootP.right = new TreeNode(3);
-
-        rootP.left.right = new TreeNode(4);
-        rootP.right.right = new TreeNode(5);
-
-        TreeNode rootQ = new TreeNode(1);
-        rootQ.left = new TreeNode(2);
-        rootQ.right = new TreeNode(3);
-
-        rootQ.left.right = new TreeNode(4);
-        rootQ.right.right = new TreeNode(5);
+        TreeNode rootP = TreeNodeCreator.createTreeNode("1, 2, 3, #, 4, #, 5");
+        TreeNode rootQ = TreeNodeCreator.createTreeNode("1, 2, 3, #, 4, #, 5");
 
         SameTreeSolution sameTreeSolution = new SameTreeSolution();
         System.out.println(sameTreeSolution.isSameTree(rootP, rootQ));

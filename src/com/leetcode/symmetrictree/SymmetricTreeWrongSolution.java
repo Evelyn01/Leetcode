@@ -1,6 +1,8 @@
 package com.leetcode.symmetrictree;
 
 import com.leetcode.common.TreeNode;
+import com.leetcode.common.TreeNodeCreator;
+import com.leetcode.common.TreeNodePrinter;
 
 import java.util.ArrayList;
 
@@ -12,23 +14,8 @@ public class SymmetricTreeWrongSolution {
     ArrayList<String> nodeArr;
 
     public static void main(String[] strings) {
-//        TreeNode root = new TreeNode(1);
-//        root.left = new TreeNode(2);
-//        root.left.left = new TreeNode(4);
-//        root.left.right = new TreeNode(3);
-//
-//        root.right = new TreeNode(2);
-//        root.right.left = new TreeNode(3);
-//        root.right.right = new TreeNode(4);
-
-        TreeNode root = new TreeNode(5);
-        root.left = new TreeNode(4);
-        root.left.right = new TreeNode(1);
-        root.left.right.left = new TreeNode(2);
-
-        root.right = new TreeNode(1);
-        root.right.right = new TreeNode(4);
-        root.right.right.left = new TreeNode(2);
+        TreeNode root = TreeNodeCreator.createTreeNode("5, 4, 1, #, 1, #, 4, 2, #, 2");
+        TreeNodePrinter.printNode(root);
 
         SymmetricTreeWrongSolution tree = new SymmetricTreeWrongSolution();
 

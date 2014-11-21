@@ -1,6 +1,8 @@
 package com.leetcode.roottoleaf;
 
 import com.leetcode.common.TreeNode;
+import com.leetcode.common.TreeNodeCreator;
+import com.leetcode.common.TreeNodePrinter;
 
 /**
  * Created by titan-developer on 11/9/14.
@@ -8,14 +10,8 @@ import com.leetcode.common.TreeNode;
 public class RootToLeaf {
 
     public static void main(String[] strings) {
-        TreeNode root = new TreeNode(1);
-
-        root.left = new TreeNode(2);
-        root.right = new TreeNode(3);
-
-        root.right.left = new TreeNode(4);
-        root.right.left.left = new TreeNode(5);
-        root.right.right = new TreeNode(3);
+        TreeNode root = TreeNodeCreator.createTreeNode("1, 2, 3, #, #, 4, 3, 5");
+        TreeNodePrinter.printNode(root);
 
         RootToLeaf rootToLeaf = new RootToLeaf();
         System.out.println(rootToLeaf.sumNumbers(root));
