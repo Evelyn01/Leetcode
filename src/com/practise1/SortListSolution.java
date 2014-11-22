@@ -1,4 +1,4 @@
-package com.practise;
+package com.practise1;
 
 import com.leetcode.common.ListNode;
 

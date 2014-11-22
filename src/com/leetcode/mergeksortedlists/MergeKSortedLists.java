@@ -12,17 +12,11 @@ import java.util.List;
 public class MergeKSortedLists {
 
     public static void main(String[] strings) {
-        ListNode head0 = new ListNode(2);
-        head0.next = new ListNode(4);
-        head0.next.next = new ListNode(6);
+        ListNode head0 = ListNode.createList("2->4->6");
 
-        ListNode head1 = new ListNode(1);
-        head1.next = new ListNode(3);
-        head1.next.next = new ListNode(5);
+        ListNode head1 = ListNode.createList("1->3->5");
 
-        ListNode head2 = new ListNode(2);
-        head2.next = new ListNode(6);
-        head2.next.next = new ListNode(7);
+        ListNode head2 = ListNode.createList("2->6->7");
 
         List<ListNode> list = new ArrayList<ListNode>();
         list.add(head0);
@@ -33,10 +27,7 @@ public class MergeKSortedLists {
 
         ListNode head = merger.mergeKLists(list);
 
-        while (head != null) {
-            System.out.print(head.val + ", ");
-            head = head.next;
-        }
+        ListNode.print(head);
     }
 
     public ListNode mergeKLists(List<ListNode> lists) {

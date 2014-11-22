@@ -1,6 +1,8 @@
 package com.leetcode.pathsum2;
 
 import com.leetcode.common.TreeNode;
+import com.leetcode.common.TreeNodeCreator;
+import com.leetcode.common.TreeNodePrinter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,14 +14,8 @@ import java.util.List;
 public class PathSum2 {
 
     public static void main(String[] strings) {
-        TreeNode root = new TreeNode(10);
-
-        root.left = new TreeNode(5);
-        root.right = new TreeNode(15);
-
-        root.right.left = new TreeNode(6);
-        root.right.left.left = new TreeNode(7);
-        root.right.right = new TreeNode(20);
+        TreeNode root = TreeNodeCreator.createTreeNode("10, 5, 15, #, #, 6, 20, 7");
+        TreeNodePrinter.printNode(root);
 
         PathSum2 sum2 = new PathSum2();
         outputList(sum2.pathSum(root, 38));

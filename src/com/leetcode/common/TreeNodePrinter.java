@@ -9,6 +9,11 @@ import java.util.List;
  */
 public class TreeNodePrinter {
 
+    public static void main(String[] args) {
+        TreeNodePrinter.printNode(TreeNodeCreator.createTreeNode("2, 7, 5, 2, 6, 3, 6, 5, 8, 4, 5, 8, 4, 5, 8"));
+        TreeNodePrinter.printNode(TreeNodeCreator.createTreeNode("2, 7, 5, 2, 6, #, 9, #, #, 5, 8, 4, #, 2"));
+    }
+
     public static void printNode(TreeNode root) {
         int maxLevel = TreeNodePrinter.maxLevel(root);
 

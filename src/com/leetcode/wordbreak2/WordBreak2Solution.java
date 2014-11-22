@@ -14,8 +14,8 @@ public class WordBreak2Solution {
 //    static String s = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab";
 //    static String[] dict = {"a","aa","aaa","aaaa","aaaaa","aaaaaa","aaaaaaa","aaaaaaaa","aaaaaaaaa","aaaaaaaaaa"};
 
-    static String s = "a";
-    static String[] dict = {"b"};
+    static String s = "loveadog";
+    static String[] dict = {"lov", "ea", "a", "dog", "love"};
 
     public static void main(String[] strings) {
         WordBreak2Solution wordBreakSolution = new WordBreak2Solution();
@@ -25,7 +25,7 @@ public class WordBreak2Solution {
             set.add(str);
         }
 
-        List<String> list = wordBreakSolution.wordBreak(s, set);
+        List<String> list = wordBreakSolution.wordBreakDP2(s, set);
         if (list == null || list.size() == 0) {
             System.out.println("No solution");
         } else {
@@ -36,47 +36,72 @@ public class WordBreak2Solution {
 
     }
 
+    Map<String, List<String>> results = new HashMap<String, List<String>>();
+
+    //DP2
+    public List<String> wordBreakDP2(String s, Set<String> dict) {
+        List<String> words = new ArrayList<String>();
+
+        int len = s.length();
+        for (int i = 1; i <= len; i++) {
+            String front = s.substring(0, i);
+            if (dict.contains(front)) {
+                if (i == len) {
+                    words.add(front);
+                } else {
+                    String remain = s.substring(i, len);
+                    List<String> remainSet = results.containsKey(remain) ?
+                            results.get(remain) : wordBreakDP2(remain, dict);
+                    if (remainSet != null) {
+                        for (String item : remainSet) {
+                            words.add(front + " " + item);
+                        }
+                        results.put(remain, remainSet);
+                    }
+
+                }
+            }
+        }
+        return words;
+    }
+
     //DP
     public List<String> wordBreak(String s, Set<String> dict) {
-        List<String> list = new ArrayList<String>();
-        if (s == null || s.length() <= 0 || dict == null || dict.size() == 0) {
-            return list;
-        }
+        List<String> result = new ArrayList<String>();
 
-        int length = s.length();
-        boolean[] dp = new boolean[length + 1];
-        for (int i = 0; i < dp.length; i++) {
-            dp[i] = false;
-        }
+        if (s == null || s.length() == 0 || dict == null || dict.size() == 0)
+            return result;
+        int len = s.length();
+        boolean[] dp = new boolean[len + 1];
+        dp[len] = true;
+        HashMap<Integer, List<Integer>> map = new HashMap<Integer, List<Integer>>();
 
-        dp[length] = true;
-
-        HashMap<Integer, ArrayList<Integer>> hashMap = new HashMap<Integer, ArrayList<Integer>>();
-
-        for (int i = length - 1; i >= 0; i--) {
-            for (int j = i; j < length; j++) {
-                String current = s.substring(i, j + 1);
-                if (dict.contains(current) && dp[j + 1]) {
+        for (int i = len - 1; i >= 0; i --) {
+            for (int j = i; j < len; j ++) {
+                String sub = s.substring(i, j + 1);
+                if (dp[j + 1] && dict.contains(sub)) {
                     dp[i] = true;
-                    ArrayList<Integer> arrayList;
-                    if (hashMap.containsKey(i)) {
-                        arrayList = hashMap.get(i);
+
+                    if (map.containsKey(i)) {
+                        List<Integer> list = map.get(i);
+                        list.add(j + 1);
                     } else {
-                        arrayList = new ArrayList<Integer>();
+                        List<Integer> list = new ArrayList<Integer>();
+                        list.add(j + 1);
+                        map.put(i, list);
                     }
-                    arrayList.add(j + 1);
-                    hashMap.put(i, arrayList);
                 }
             }
         }
 
-        if (hashMap.containsKey(0)) {
-            collect(hashMap, 0, 0, "", list, s);
+        if (dp[0]) {
+            collect(map, 0, 0, "", result, s);
         }
-        return list;
+
+        return result;
     }
 
-    private void collect(HashMap<Integer, ArrayList<Integer>> hashMap, int lastIndex, int index, String prefix, List<String> list, String ori) {
+    private void collect(HashMap<Integer, List<Integer>> hashMap, int lastIndex, int index, String prefix, List<String> list, String ori) {
         String temp = ori.substring(lastIndex, index);
         prefix = prefix + " " + temp;
 
@@ -85,7 +110,7 @@ public class WordBreak2Solution {
             return;
         }
 
-        ArrayList<Integer> nextNode = hashMap.get(index);
+        List<Integer> nextNode = hashMap.get(index);
         for (int nextIndex : nextNode) {
             collect(hashMap, index, nextIndex, prefix, list, ori);
         }

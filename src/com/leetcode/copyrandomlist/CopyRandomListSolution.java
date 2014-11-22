@@ -6,6 +6,11 @@ import java.util.HashMap;
  * Created by titan-developer on 8/18/14.
  * A linked list is given such that each node contains an additional random pointer which could point to any node in the list or null.
  * Return a deep copy of the list.
+ *
+ * Two solutions to read:
+ * https://oj.leetcode.com/discuss/13841/easy-understand-solution-with-comments-constant-space-pass
+ * https://oj.leetcode.com/discuss/76/does-anyone-have-a-better-idea
+ *
  */
 public class CopyRandomListSolution {
 

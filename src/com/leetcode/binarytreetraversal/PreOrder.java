@@ -1,6 +1,8 @@
 package com.leetcode.binarytreetraversal;
 
 import com.leetcode.common.TreeNode;
+import com.leetcode.common.TreeNodeCreator;
+import com.leetcode.common.TreeNodePrinter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,9 +14,8 @@ import java.util.Stack;
 public class PreOrder {
 
     public static void main(String[] strings) {
-        TreeNode root = new TreeNode(1);
-
-        root.right = new TreeNode(2);
+        TreeNode root = TreeNodeCreator.createTreeNode("1, #, 2");
+        TreeNodePrinter.printNode(root);
 
         System.out.println("------------------");
 

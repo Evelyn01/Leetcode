@@ -1,6 +1,7 @@
 package com.leetcode.validbst;
 
 import com.leetcode.common.TreeNode;
+import com.leetcode.common.TreeNodeCreator;
 
 import java.util.List;
 
@@ -11,16 +12,7 @@ import java.util.List;
 public class ValidBinarySearchTree {
 
     public static void main(String[] strings) {
-
-        TreeNode root = new TreeNode(10);
-
-        root.left = new TreeNode(5);
-        root.right = new TreeNode(15);
-
-//        root.left.left = new TreeNode(3);
-
-        root.right.left = new TreeNode(6);
-        root.right.right = new TreeNode(20);
+        TreeNode root = TreeNodeCreator.createTreeNode("10, 5, 15, #, #, 6, 20");
 
         ValidBinarySearchTree validBinarySearchTree = new ValidBinarySearchTree();
         System.out.println(validBinarySearchTree.isValidBST(root));

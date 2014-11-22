@@ -16,20 +16,7 @@ import com.leetcode.common.ListNode;
 public class RecorderListSolution {
 
     public static void main(String[] strings) {
-
-        ListNode node = new ListNode(1);
-        ListNode head = node;
-        node.next = new ListNode(2);
-        node = node.next;
-        node.next = new ListNode(3);
-        node = node.next;
-        node.next = new ListNode(4);
-        node = node.next;
-        node.next = new ListNode(5);
-        node = node.next;
-        node.next = new ListNode(6);
-        node = node.next;
-        node.next = new ListNode(7);
+        ListNode head = ListNode.createList("1->2->3->4->5->6->7");
 
         RecorderListSolution recorderListSolution = new RecorderListSolution();
         recorderListSolution.reorderList(head);

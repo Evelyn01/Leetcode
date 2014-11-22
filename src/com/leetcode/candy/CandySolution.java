@@ -21,42 +21,19 @@ public class CandySolution {
     }
 
     public int candy(int[] ratings) {
-        if (ratings == null) {
-            return 0;
+        int[] candy = new int[ratings.length];
+        //allocate candies, considering the minimal rating on the left
+        candy[0] = 1;
+        for (int i = 1; i < ratings.length; i++) {
+            candy[i] = ratings[i] > ratings[i - 1] ? candy[i - 1] + 1 : 1;
         }
-
-        int[] candyArray = new int[ratings.length];
-
-        for (int i = 0; i < ratings.length; i++) {
-            candyArray[i] = 1;
-            if (i > 0) {
-                int temp = i;
-                while (temp > 0) {
-                    if (ratings[temp] > ratings[temp - 1]) {
-                        if (candyArray[temp] <= candyArray[temp - 1]) {
-                            candyArray[temp] = candyArray[temp - 1] + 1;
-                        } else {
-                            break;
-                        }
-                    } else if (ratings[temp] < ratings[temp - 1]) {
-                        if (candyArray[temp] >= candyArray[temp - 1]) {
-                            candyArray[temp - 1] = candyArray[temp] + 1;
-                        } else {
-                            break;
-                        }
-                    } else {
-                        break;
-                    }
-                    temp--;
-                }
-            }
+        //modify the allocation, considering the minimal rating on the right
+        int totalCandy = candy[ratings.length - 1];
+        for (int i = ratings.length - 2; i >= 0; i--) {
+            candy[i] = (ratings[i] > ratings[i + 1] && candy[i + 1] + 1 > candy[i]) ? candy[i + 1] + 1 : candy[i];
+            //count total candies by the way
+            totalCandy += candy[i];
         }
-
-        int total = 0;
-        for (int i : candyArray) {
-            total += i;
-        }
-
-        return total;
+        return totalCandy;
     }
 }
