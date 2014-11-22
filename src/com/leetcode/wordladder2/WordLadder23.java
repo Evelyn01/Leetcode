@@ -4,6 +4,7 @@ import java.util.*;
 
 /**
  * Created by titan-developer on 11/22/14.
+ * https://oj.leetcode.com/problems/word-ladder-ii/
  */
 public class WordLadder23 {
 
@@ -61,53 +62,56 @@ public class WordLadder23 {
         int nextLev = 0;
 
 
-        for(String word : unVisited){
+        for (String word : unVisited) {
             adjMap.put(word, new LinkedList<String>());
         }
         unVisited.remove(start);
 
 
         //BFS
-        while( !queue.isEmpty() ){
+        while (!queue.isEmpty()) {
             String currLadder = queue.poll();
             //for all unvisited words that are one character change from current word
-            for(String nextLadder : getNextLadder(currLadder, unVisited)){
-                if(visitedThisLev.add(nextLadder)) {
-                    nextLev ++;
+            for (String nextLadder : getNextLadder(currLadder, unVisited)) {
+                if (visitedThisLev.add(nextLadder)) {
+                    nextLev++;
                     queue.offer(nextLadder);
                 }
                 adjMap.get(nextLadder).offer(currLadder);
-                if(nextLadder.equals(end) && !found) { found = true; currLen+=2;}
+                if (nextLadder.equals(end) && !found) {
+                    found = true;
+                    currLen += 2;
+                }
             }
 
-            if(--currLev == 0){
-                if(found) break;
+            if (--currLev == 0) {
+                if (found) break;
                 unVisited.removeAll(visitedThisLev);
                 currLev = nextLev;
                 nextLev = 0;
-                currLen ++;
+                currLen++;
             }
         }
 
-        if(found){
-            LinkedList<String> p =new LinkedList<String>();
+        if (found) {
+            LinkedList<String> p = new LinkedList<String>();
             p.addFirst(end);
-            getLadders(start, end, p , r, adjMap, currLen);
+            getLadders(start, end, p, r, adjMap, currLen);
         }
 
         return r;
     }
 
     //get all unvisited words that are one character change from current word
-    private ArrayList<String> getNextLadder(String currLadder, Set<String> unVisited){
+    private ArrayList<String> getNextLadder(String currLadder, Set<String> unVisited) {
         ArrayList<String> nextLadders = new ArrayList<String>();
         StringBuffer replace = new StringBuffer(currLadder);
-        for(int i = 0; i < currLadder.length(); i++){
+        for (int i = 0; i < currLadder.length(); i++) {
             char old = replace.charAt(i);
-            for(char ch = 'a'; ch <= 'z'; ch++){
+            for (char ch = 'a'; ch <= 'z'; ch++) {
                 replace.setCharAt(i, ch);
                 String replaced = replace.toString();
-                if(ch != currLadder.charAt(i) && unVisited.contains(replaced) ){
+                if (ch != currLadder.charAt(i) && unVisited.contains(replaced)) {
                     nextLadders.add(replaced);
                 }
             }
@@ -118,15 +122,14 @@ public class WordLadder23 {
 
     // DFS to get all possible path from start to end
     private void getLadders(String start, String currLadder, LinkedList<String> p, ArrayList<ArrayList<String>> solu,
-                            HashMap<String, Queue<String>> adjMap, int len){
-        if(currLadder.equals(start)){
+                            HashMap<String, Queue<String>> adjMap, int len) {
+        if (currLadder.equals(start)) {
             solu.add(new ArrayList<String>(p));
-        }
-        else if(len > 0) {
+        } else if (len > 0) {
             Queue<String> adjs = adjMap.get(currLadder);
-            for(String lad : adjs){
+            for (String lad : adjs) {
                 p.addFirst(lad);
-                getLadders(start, lad, p, solu, adjMap, len-1);
+                getLadders(start, lad, p, solu, adjMap, len - 1);
                 p.removeFirst();
             }
         }
