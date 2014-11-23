@@ -20,7 +20,7 @@ public class WordLadder22 {
         hashSet.add("dog");
         hashSet.add("lot");
         hashSet.add("log");
-        hashSet.add("cog");
+        //hashSet.add("cog");
 
         List<List<String>> result = wordLadder.findLadders(start, end, hashSet);
 
