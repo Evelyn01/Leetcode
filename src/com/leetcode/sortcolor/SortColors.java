@@ -11,7 +11,7 @@ public class SortColors {
         //int[] a = {1, 0};
 
         SortColors sorter = new SortColors();
-        sorter.sortColors(a);
+        sorter.sortColorsNiuB(a);
 
         for (int i : a) {
             System.out.print(i + ", ");
@@ -49,6 +49,25 @@ public class SortColors {
                 right --;
             } else {
                 current ++;
+            }
+        }
+    }
+
+    public void sortColorsNiuB(int[] A) {
+        int i=-1, j=-1;
+
+        for(int p = 0; p < A.length; p++) {
+
+            int v = A[p];
+            A[p] = 2;
+
+            if (v == 0) {
+                A[++j] = 1;
+                A[++i] = 0;
+            }
+            else if (v == 1) {
+
+                A[++j] = 1;
             }
         }
     }
