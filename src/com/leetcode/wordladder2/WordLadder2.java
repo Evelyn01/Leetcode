@@ -4,6 +4,7 @@ import java.util.*;
 
 /**
  * Created by bod on 11/21/2014.
+ * https://oj.leetcode.com/problems/word-ladder-ii/
  */
 public class WordLadder2 {
 
@@ -31,58 +32,88 @@ public class WordLadder2 {
         }
     }
 
+    Map<String, List<String>> map;
+    List<List<String>> results;
+
     public List<List<String>> findLadders(String start, String end, Set<String> dict) {
-        List<List<String>> result = new ArrayList<List<String>>();
+        results = new ArrayList<List<String>>();
+        if (dict.size() == 0)
+            return results;
 
-        Queue<String> queue = new LinkedList<String>();
-        Queue<Integer> distances = new LinkedList<Integer>();
+        int min = Integer.MAX_VALUE;
+
+        Queue<String> queue = new ArrayDeque<String>();
         queue.add(start);
-        distances.add(1);
-        HashMap<String, HashSet<String>> map = new HashMap<String, HashSet<String>>();
-        map.put(start, new HashSet<String>());
-        int miniDis = Integer.MAX_VALUE;
 
+        map = new HashMap<String, List<String>>();
+
+        Map<String, Integer> ladder = new HashMap<String, Integer>();
+        for (String string : dict)
+            ladder.put(string, Integer.MAX_VALUE);
+        ladder.put(start, 0);
+
+        dict.add(end);
+        //BFS: Dijisktra search
         while (!queue.isEmpty()) {
-            String str = queue.poll();
-            int currentDis = distances.poll();
 
-            if (str.equals(end)) {
-                if (currentDis < miniDis) {
-                    miniDis = currentDis;
-                }
-                continue;
-            }
+            String word = queue.poll();
 
-            if (currentDis >= miniDis) {
-                break;
-            }
+            int step = ladder.get(word) + 1;//'step' indicates how many steps are needed to travel to one word.
 
-            for (int i = 0; i < str.length(); i ++) {
-                char[] chars = str.toCharArray();
+            if (step > min) break;
 
-                for (int j = 0; j < 26; j ++) {
-                    char c = (char)('a' + j);
-                    if (c != chars[i]) {
-                        chars[i] = c;
-                        String newStr = new String(chars);
-                        if (dict.contains(newStr)) {
-                            queue.add(newStr);
-                            distances.add(currentDis + 1);
+            for (int i = 0; i < word.length(); i++) {
+                StringBuilder builder = new StringBuilder(word);
+                for (char ch = 'a'; ch <= 'z'; ch++) {
+                    builder.setCharAt(i, ch);
+                    String new_word = builder.toString();
+                    if (ladder.containsKey(new_word)) {
 
-                            if (map.containsKey(newStr)) {
-                                HashSet<String> list = map.get(newStr);
-                                list.add(str);
-                            } else {
-                                HashSet<String> list = new HashSet<String>();
-                                list.add(str);
-                                map.put(newStr, list);
-                            }
+                        if (step > ladder.get(new_word))//Check if it is the shortest path to one word.
+                            continue;
+                        else if (step < ladder.get(new_word)) {
+                            queue.add(new_word);
+                            ladder.put(new_word, step);
+                        } else ;// It is a KEY line. If one word already appeared in one ladder,
+                        // Do not insert the same word inside the queue twice. Otherwise it gets TLE.
+
+                        if (map.containsKey(new_word)) //Build adjacent Graph
+                            map.get(new_word).add(word);
+                        else {
+                            List<String> list = new LinkedList<String>();
+                            list.add(word);
+                            map.put(new_word, list);
+                            //It is possible to write three lines in one:
+                            //map.put(new_word,new LinkedList<String>(Arrays.asList(new String[]{word})));
+                            //Which one is better?
                         }
-                    }
-                }
-            }
-        }
 
-        return result;
+                        if (new_word.equals(end))
+                            min = step;
+
+                    }//End if dict contains new_word
+                }//End:Iteration from 'a' to 'z'
+            }//End:Iteration from the first to the last
+        }//End While
+
+        //BackTracking
+        LinkedList<String> result = new LinkedList<String>();
+        backTrace(end, start, result);
+
+        return results;
+    }
+
+    private void backTrace(String word, String start, List<String> list) {
+        if (word.equals(start)) {
+            list.add(0, start);
+            results.add(new ArrayList<String>(list));
+            list.remove(0);
+            return;
+        }
+        list.add(0, word);
+        if (map.get(word) != null)
+            for (String s : map.get(word))
+                backTrace(s, start, list);
+        list.remove(0);
     }
 }

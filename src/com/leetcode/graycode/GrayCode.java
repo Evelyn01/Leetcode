@@ -1,6 +1,8 @@
 package com.leetcode.graycode;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 
 /**
  * Created by titan-developer on 11/11/14.
@@ -11,7 +13,7 @@ public class GrayCode {
     public static void main(String[] strings) {
         GrayCode grayCode = new GrayCode();
 
-        ArrayList<Integer> list = grayCode.grayCode(4);
+        List<Integer> list = grayCode.grayCodeBackTrack(3);
         for (int i : list) {
             System.out.println(Integer.toBinaryString(i));
         }
@@ -27,5 +29,43 @@ public class GrayCode {
             }
         }
         return arr;
+    }
+
+    public List<Integer> grayCodeBackTrack(int n) {
+        List<Integer> list = new ArrayList<Integer>();
+        if (n <= 0) {
+            return list;
+        }
+
+        HashSet<Integer> set = new HashSet<Integer>();
+        list.add(0);
+        set.add(0);
+        helper(list, set, 0, n);
+
+        return list;
+    }
+
+    private boolean helper(List<Integer> list, HashSet<Integer> set, int current, int n) {
+        if (list.size() == (1 << n) ) {
+            return true;
+        }
+
+        for (int i = 0; i < n; i ++) {
+            int tmp;
+            if ((current & (1 << i)) == 0) {
+                tmp = current + (1 << i);
+            } else {
+                tmp = current - (1 << i);
+            }
+
+            if (!set.contains(tmp)) {
+                set.add(tmp);
+                current = tmp;
+                list.add(current);
+                return helper(list, set, current, n);
+            }
+        }
+
+        return false;
     }
 }

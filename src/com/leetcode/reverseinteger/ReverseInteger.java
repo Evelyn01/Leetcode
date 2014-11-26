@@ -7,33 +7,34 @@ package com.leetcode.reverseinteger;
 public class ReverseInteger {
 
     public static void main(String[] strings) {
+
         ReverseInteger reverseInteger = new ReverseInteger();
-        System.out.println(reverseInteger.reverseInteger(123));
-        System.out.println(reverseInteger.reverseInteger(-123));
-        System.out.println(reverseInteger.reverseInteger(101));
-        System.out.println(reverseInteger.reverseInteger(100));
-        System.out.println(reverseInteger.reverseInteger(-1010));
+        System.out.println(reverseInteger.reverse(123));
+        System.out.println(reverseInteger.reverse(-123));
+        System.out.println(reverseInteger.reverse(101));
+        System.out.println(reverseInteger.reverse(100));
+        System.out.println(reverseInteger.reverse(-1010));
     }
 
-    public int reverseInteger(int x) {
+    public int reverse(int x) {
         boolean isNegative = false;
-        if (x == 0) {
-            return 0;
-        } else if (x < 0) {
+
+        if (x < 0) {
             isNegative = true;
             x = -x;
         }
 
-        int bit = (int) Math.log10(x) + 1;
+        long ret = 0;
 
-        int dest = 0;
-
-        for (int i = 0; i < bit; i++) {
-            int temp = x % 10;
-            dest += temp * Math.pow(10, (bit - i - 1));
-            x = x / 10;
+        while (x > 0) {
+            int tmp = x / 10;
+            ret = ret * 10 + x % 10;
+            if (ret > 0x7fffffff) {
+                return 0;
+            }
+            x = tmp;
         }
 
-        return isNegative ? -dest : dest;
+        return isNegative ? - (int) ret : (int) ret;
     }
 }
