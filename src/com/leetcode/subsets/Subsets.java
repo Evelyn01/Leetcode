@@ -13,10 +13,17 @@ public class Subsets {
 
     public static void main(String[] strings) {
 
-        int[] s = {1, 2, 3};
+        int[] s = new int[5];
+
+        for (int i = 0; i < 5; i ++) {
+            s[i] = i;
+        }
 
         Subsets subsets = new Subsets();
-        List<List<Integer>> lists = subsets.subsetsIterative(s);
+
+        long start = System.currentTimeMillis();
+        List<List<Integer>> lists = subsets.subsets(s);
+        System.out.println("time : " + (System.currentTimeMillis() - start));
 
         for (List<Integer> list : lists) {
             for (int a : list) {
