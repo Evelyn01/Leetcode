@@ -16,7 +16,7 @@ public class Subsets {
         int[] s = {1, 2, 3};
 
         Subsets subsets = new Subsets();
-        List<List<Integer>> lists = subsets.subsets2(s);
+        List<List<Integer>> lists = subsets.subsetsIterative(s);
 
         for (List<Integer> list : lists) {
             for (int a : list) {
@@ -42,7 +42,7 @@ public class Subsets {
         return collection;
     }
 
-    public List<List<Integer>> subsets2(int[] S) {
+    public List<List<Integer>> subsetsIterative(int[] S) {
         Arrays.sort(S);
 
         List<List<Integer>> result = new ArrayList<List<Integer>>();
