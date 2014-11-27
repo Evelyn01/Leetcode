@@ -52,4 +52,49 @@ public class Subsets2 {
         }
         return result;
     }
+
+
+    public List<List<Integer>> subsets2DSP(int[] S) {
+        List<List<Integer>> ret = new ArrayList<List<Integer>>();
+        if (S == null || S.length == 0) {
+            ret.add(new ArrayList<Integer>());
+            return ret;
+        }
+
+        Arrays.sort(S);
+
+        List<Integer> list = new ArrayList<Integer>();
+        helper(S, 0, S.length, list, ret);
+        return ret;
+    }
+
+    private void helper(int[] S, int index, int count, List<Integer> list, List<List<Integer>> ret) {
+        if (count == 0) {
+            List<Integer> newList = new ArrayList<Integer>(list);
+            ret.add(newList);
+            return;
+        }
+
+        int duplicateCount = 1;
+        while (index + 1 < S.length && S[index + 1] == S[index]) {
+            index ++;
+            duplicateCount ++;
+        }
+
+        count = count - duplicateCount;
+
+        for (int i = 0; i <= duplicateCount; i ++) {
+
+            for (int j = 1; j <= i; j ++) {
+                list.add(S[index]);
+            }
+
+            helper(S, index + 1, count, list, ret);
+
+            for (int j = 1; j <= i; j ++) {
+                list.remove(list.size() - 1);
+            }
+
+        }
+    }
 }

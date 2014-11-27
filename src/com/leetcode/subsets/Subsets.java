@@ -60,4 +60,33 @@ public class Subsets {
         return result;
     }
 
+    public List<List<Integer>> subsetsDSP(int[] S) {
+        List<List<Integer>> ret = new ArrayList<List<Integer>>();
+        if (S == null || S.length == 0) {
+            ret.add(new ArrayList<Integer>());
+            return ret;
+        }
+
+        Arrays.sort(S);
+
+        List<Integer> list = new ArrayList<Integer>();
+        helper(S, 0, S.length, list, ret);
+        return ret;
+    }
+
+    private void helper(int[] S, int index, int count, List<Integer> list, List<List<Integer>> ret) {
+        if (count == 0) {
+            List<Integer> newList = new ArrayList<Integer>(list);
+            ret.add(newList);
+            return;
+        }
+
+        count --;
+        helper(S, index + 1, count, list, ret);
+
+        list.add(S[index]);
+        helper(S, index + 1, count, list, ret);
+        list.remove(list.size() - 1);
+    }
+
 }
