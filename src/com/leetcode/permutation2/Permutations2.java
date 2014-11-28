@@ -49,30 +49,30 @@ public class Permutations2 {
         return list;
     }
 
-    private void swap(int[] pos, int cursor) {
-        int a = pos[cursor - 1];
+    private void swap(int[] num, int cursor) {
+        int last = num[cursor - 1];
         int index = Integer.MAX_VALUE;
-        int v = Integer.MAX_VALUE;
-        for (int i = pos.length - 1, j = cursor; i >= j; i--, j++) {
-            int tmp = pos[i];
-            pos[i] = pos[j];
-            pos[j] = tmp;
+        int value = Integer.MAX_VALUE;
+        for (int i = num.length - 1, j = cursor; i >= j; i--, j++) {
+            int tmp = num[i];
+            num[i] = num[j];
+            num[j] = tmp;
 
-            if (pos[i] > a && pos[i] <= v) {
+            if (num[i] > last && num[i] <= value) {
                 if (i < index)
                     index = i;
-                v = pos[i];
+                value = num[i];
             }
 
-            if (pos[j] > a && pos[j] <= v) {
+            if (num[j] > last && num[j] <= value) {
                 if (j < index)
                     index = j;
-                v = pos[j];
+                value = num[j];
             }
         }
 
-        pos[cursor - 1] = pos[index];
-        pos[index] = a;
+        num[cursor - 1] = num[index];
+        num[index] = last;
     }
 
     private void addToList(List<List<Integer>> list, int[] num) {
