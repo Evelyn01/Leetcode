@@ -18,6 +18,7 @@ public class WildcardMatching {
 
     }
 
+    //https://oj.leetcode.com/discuss/10133/linear-runtime-and-constant-space-solution
     public boolean isMatch(String str, String pattern) {
         int s = 0, p = 0, match = 0, starIdx = -1;
         while (s < str.length()){
