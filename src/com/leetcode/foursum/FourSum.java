@@ -12,9 +12,9 @@ import java.util.*;
 public class FourSum {
 
     public static void main(String[] strings) {
-        int[] a = {0, 0, 0, 0};
+//        int[] a = {0, 0, 0, 0};
 //        int[] a = {1, 0, -1, 0, -2, 2};
-//        int[] a = {-3, -2, -1, 0, 0, 1, 2, 3};
+        int[] a = {-3, -2, -1, 0, 0, 1, 2, 3};
 
         FourSum fourSum = new FourSum();
         System.out.println(fourSum.fourSumNew(a, 0));
@@ -53,6 +53,7 @@ public class FourSum {
                     List<int[]> left = map.get(key);
                     List<int[]> right = map.get(target - key);
                     composeResult(num, left, right, ret);
+                    iterator.remove();
                 }
             }
         }
