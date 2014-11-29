@@ -21,20 +21,20 @@ public class WildcardMatching {
     //https://oj.leetcode.com/discuss/10133/linear-runtime-and-constant-space-solution
     public boolean isMatch(String str, String pattern) {
         int s = 0, p = 0, match = 0, starIdx = -1;
-        while (s < str.length()){
+        while (s < str.length()) {
             // advancing both pointers
-            if (p < pattern.length()  && (pattern.charAt(p) == '?' || str.charAt(s) == pattern.charAt(p))){
+            if (p < pattern.length() && (pattern.charAt(p) == '?' || str.charAt(s) == pattern.charAt(p))) {
                 s++;
                 p++;
             }
             // * found, only advancing pattern pointer
-            else if (p < pattern.length() && pattern.charAt(p) == '*'){
+            else if (p < pattern.length() && pattern.charAt(p) == '*') {
                 starIdx = p;
                 match = s;
                 p++;
             }
             // last pattern pointer was *, advancing string pointer
-            else if (starIdx != -1){
+            else if (starIdx != -1) {
                 p = starIdx + 1;
                 match++;
                 s = match;
