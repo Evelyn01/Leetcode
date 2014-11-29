@@ -1,4 +1,4 @@
-package com.leetcode.java.util.practice;
+package com.java.language.util;
 
 /**
  * Created by bod on 9/18/14.
