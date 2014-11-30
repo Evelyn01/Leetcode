@@ -7,18 +7,18 @@ public class MoveLastKToFront {
     public static void main(String[] strings) {
         MoveLastKToFront solution = new MoveLastKToFront();
         int[] a = {1, 2, 3, 4, 5, 6, 7, 8};
-        solution.moveLastKFront(a, 3);
+        solution.moveLastKFront(a, 4);
         for (int i : a) {
             System.out.print(i + ", ");
         }
 
         System.out.println();
 
-        int[] b = {1, 2, 3, 4, 5, 6, 7, 8};
-        solution.moveLastKFront(b, 5);
-        for (int i : b) {
-            System.out.print(i + ", ");
-        }
+//        int[] b = {1, 2, 3, 4, 5, 6, 7, 8};
+//        solution.moveLastKFront(b, 2);
+//        for (int i : b) {
+//            System.out.print(i + ", ");
+//        }
     }
 
     public void moveLastKFront(int[] a, int k) {
@@ -42,6 +42,11 @@ public class MoveLastKToFront {
             a[newIndex] = last;
             index = newIndex;
             last = tmp;
+
+            if (index == 0) {
+                index ++;
+                last = a[index];
+            }
             count ++;
         }
     }
