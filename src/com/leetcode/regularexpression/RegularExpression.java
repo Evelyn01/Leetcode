@@ -149,6 +149,46 @@ public class RegularExpression {
 
     //------------------------------------------------------------
 
+
+    public boolean isMatch(String s, String p) {
+        if (p == null || s == null || (s.length() > 0 && p.length() == 0)) {
+            return false;
+        }
+
+        return match(s, p, 0, 0);
+    }
+
+    private boolean match(String s, String p, int l, int r) {
+        if (l == s.length() && r == p.length()) {
+            return true;
+        }
+
+        if (r < p.length() - 1 && p.charAt(r + 1) == '*') {
+            if (match(s, p, l, r + 2)) {
+                return true;
+            } else {
+                int index = l;
+                while (isMatchFirst(s, p, index, r)) {
+                    if(match(s, p, index + 1, r + 2))
+                        return true;
+                    index++;
+                }
+            }
+        } else {
+            if (isMatchFirst(s, p, l, r)) {
+                return match(s, p, l + 1, r + 1);
+            }
+        }
+
+        return false;
+    }
+
+    private boolean isMatchFirst(String s, String p, int l, int r) {
+        return l < s.length() && r < p.length() && (s.charAt(l) == p.charAt(r) || p.charAt(r) == '.');
+    }
+
+    //------------------------------------------------------------
+
     public boolean isMatchWrong(String s, String p) {
         if (s == null || p == null || s.trim().length() == 0 || p.trim().length() == 0) {
             return false;

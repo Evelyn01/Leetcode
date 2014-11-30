@@ -10,44 +10,46 @@ package com.leetcode.searchrotatesortedarray;
 public class FindMinInRotateSortedArray {
 
     public static void main(String[] strings) {
-        int array[] = {4, 5, 6, 7, 0, 0, 1, 2, 2, 3};
+        int array[] = {1, 1, 1, 1, 1, 1, 1, 0, 0, 1};
 
         FindMinInRotateSortedArray findMin = new FindMinInRotateSortedArray();
 
         System.out.println(findMin.findMin(array));
     }
 
-    public int findMin(int[] array) {
-        if (array == null || array.length == 0) {
+    public int findMin(int[] num) {
+        if (num == null || num.length == 0) {
             return -1;
-        } else if (array.length == 1) {
-            return array[0];
         }
 
-        int length = array.length;
+        int l = 0, r = num.length - 1;
 
-        int left = 0;
-        int right = length - 1;
+        while (num[l] == num[r] && l < r) {
+            l ++;
+        }
 
-        while (left <= right) {
-            int pivot = (right - left) / 2 + left;
+        if (l == r || num[l] < num[r]) {
+            return num[l];
+        }
 
-            if (pivot > 0 && array[pivot - 1] > array[pivot]) {
-                return array[pivot];
+        while (l <= r) {
+            int m = l + (r - l) / 2;
+
+            if (m > 0 && num[m - 1] > num[m]) {
+                return num[m];
             }
 
-            if (array[pivot] > array[pivot + 1]) {
-                return array[pivot + 1];
+            if (num[m] > num[m + 1]) {
+                return num[m + 1];
             }
 
-            //upper sorted array
-            if (array[pivot] <= array[right]) {
-                right = pivot - 1;
+            if (num[m] <= num[r]) {
+                r = m - 1;
             } else {
-                left = pivot + 1;
+                l = m + 1;
             }
         }
 
-        return array[0];
+        return -1;
     }
 }

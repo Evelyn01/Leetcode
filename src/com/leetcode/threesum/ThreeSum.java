@@ -42,10 +42,7 @@ public class ThreeSum {
                     else if (num[j] + num[i] + num[k] > 0)
                         k--;
                     else {
-                        List ll = new ArrayList();
-                        ll.add(num[i]);
-                        ll.add(num[j]);
-                        ll.add(num[k]);
+                        List ll = Arrays.asList(num[i], num[j], num[k]);
                         resultList.add(ll);
                         j++;
                     }

@@ -12,11 +12,81 @@ import java.util.*;
 public class FourSum {
 
     public static void main(String[] strings) {
-        int[] a = {1, 0, -1, 0, -2, 2};
+//        int[] a = {0, 0, 0, 0};
+//        int[] a = {1, 0, -1, 0, -2, 2};
+        int[] a = {-3, -2, -1, 0, 0, 1, 2, 3};
 
         FourSum fourSum = new FourSum();
-        System.out.println(fourSum.fourSum(a, 0));
+        System.out.println(fourSum.fourSumNew(a, 0));
     }
+
+    public List<List<Integer>> fourSumNew(int[] num, int target) {
+        List<List<Integer>> ret = new ArrayList<List<Integer>>();
+        if (num == null || num.length < 4) {
+            return ret;
+        }
+
+        Arrays.sort(num);
+
+        HashMap<Integer, List<int[]>> map = new HashMap<Integer, List<int[]>>();
+        for (int i = 0; i < num.length - 1; i++) {
+            for (int j = i + 1; j < num.length; j++) {
+                int v = num[i] + num[j];
+                if (map.containsKey(v)) {
+                    List<int[]> pairs = map.get(v);
+                    pairs.add(new int[]{i, j});
+                } else {
+                    List<int[]> pairs = new ArrayList<int[]>();
+                    pairs.add(new int[]{i, j});
+                    map.put(v, pairs);
+                }
+            }
+        }
+
+
+        Iterator<Integer> iterator = map.keySet().iterator();
+
+        while (iterator.hasNext()) {
+            int key = iterator.next();
+            if (map.containsKey(target - key)) {
+                if (key <= target - key) {
+                    List<int[]> left = map.get(key);
+                    List<int[]> right = map.get(target - key);
+                    composeResult(num, left, right, ret);
+                    iterator.remove();
+                }
+            }
+        }
+
+        return ret;
+    }
+
+    //get combination from two set
+    private void composeResult(int[] num, List<int[]> left, List<int[]> right, List<List<Integer>> ret) {
+        int[] lastPairA = null;
+        for (int i = 0; i < left.size(); i++) {
+            int[] a = left.get(i);
+            if (lastPairA != null && num[a[0]] == num[lastPairA[0]] && num[a[1]] == num[lastPairA[1]])
+                continue;
+
+            lastPairA = a;
+            int[] lastPairB = null;
+            for (int j = 0; j < right.size(); j++) {
+                int[] b = right.get(j);
+
+                if (lastPairB != null && num[b[0]] == num[lastPairB[0]] && num[b[1]] == num[lastPairB[1]])
+                    continue;
+
+                if (b[0] > a[1]) {
+                    lastPairB = b;
+                    ret.add(Arrays.asList(num[a[0]], num[a[1]], num[b[0]], num[b[1]]));
+                }
+            }
+        }
+    }
+
+    //------------------------------------------------------------------
+
 
     public List<List<Integer>> fourSum(int[] num, int target) {
         int n = num.length;
