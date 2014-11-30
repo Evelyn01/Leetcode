@@ -7,14 +7,61 @@ package com.leetcode.covertarraytosorted;
 public class ConvertArrayToSorted {
 
     public static void main(String[] strings) {
-        int[] arrA = {4, 4, 3, 5, 6};
+        int[] arrA = {1, 2, 4, 4, 3, 5, 6};
         int[] arrB = {10, 3, 11, 12};
         int[] arrC = {9, 10, 9, 3, 3, 3, 4, 4};
 
         ConvertArrayToSorted convertArrayToSorted = new ConvertArrayToSorted();
+        System.out.println(convertArrayToSorted.min_convert_cost(arrA));
+        System.out.println(convertArrayToSorted.min_convert_cost(arrB));
+        System.out.println(convertArrayToSorted.min_convert_cost(arrC));
+
         System.out.println(convertArrayToSorted.getNumOfOp(arrA));
         System.out.println(convertArrayToSorted.getNumOfOp(arrB));
         System.out.println(convertArrayToSorted.getNumOfOp(arrC));
+    }
+
+    //http://tristan-interview.blogspot.com/2012/03/convert-array-into-sorted-array-with.html
+    public int min_convert_cost(int a[]) {
+        int n = a.length;
+        int[] dp = new int[n];
+        int[] aggr = new int[n];
+
+        aggr[0] = a[0];
+        for (int i = 1; i < n; i++)
+            aggr[i] = aggr[i - 1] + a[i];
+
+        dp[0] = 0;
+        for (int i = 1; i < n; i++) {
+            dp[i] = Integer.MAX_VALUE;
+            for (int j = i - 1; j >= 0; j--) {
+                int cost_i = 0;
+
+                if (a[i] >= a[j]) {
+                    cost_i = dp[j] + aggr[i - 1] - aggr[j];
+                } else {
+                    cost_i += aggr[i - 1] - aggr[j];
+                    while (j >= 0 && a[j] > a[i]) {
+                        cost_i += a[j] - a[i];
+                        j--;
+                    }
+
+                    cost_i += dp[j + 1];
+
+                }
+                if (cost_i < dp[i])
+                    dp[i] = cost_i;
+
+            }
+        }
+
+        int min = Integer.MAX_VALUE;
+        for (int i = 0; i < n; i++) {
+            int cost_i = dp[i] + aggr[n - 1] - aggr[i];
+            if (cost_i < min) min = cost_i;
+        }
+
+        return min;
     }
 
     public int getNumOfOp(int[] arr) {
