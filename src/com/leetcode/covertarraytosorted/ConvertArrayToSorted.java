@@ -2,17 +2,19 @@ package com.leetcode.covertarraytosorted;
 
 /**
  * Created by bod on 11/30/2014.
- * http://stackoverflow.com/questions/8928061/convert-array-to-a-sorted-one-using-only-two-operations
+ * http://tristan-interview.blogspot.com/2012/03/convert-array-into-sorted-array-with.html
  */
 public class ConvertArrayToSorted {
 
     public static void main(String[] strings) {
-        int[] arrA = {4, 3, 5, 6};
+        int[] arrA = {4, 4, 3, 5, 6};
         int[] arrB = {10, 3, 11, 12};
+        int[] arrC = {9, 10, 9, 3, 3, 3, 4, 4};
 
         ConvertArrayToSorted convertArrayToSorted = new ConvertArrayToSorted();
         System.out.println(convertArrayToSorted.getNumOfOp(arrA));
         System.out.println(convertArrayToSorted.getNumOfOp(arrB));
+        System.out.println(convertArrayToSorted.getNumOfOp(arrC));
     }
 
     public int getNumOfOp(int[] arr) {
