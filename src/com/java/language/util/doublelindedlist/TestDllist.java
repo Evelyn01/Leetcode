@@ -11,10 +11,12 @@ public class TestDllist {
      */
     public static void main(String[] args) {
 
-        DlList dl = new DlList();
-
+        Integer[] integers = new Integer[10];
         for (int i = 0; i < 10; i++)
-            dl.insert((i + 1), new Integer(i + 1));
+            integers[0] = new Integer(i + 1);
+
+        DlList dl = new DlList(integers);
+
         print(dl);
 
     }
