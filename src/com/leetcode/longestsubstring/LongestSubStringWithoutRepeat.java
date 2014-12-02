@@ -4,11 +4,11 @@ package com.leetcode.longestsubstring;
  * Created by bod on 9/9/14.
  * https://oj.leetcode.com/problems/longest-substring-without-repeating-characters/
  */
-public class LongestSubString {
+public class LongestSubStringWithoutRepeat {
 
     public static void main(String[] strings) {
 
-        LongestSubString subString = new LongestSubString();
+        LongestSubStringWithoutRepeat subString = new LongestSubStringWithoutRepeat();
         System.out.println(subString.lengthOfLongestSubstring("abcabcbb"));
     }
 
