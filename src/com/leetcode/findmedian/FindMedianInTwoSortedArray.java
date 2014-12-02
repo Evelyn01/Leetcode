@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * Created by bod on 9/9/14.
  * https://oj.leetcode.com/problems/median-of-two-sorted-arrays/
  */
-public class FindMedianSolution {
+public class FindMedianInTwoSortedArray {
 
 
     public double findMedianSortedArrays(int A[], int B[]) {
