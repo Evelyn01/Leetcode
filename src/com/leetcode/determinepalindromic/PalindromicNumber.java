@@ -4,13 +4,13 @@ package com.leetcode.determinepalindromic;
  * Created by bod on 9/10/14.
  * https://oj.leetcode.com/problems/palindrome-number/
  */
-public class DeterminePalindromic {
+public class PalindromicNumber {
 
     public static void main(String[] strings) {
 
         int x = 100000;
 
-        DeterminePalindromic palindromic = new DeterminePalindromic();
+        PalindromicNumber palindromic = new PalindromicNumber();
 
         System.out.println(Math.log10(x));
 
