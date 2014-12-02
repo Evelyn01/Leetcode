@@ -1,4 +1,4 @@
-package com.java.language.util;
+package com.java.language.util.doublelindedlist;
 
 /**
  * Created by titan-developer on 12/1/14.
