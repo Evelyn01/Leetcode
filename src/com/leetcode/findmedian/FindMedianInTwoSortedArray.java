@@ -1,5 +1,7 @@
 package com.leetcode.findmedian;
 
+import com.leetcode.FindKthSmallest.FindKthSmallest;
+
 import java.util.ArrayList;
 
 /**
@@ -10,14 +12,32 @@ public class FindMedianInTwoSortedArray {
 
     public static void main(String[] strings) {
 
-        int a[] = {1, 1};
-        int b[] = {1, 2};
+        int a[] = {1, 1, 3, 5, 9, 11};
+        int b[] = {1, 2, 4, 6, 8, 12};
 
         FindMedianInTwoSortedArray findMedianInTwoSortedArray = new FindMedianInTwoSortedArray();
 
         System.out.println(findMedianInTwoSortedArray.findMedianSortedArraysMerge(a, b));
     }
 
+
+    //call find kth
+    public double findMedianSortedArraysKth(int a[], int b[]) {
+        int m = a.length;
+        int n = b.length;
+
+        FindKthInTwoSortedArray findKthInTwoSortedArray  = new FindKthInTwoSortedArray();
+
+        if ((m + n) % 2 == 1) {
+            return findKthInTwoSortedArray.kthSmallestDirectSearch(a, b, (m + n) / 2);
+        } else {
+            return (findKthInTwoSortedArray.kthSmallestDirectSearch(a, b, (m + n) / 2) + findKthInTwoSortedArray.kthSmallest(a, b, (m + n) / 2 + 1)) * 0.5;
+        }
+    }
+
+    //------------------------------------------------------------------------------------------
+
+    //O(n)
     public double findMedianSortedArraysMerge(int a[], int b[]) {
         if (a == null && b == null) {
             return -1.0;
@@ -62,6 +82,9 @@ public class FindMedianInTwoSortedArray {
         return (double) (m1 + m2) / 2;
     }
 
+    //------------------------------------------------------------------------------------------
+
+    //need additional space.
     public double findMedianSortedArraysSlowest(int a[], int b[]) {
         ArrayList<Integer> list = new ArrayList<Integer>();
         int m = a.length - 1;
