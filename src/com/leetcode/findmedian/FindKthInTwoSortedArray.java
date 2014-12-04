@@ -9,12 +9,17 @@ public class FindKthInTwoSortedArray {
     static final int MAX = Integer.MAX_VALUE;
 
     public static void main(String[] strings) {
-        int[] a = {1, 2, 4, 6, 7, 8, 9};
+//        int[] a = {1, 2, 4, 6, 7, 8, 9};
+//        int[] b = {3, 5, 9, 10, 11, 12};
+
+        int[] a = {1, 2, };
         int[] b = {3, 5, 9, 10, 11, 12};
 
         FindKthInTwoSortedArray findKthInTwoSortedArray = new FindKthInTwoSortedArray();
-        System.out.println(findKthInTwoSortedArray.kthSmallest(a, b, 5));
+        System.out.println(findKthInTwoSortedArray.kthSmallestDirectSearch(a, b, 5));
     }
+
+    //-----------------------------------------------------------------------------
 
     public int kthSmallest(int[] A, int[] B, int k) {
         if (A == null || B == null || k > A.length + B.length)
@@ -50,5 +55,52 @@ public class FindKthInTwoSortedArray {
             return kthSmallest(A, aLow + i + 1, aLength - i - 1, B, bLow, j, k - i - 1);
         else // exclude A[i, aHigh] and B[bLow .. j], k was replaced by k - j - 1
             return kthSmallest(A, aLow, i, B, bLow + j + 1, bLength - j - 1, k - j - 1);
+    }
+
+    //-----------------------------------------------------------------------------
+
+    protected int kthSmallestDirectSearch(int A[], int B[], int k) {
+        if (A == null || B == null || (A.length == 0 && B.length == 0) || k > A.length + B.length) {
+            return Integer.MIN_VALUE;
+        }
+
+        if (A.length == 0) return B[k - 1];
+
+        if (B.length == 0) return A[k - 1];
+
+        int v;
+        int index = findKthInFirst(A, B, k);
+        if (index >= 0) {
+            v = A[index];
+        } else {
+            index = findKthInFirst(B, A, k);
+            v = B[index];
+        }
+        return v;
+    }
+
+    private int findKthInFirst(int[] a, int[] b, int k) {
+        int index = -1;
+
+        int left = 0, right = a.length - 1;
+        while (left <= right) {
+            int middle = left + (right - left) / 2;
+
+            if (middle > k - 1) {
+                right = middle - 1;
+            } else if (middle == k - 1 && a[middle] < b[0]) {
+                return middle;
+            } else {
+                if (b[k - middle - 2] <= a[middle] && (k - middle - 1 >= b.length || a[middle] <= b[k - middle - 1])) {
+                    return middle;
+                } else if (a[middle] > b[k - middle - 1]) {
+                    right = middle - 1;
+                } else {
+                    left = middle + 1;
+                }
+            }
+        }
+
+        return index;
     }
 }
