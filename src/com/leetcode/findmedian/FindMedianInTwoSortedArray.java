@@ -7,6 +7,7 @@ import java.util.ArrayList;
 /**
  * Created by bod on 9/9/14.
  * https://oj.leetcode.com/problems/median-of-two-sorted-arrays/
+ * http://www.geeksforgeeks.org/median-of-two-sorted-arrays/
  */
 public class FindMedianInTwoSortedArray {
 
@@ -17,9 +18,13 @@ public class FindMedianInTwoSortedArray {
 
         FindMedianInTwoSortedArray findMedianInTwoSortedArray = new FindMedianInTwoSortedArray();
 
-        System.out.println(findMedianInTwoSortedArray.findMedianSortedArraysMerge(a, b));
+        System.out.println(findMedianInTwoSortedArray.findMedianSortedArraysKth(a, b));
     }
 
+
+
+
+    //------------------------------------------------------------------------------------------
 
     //call find kth
     public double findMedianSortedArraysKth(int a[], int b[]) {
@@ -29,9 +34,9 @@ public class FindMedianInTwoSortedArray {
         FindKthInTwoSortedArray findKthInTwoSortedArray  = new FindKthInTwoSortedArray();
 
         if ((m + n) % 2 == 1) {
-            return findKthInTwoSortedArray.kthSmallestDirectSearch(a, b, (m + n) / 2);
+            return findKthInTwoSortedArray.kthSmallest(a, b, (m + n) / 2);
         } else {
-            return (findKthInTwoSortedArray.kthSmallestDirectSearch(a, b, (m + n) / 2) + findKthInTwoSortedArray.kthSmallest(a, b, (m + n) / 2 + 1)) * 0.5;
+            return (findKthInTwoSortedArray.kthSmallest(a, b, (m + n) / 2) + findKthInTwoSortedArray.kthSmallest(a, b, (m + n) / 2 + 1)) * 0.5;
         }
     }
 

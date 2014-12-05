@@ -20,6 +20,7 @@ public class FindKthInTwoSortedArray {
     }
 
     //-----------------------------------------------------------------------------
+    //http://leetcode.com/2011/01/find-k-th-smallest-element-in-union-of.html
 
     public int kthSmallest(int[] A, int[] B, int k) {
         if (A == null || B == null || k > A.length + B.length)
