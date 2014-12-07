@@ -46,8 +46,7 @@ public class LargestRectangleArea {
                 // with stack top as the smallest (or minimum height) bar. 'i' is
                 // 'right index' for the top and element before top in stack is 'left index'
             else {
-                tp = stack.peek();  // store the top index
-                stack.pop();  // pop the top
+                tp = stack.pop();  // pop the top
 
                 // Calculate the area with hist[tp] stack as smallest bar
                 area_with_top = hist[tp] * (stack.empty() ? i : i - stack.peek() - 1);
@@ -61,8 +60,7 @@ public class LargestRectangleArea {
         // Now pop the remaining bars from stack and calculate area with every
         // popped bar as the smallest bar
         while (!stack.empty()) {
-            tp = stack.peek();
-            stack.pop();
+            tp = stack.pop();
             area_with_top = hist[tp] * (stack.empty() ? i : i - stack.peek() - 1);
 
             if (max_area < area_with_top)
