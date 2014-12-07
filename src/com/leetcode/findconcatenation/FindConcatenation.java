@@ -9,8 +9,8 @@ public class FindConcatenation {
 
     public static void main(String[] strings) {
 
-        String s = "barfoothefoobarman";
-        String[] words = {"foo", "bar"};
+        String s = "xbarcoobarfoocoothefoocoobarman";
+        String[] words = {"foo", "coo", "bar"};
 //
 //        String s = "abaababbaba";
 //        String[] words = {"ab","ba","ab","ba"};
@@ -52,37 +52,37 @@ public class FindConcatenation {
 
         String tr, du;
         int r = 0;
-        int st = 0;
+        int start = 0;
 
         for (int j = 0; j < t; j++) {
             r = 0;
-            st = j;
+            start = j;
             for (int i = j; i + t <= n; i += t) {
                 tr = S.substring(i, i + t);
                 if (!cn.containsKey(tr)) {
                     cntL.clear();
                     r = 0;
-                    st = i + t;
+                    start = i + t;
                 } else if (!cntL.containsKey(tr) || cntL.get(tr) < cn.get(tr)) {
                     int v = cntL.containsKey(tr) ? cntL.get(tr) : 0;
                     cntL.put(tr, v + 1);
                     r++;
                 } else {
-                    du = S.substring(st, st + t);
-                    while (du != tr) {
+                    du = S.substring(start, start + t);
+                    while (!du.equals(tr)) {
                         cntL.put(du, cntL.get(du) - 1);
                         r--;
-                        st += t;
-                        du = S.substring(st, st + t);
+                        start += t;
+                        du = S.substring(start, start + t);
                     }
-                    st += t;
+                    start += t;
                 }
                 if (r == k) {
-                    res.add(st);
-                    du = S.substring(st, st + t);
+                    res.add(start);
+                    du = S.substring(start, start + t);
                     cntL.put(du, cntL.get(du) - 1);
                     r--;
-                    st += t;
+                    start += t;
                 }
 
             }
