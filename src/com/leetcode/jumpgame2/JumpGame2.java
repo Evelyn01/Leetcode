@@ -8,7 +8,7 @@ public class JumpGame2 {
 
     public static void main(String[] strings) {
 
-        int[] a = {2, 3, 1, 1, 4};
+        int[] a = {2, 3, 1, 0, 1, 4};
         //int[] a = {2, 1};
 
         JumpGame2 jumper = new JumpGame2();
