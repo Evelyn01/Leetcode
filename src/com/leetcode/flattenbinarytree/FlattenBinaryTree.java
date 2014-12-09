@@ -23,9 +23,9 @@ public class FlattenBinaryTree {
     public void flattenIterative(TreeNode root) {
         while (root != null) {
             if (root.left != null) {
-                TreeNode ptr = root.left;
-                while (ptr.right != null) ptr = ptr.right;
-                ptr.right = root.right;
+                TreeNode pre = root.left;
+                while (pre.right != null) pre = pre.right;
+                pre.right = root.right;
                 root.right = root.left;
                 root.left = null;
             }
