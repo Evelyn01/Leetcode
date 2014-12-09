@@ -1,6 +1,9 @@
 package com.leetcode.buildtree;
 
 import com.leetcode.common.TreeNode;
+import com.leetcode.common.TreeNodePrinter;
+
+import java.util.Stack;
 
 /**
  * Created by titan-developer on 9/6/14.
@@ -13,9 +16,11 @@ public class PreInBuild {
 
     public static void main(String[] strings) {
         PreInBuild build = new PreInBuild();
-        TreeNode node = build.buildTree(preOrder, inOrder);
-        System.out.println(node.val);
+        TreeNode node = build.buildTreeIterative(preOrder, inOrder);
+        TreeNodePrinter.printNode(node);
     }
+
+    //------------------------------------------------------------------------
 
     public TreeNode buildTreeNeat(int[] preorder, int[] inorder) {
         return helper(0, 0, inorder.length - 1, preorder, inorder);
@@ -34,6 +39,51 @@ public class PreInBuild {
         }
         root.left = helper(preStart + 1, inStart, inIndex - 1, preorder, inorder);
         root.right = helper(preStart + inIndex - inStart + 1, inIndex + 1, inEnd, preorder, inorder);
+        return root;
+    }
+
+    //------------------------------------------------------------------------
+
+    public TreeNode buildTreeIterative(int[] preorder, int[] inorder) {
+
+        if (preorder.length == 0 || inorder.length == 0 || inorder.length != preorder.length)
+            return null;
+
+        Stack<Integer> s = new Stack<Integer>();
+        Stack<TreeNode> nodeStack = new Stack<TreeNode>();
+        TreeNode currentNode, root;
+        int i = 0, j = 0;
+        boolean isPop = false;
+        s.push(preorder[i]);
+
+        root = new TreeNode(preorder[i]);
+        nodeStack.push(root);
+        currentNode = root;
+        i++;
+
+        while (i < preorder.length) {
+            if (!nodeStack.empty() && nodeStack.peek().val == inorder[j]) {
+                currentNode = nodeStack.peek();
+                nodeStack.pop();
+                s.pop();
+                isPop = true;
+                j++;
+            } else {
+                s.push(preorder[i]);
+                if (isPop) {
+                    isPop = false;
+                    currentNode.right = new TreeNode(preorder[i]);
+                    currentNode = currentNode.right;
+                    nodeStack.push(currentNode);
+                } else {
+                    currentNode.left = new TreeNode(preorder[i]);
+                    currentNode = currentNode.left;
+                    nodeStack.push(currentNode);
+                }
+                i++;
+            }
+        }
+
         return root;
     }
 
