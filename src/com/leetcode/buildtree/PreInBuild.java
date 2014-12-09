@@ -11,8 +11,8 @@ import java.util.Stack;
  */
 public class PreInBuild {
 
-    static int[] preOrder = {1, 2, 3, 4, 5, 6};
-    static int[] inOrder = {3, 2, 4, 1, 6, 5};
+    static int[] preOrder = {7, 6, 4, 3, 5, 10, 8, 9};
+    static int[] inOrder = {3, 4, 5, 6, 7, 8, 10, 9};
 
     public static void main(String[] strings) {
         PreInBuild build = new PreInBuild();
