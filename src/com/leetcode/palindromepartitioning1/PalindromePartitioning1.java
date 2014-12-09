@@ -23,6 +23,8 @@ public class PalindromePartitioning1 {
         }
     }
 
+    //-------------------------- cool solution ----------------------------------
+
     public List<List<String>> partition(String s) {
         int len = s.length();
         List<List<String>>[] result = new List[len + 1];
@@ -57,6 +59,8 @@ public class PalindromePartitioning1 {
 
         return result[len];
     }
+
+    //------------------------------------------------------------
 
     public List<List<String>> partition_2(String s) {
 
