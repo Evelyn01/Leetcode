@@ -87,6 +87,7 @@ public class DropBallGame {
             if (addToQueue(x, y + 1, queue, visitedPos, id)) count++;
 
             if (count >= k) {
+                visitedPos.clear();
                 return true;
             }
         }
