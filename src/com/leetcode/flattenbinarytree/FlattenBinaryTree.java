@@ -14,9 +14,23 @@ public class FlattenBinaryTree {
         TreeNode root = TreeNodeCreator.createTreeNode("1, 2, 5, 3, 4, #, 6");
         TreeNodePrinter.printNode(root);
 
-
         FlattenBinaryTree flattenBinaryTree = new FlattenBinaryTree();
-        flattenBinaryTree.flatten(root);
+        flattenBinaryTree.flattenIterative(root);
+
+        TreeNodePrinter.printNode(root);
+    }
+
+    public void flattenIterative(TreeNode root) {
+        while (root != null) {
+            if (root.left != null) {
+                TreeNode pre = root.left;
+                while (pre.right != null) pre = pre.right;
+                pre.right = root.right;
+                root.right = root.left;
+                root.left = null;
+            }
+            root = root.right;
+        }
     }
 
     public void flatten(TreeNode root) {

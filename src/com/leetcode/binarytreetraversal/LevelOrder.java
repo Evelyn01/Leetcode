@@ -76,6 +76,28 @@ public class LevelOrder {
         return order;
     }
 
+    public List<List<Integer>> levelOrderNeat(TreeNode root) {
+        List<List<Integer>> result = new ArrayList<List<Integer>>();
+        if (root == null)
+            return result;
+        List<TreeNode> cur = new ArrayList<TreeNode>();
+        cur.add(root);
+        while (cur.size() != 0) {
+            List<Integer> toAdd = new ArrayList<Integer>();
+            List<TreeNode> next = new ArrayList<TreeNode>();
+            for (TreeNode i : cur) {
+                toAdd.add(i.val);
+                if (i.left != null)
+                    next.add(i.left);
+                if (i.right != null)
+                    next.add(i.right);
+            }
+            result.add(toAdd);
+            cur = next;
+        }
+        return result;
+    }
+
     public List<List<Integer>> levelOrder(TreeNode treeNode) {
         ArrayList<List<Integer>> order = new ArrayList<List<Integer>>();
         if (treeNode == null) {
@@ -86,13 +108,13 @@ public class LevelOrder {
         list.add(treeNode);
 
         int lastLevelNumber = 1;
-        int currentLevelNumber = 0;
+        int currentLevelNumber;
         while (list.size() > 0) {
-            ArrayList<Integer> currentLevel = new ArrayList<Integer>();
+            ArrayList<Integer> lastLevel = new ArrayList<Integer>();
             currentLevelNumber = 0;
             for (int i = 0; i < lastLevelNumber; i++) {
                 TreeNode tempNode = list.get(0);
-                currentLevel.add(tempNode.val);
+                lastLevel.add(tempNode.val);
 
                 if (tempNode.left != null) {
                     currentLevelNumber++;
@@ -106,7 +128,7 @@ public class LevelOrder {
                 list.remove(0);
             }
             lastLevelNumber = currentLevelNumber;
-            order.add(currentLevel);
+            order.add(lastLevel);
         }
 
 

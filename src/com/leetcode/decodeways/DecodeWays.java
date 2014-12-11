@@ -9,6 +9,7 @@ public class DecodeWays {
         DecodeWays decodeWays = new DecodeWays();
         System.out.println(decodeWays.numDecodings("12532910"));
         System.out.println(decodeWays.numDecodings("230"));
+        System.out.println(decodeWays.numDecodings("12512378"));
     }
 
     public int numDecodings(String s) {

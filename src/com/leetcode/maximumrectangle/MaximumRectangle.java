@@ -17,8 +17,16 @@ public class MaximumRectangle {
                 {'0', '0', '0', '0', '0', '1'},
         };
 
+        char[][] b = {
+                {'0', '0', '0', '0', '0', '1'},
+                {'0', '0', '0', '0', '1', '1'},
+                {'0', '0', '0', '1', '1', '1'},
+                {'0', '0', '1', '1', '1', '1'},
+                {'0', '1', '1', '1', '1', '1'},
+        };
+
         MaximumRectangle maximumRectangle = new MaximumRectangle();
-        System.out.println(maximumRectangle.maximalRectangle(a));
+        System.out.println(maximumRectangle.maximalRectangle(b));
     }
 
     public int maximalRectangle(char[][] matrix) {
