@@ -88,7 +88,7 @@ class Singleton implements Serializable {
 
     public Object readResolve() {
         System.out.println("Executing readResolve");
-        return Singleton.getInstance(); // FIXME
+        return Singleton.getInstance();
     }
 
     @Override
