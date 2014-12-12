@@ -23,6 +23,7 @@ public class PersonTest {
             out.writeObject(p);
 
             out.close();
+            fos.close();
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -35,6 +36,7 @@ public class PersonTest {
             in = new ObjectInputStream(fis);
             p = (Person) in.readObject();
             in.close();
+            fis.close();
         } catch (Exception ex) {
             ex.printStackTrace();
         }
