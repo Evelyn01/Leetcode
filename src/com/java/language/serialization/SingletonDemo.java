@@ -10,6 +10,7 @@ import java.io.Serializable;
 
 /**
  * Created by titan-developer on 12/12/14.
+ * Always honor the instance in Runtime.
  */
 public class SingletonDemo {
 

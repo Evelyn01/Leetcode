@@ -3,6 +3,7 @@ package com.java.language.serialization;
 import java.io.*;
 
 /**
+ * Try to ignore the latest state in Runtime and honor the instance from serialization.
  * Created by titan-developer on 12/12/14.
  */
 public class TestSingleton2 implements Serializable {
