@@ -1,7 +1,5 @@
 package com.leetcode.findmedian;
 
-import com.leetcode.FindKthSmallest.FindKthSmallest;
-
 import java.util.ArrayList;
 
 /**
@@ -84,14 +82,14 @@ public class FindMedianInTwoSortedArray {
     //------------------------------------------------------------------------------------------
 
 
-    public double findMedianSortedArraysC(int A[], int B[]) {
+    public double findMedianSortedArraysIterative(int A[], int B[]) {
         int n = A.length;
         int m = B.length;
         // the following call is to make sure len(A) <= len(B).
         // yes, it calls itself, but at most once, shouldn't be
         // consider a recursive solution
         if (n > m)
-            return findMedianSortedArraysC(B, A);
+            return findMedianSortedArraysIterative(B, A);
 
         // now, do binary search
         int k = (n + m - 1) / 2;
