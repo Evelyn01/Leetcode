@@ -10,55 +10,33 @@ public class MaxSubarrayIII {
     public static void main(String[] strings) {
         int[] a = {-1, 4, -2, 3, -2, 3};
         MaxSubarrayIII maxSubarrayIII = new MaxSubarrayIII();
-
-        ArrayList<Integer> list = new ArrayList<Integer>();
-        for (int i = 0; i < a.length; i++) {
-            list.add(a[i]);
-        }
-        System.out.println(maxSubarrayIII.maxSubArray(list, 3));
+        System.out.println(maxSubarrayIII.maxKSubArrays(a, 2));
     }
 
-    public int maxSubArray(ArrayList<Integer> nums, int k) {
-        int[] a = new int[nums.size()];
-        for (int i = 0; i < nums.size(); i ++)
-            a[i] = nums.get(i);
+    public int maxKSubArrays(int[] nums, int k) {
+        int[][] maxs = new int[nums.length][nums.length];
 
-        if (k > a.length) {
-            return 0;
-        }
-
-        int l = a.length;
-        int[][][] dp = new int[l][l][k + 1];
-        for (int i = 0; i < l; i ++) {
-            int current = a[i];
-            int max = a[i];
-            dp[i][i][1] = a[i];
-            for (int j = i + 1; j < l; j ++) {
-                current = Math.max(current + a[j], a[j]);
-                if (current > max) max = current;
-                dp[i][j][1] = max;
+        for (int i = 0; i < nums.length; ++i) {
+            int max_till = nums[i];
+            maxs[i][i] = nums[i];
+            for (int j = i + 1; j < nums.length; ++j) {
+                max_till = Math.max(nums[j], max_till + nums[j]);
+                maxs[i][j] = Math.max(maxs[i][j - 1], max_till);
             }
         }
 
-        int count = 1;
-        while (count < k) {
-            count ++;
-
-            for (int i = 0; i < l; i ++) {
-                for (int j = i + count - 1; j < l; j ++) {
-                    int span = 1;
-                    int current;
-                    int max = Integer.MIN_VALUE;
-                    while (span < j - i + 1) {
-                        current = dp[i][i + span - 1][1] + dp[i + span][j][count - 1];
-                        if (current > max) max = current;
-                        span ++;
-                    }
-                    dp[i][j][count] = max;
+        int[] dp = maxs[0];
+        for (int m = 1; m < k; ++m) {
+            int[] pre = new int[dp.length];
+            for (int i = m; i < nums.length; ++i) {
+                int max_i = Integer.MIN_VALUE;
+                for (int j = m - 1; j < i; ++j) {
+                    max_i = Math.max(max_i, dp[j] + maxs[j + 1][i]);
                 }
+                pre[i] = max_i;
             }
+            dp = pre;
         }
-
-        return dp[0][l - 1][k];
+        return dp[dp.length - 1];
     }
 }

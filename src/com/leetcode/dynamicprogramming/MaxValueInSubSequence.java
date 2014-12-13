@@ -8,23 +8,23 @@ package com.leetcode.dynamicprogramming;
  */
 public class MaxValueInSubSequence {
 
-    static int[] a = {
-            -1,
-            0,
-            -2,
-            3,
-            4,
-            5,
-            -1,
-            -3,
-            9,
-            -2,
-            8
-    };
-
 //    static int[] a = {
-//            -2, 1, -3, 4, -1, 2, 1, -5, 4
+//            -1,
+//            0,
+//            -2,
+//            3,
+//            4,
+//            5,
+//            -1,
+//            -3,
+//            9,
+//            -2,
+//            8
 //    };
+
+    static int[] a = {
+            4, -5, 3, -3, 1, 2, -2, 2, -2, 1, 5
+    };
 //
 //    static int[] a = {
 //            -2, 1, -3, 4, -1, 2, 1, -5, 4
@@ -40,7 +40,7 @@ public class MaxValueInSubSequence {
         int current = array[0];
         int max = array[0];
 
-        for (int i = 1; i < array.length; i ++) {
+        for (int i = 1; i < array.length; i++) {
             current = Math.max(current + a[i], a[i]);
             if (current > max) max = current;
         }
