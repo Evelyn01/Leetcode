@@ -37,31 +37,12 @@ public class MaxValueInSubSequence {
     }
 
     public int findMaxValue(int[] array) {
-        if (array == null) {
-            return Integer.MIN_VALUE;
-        }
+        int current = array[0];
+        int max = array[0];
 
-        int max = Integer.MIN_VALUE;
-
-        int currentValue = Integer.MIN_VALUE;
-        for (int i = 0; i < array.length; i ++) {
-            if (array[i] < 0) {
-                if (array[i] > max) {
-                    max = array[i];
-                } else if (currentValue > 0) {
-                    currentValue += array[i];
-                }
-            } else {
-                if (currentValue < 0) {
-                    currentValue = array[i];
-                } else {
-                    currentValue += array[i];
-                }
-            }
-
-            if (currentValue > max)  {
-                max = currentValue;
-            }
+        for (int i = 1; i < array.length; i ++) {
+            current = Math.max(current + a[i], a[i]);
+            if (current > max) max = current;
         }
 
         return max;
