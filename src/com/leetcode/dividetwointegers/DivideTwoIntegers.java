@@ -13,7 +13,7 @@ public class DivideTwoIntegers {
     public static void main(String[] strings) {
 
         DivideTwoIntegers divider = new DivideTwoIntegers();
-        System.out.println(divider.divide(33, -3));
+        System.out.println(divider.divide(-2147483648, -1));
         System.out.println(divider.divide(30, 16));
         System.out.println(divider.divide(100, 2));
         System.out.println(divider.divide(1, -1));
@@ -24,20 +24,20 @@ public class DivideTwoIntegers {
         long p = Math.abs((long)dividend);
         long q = Math.abs((long)divisor);
 
-        int ret = 0;
+        long ret = 0;
         while (p >= q) {
             int counter = 0;
             while (p >= (q << counter)) {
                 counter++;
             }
-            ret += 1 << (counter - 1);
+            ret += 1L << (counter - 1);
             p -= q << (counter - 1);
         }
 
         if ((dividend > 0 && divisor > 0) || (dividend < 0 && divisor < 0))
-            return ret;
+            return ret > Integer.MAX_VALUE ? Integer.MAX_VALUE : (int)ret;
         else
-            return -ret;
+            return - (int)ret;
     }
 
     public int divide2(int dividend, int divisor) {
