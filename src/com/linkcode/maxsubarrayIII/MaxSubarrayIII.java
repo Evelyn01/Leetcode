@@ -1,4 +1,4 @@
-package com.linkcode;
+package com.linkcode.maxsubarrayIII;
 
 import java.util.*;
 
