@@ -2,6 +2,7 @@ package com.leetcode.maxpointsonline;
 
 
 import java.util.HashMap;
+import java.util.Iterator;
 
 /**
  * Given n points on a 2D plane, find the maximum number of points that lie on the same straight line.
@@ -11,16 +12,16 @@ public class MaxPointOnLineSolution {
     public static void main(String[] strings) {
         Point[] points = initTestPoints3();
         MaxPointOnLineSolution maxPointOnLineSolution = new MaxPointOnLineSolution();
-        int max = maxPointOnLineSolution.maxPoints(points);
+        int max = maxPointOnLineSolution.maxPoints2(points);
         System.out.println(max);
     }
 
     private static Point[] initTestPoints3() {
         Point[] points = new Point[3];
 
-        points[0] = new Point(0, 0);
-        points[1] = new Point(1, 1);
-        points[2] = new Point(1, -1);
+        points[0] = new Point(2, 3);
+        points[1] = new Point(3, 3);
+        points[2] = new Point(-5, 3);
 
         return points;
     }
@@ -55,6 +56,33 @@ public class MaxPointOnLineSolution {
         return points;
     }
 
+    public int maxPoints2(Point[] points) {
+        int res = 0;
+        for (int i = 0; i < points.length; i++) {
+            int dup = 1;
+            HashMap<Double, Integer> mp = new HashMap<Double, Integer>();
+            for (int j = i + 1; j < points.length; j++) {
+                if (points[i].x == points[j].x && points[i].y == points[j].y)
+                    dup++;
+                else if (points[i].x == points[j].x) {
+                    int v = mp.containsKey((double)Integer.MAX_VALUE) ? mp.get((double) Integer.MAX_VALUE) : 0;
+                    mp.put((double) Integer.MAX_VALUE, v + 1);
+                }
+                else {
+                    double key = points[i].y == points[j].y ? 0.0d : (double) (points[i].y - points[j].y) / (double) (points[i].x - points[j].x);
+                    int v = mp.containsKey(key) ? mp.get(key) : 0;
+                    mp.put(key, v + 1);
+                }
+            }
+            Iterator<Integer> iter = mp.values().iterator();
+            int max = 0;
+            while (iter.hasNext())
+                max = Math.max(max, iter.next());
+            max += dup;
+            res = res < max ? max : res;
+        }
+        return res;
+    }
 
     public int maxPoints(Point[] points) {
         if (points == null)
