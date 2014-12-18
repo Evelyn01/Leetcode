@@ -79,7 +79,7 @@ public class MaxPointOnLineSolution {
             while (iter.hasNext())
                 max = Math.max(max, iter.next());
             max += dup;
-            res = res < max ? max : res;
+            res = Math.max(max, res);
         }
         return res;
     }
