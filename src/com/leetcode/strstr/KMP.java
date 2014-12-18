@@ -2,6 +2,7 @@ package com.leetcode.strstr;
 
 /**
  * Created by titan-developer on 12/16/14.
+ * https://oj.leetcode.com/problems/implement-strstr/
  */
 public class KMP {
 
@@ -15,10 +16,10 @@ public class KMP {
         System.out.println(kmp.strStr(s, w));
     }
 
-    public String strStr(String haystack, String needle) {
+    public int strStr(String haystack, String needle) {
         //KMP algorithms
-        if (needle.equals("")) return haystack;
-        if (haystack.equals("")) return null;
+        if (needle.equals("")) return 0;
+        if (haystack.equals("")) return -1;
         char[] arr = needle.toCharArray();
         int[] next = makeNext(arr);
 
@@ -27,12 +28,12 @@ public class KMP {
                 j++;
                 i++;
                 if (j == arr.length)
-                    return haystack.substring(i - arr.length);
+                    return i - arr.length;
             }
             if (i < end && haystack.charAt(i) != arr[j])
                 j = next[j];
         }
-        return null;
+        return -1;
     }
 
     private int[] makeNext(char[] arr) {
