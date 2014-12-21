@@ -1,8 +1,8 @@
 package com.leetcode.pathsum2;
 
-import com.leetcode.common.TreeNode;
-import com.leetcode.common.TreeNodeCreator;
-import com.leetcode.common.TreeNodePrinter;
+import com.leetcode.util.TreeNode;
+import com.leetcode.util.TreeNodeCreator;
+import com.leetcode.util.TreeNodePrinter;
 
 import java.util.ArrayList;
 import java.util.List;

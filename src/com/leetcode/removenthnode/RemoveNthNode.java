@@ -1,6 +1,6 @@
 package com.leetcode.removenthnode;
 
-import com.leetcode.common.ListNode;
+import com.leetcode.util.ListNode;
 
 /**
  * Created by titan-developer on 10/24/14.

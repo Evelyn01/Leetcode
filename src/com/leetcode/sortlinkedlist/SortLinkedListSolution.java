@@ -1,6 +1,6 @@
 package com.leetcode.sortlinkedlist;
 
-import com.leetcode.common.ListNode;
+import com.leetcode.util.ListNode;
 
 /**
  * Created by titan-developer on 8/8/14.

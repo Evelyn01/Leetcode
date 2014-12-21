@@ -1,7 +1,7 @@
 package com.practise1;
 
-import com.leetcode.common.TreeNode;
-import com.leetcode.common.TreeNodeCreator;
+import com.leetcode.util.TreeNode;
+import com.leetcode.util.TreeNodeCreator;
 
 /**
  * Created by titan-developer on 12/8/14.

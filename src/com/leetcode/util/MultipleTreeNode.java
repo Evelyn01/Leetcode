@@ -1,4 +1,4 @@
-package com.leetcode.common;
+package com.leetcode.util;
 
 import java.util.Vector;
 

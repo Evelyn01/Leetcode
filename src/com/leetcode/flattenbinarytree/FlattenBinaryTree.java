@@ -1,8 +1,8 @@
 package com.leetcode.flattenbinarytree;
 
-import com.leetcode.common.TreeNode;
-import com.leetcode.common.TreeNodeCreator;
-import com.leetcode.common.TreeNodePrinter;
+import com.leetcode.util.TreeNode;
+import com.leetcode.util.TreeNodeCreator;
+import com.leetcode.util.TreeNodePrinter;
 
 /**
  * Created by bod on 8/31/14.

@@ -1,7 +1,7 @@
 package com.leetcode.uniquesearchtrees2;
 
-import com.leetcode.common.TreeNode;
-import com.leetcode.common.TreeNodePrinter;
+import com.leetcode.util.TreeNode;
+import com.leetcode.util.TreeNodePrinter;
 
 import java.util.ArrayList;
 import java.util.List;

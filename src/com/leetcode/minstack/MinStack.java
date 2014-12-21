@@ -1,9 +1,8 @@
 package com.leetcode.minstack;
 
-import com.leetcode.common.ListNode;
+import com.leetcode.util.ListNode;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by titan-developer on 11/9/14.

@@ -1,6 +1,6 @@
 package com.practise1;
 
-import com.leetcode.common.ListNode;
+import com.leetcode.util.ListNode;
 
 
 /**

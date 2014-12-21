@@ -1,6 +1,6 @@
 package com.leetcode.addtwonumber;
 
-import com.leetcode.common.ListNode;
+import com.leetcode.util.ListNode;
 
 /**
  * Created by bod on 9/1/14.

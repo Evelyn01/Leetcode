@@ -1,9 +1,7 @@
 package com.leetcode.validbst;
 
-import com.leetcode.common.TreeNode;
-import com.leetcode.common.TreeNodeCreator;
-
-import java.util.List;
+import com.leetcode.util.TreeNode;
+import com.leetcode.util.TreeNodeCreator;
 
 /**
  * Created by titan-developer on 11/9/14.

@@ -1,6 +1,6 @@
 package com.leetcode.buildtree;
 
-import com.leetcode.common.TreeNode;
+import com.leetcode.util.TreeNode;
 
 /**
  * Created by titan-developer on 9/6/14.

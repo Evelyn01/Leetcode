@@ -1,7 +1,7 @@
 package com.leetcode.buildtree;
 
-import com.leetcode.common.TreeNode;
-import com.leetcode.common.TreeNodePrinter;
+import com.leetcode.util.TreeNode;
+import com.leetcode.util.TreeNodePrinter;
 
 import java.util.Stack;
 

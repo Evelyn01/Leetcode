@@ -1,6 +1,6 @@
 package com.leetcode.treetraversal;
 
-import com.leetcode.common.MultipleTreeNode;
+import com.leetcode.util.MultipleTreeNode;
 
 import java.util.ArrayDeque;
 import java.util.List;

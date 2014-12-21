@@ -1,4 +1,4 @@
-package com.leetcode.common;
+package com.leetcode.util;
 
 /**
  * Created by titan-developer on 8/16/14.

@@ -1,6 +1,6 @@
 package com.leetcode.partitionlist;
 
-import com.leetcode.common.ListNode;
+import com.leetcode.util.ListNode;
 
 /**
  * Created by titan-developer on 11/8/14.

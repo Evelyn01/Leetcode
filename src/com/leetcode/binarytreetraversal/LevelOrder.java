@@ -1,7 +1,7 @@
 package com.leetcode.binarytreetraversal;
 
-import com.leetcode.common.TreeNode;
-import com.leetcode.common.TreeNodeCreator;
+import com.leetcode.util.TreeNode;
+import com.leetcode.util.TreeNodeCreator;
 
 import java.util.ArrayList;
 import java.util.List;

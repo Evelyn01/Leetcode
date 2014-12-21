@@ -1,6 +1,6 @@
 package com.leetcode.deleteduplicates2;
 
-import com.leetcode.common.ListNode;
+import com.leetcode.util.ListNode;
 
 /**
  * Created by titan-developer on 11/2/14.

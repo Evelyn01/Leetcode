@@ -1,6 +1,6 @@
 package com.leetcode.mergetwolist;
 
-import com.leetcode.common.ListNode;
+import com.leetcode.util.ListNode;
 
 /**
  * Created by titan-developer on 10/31/14.

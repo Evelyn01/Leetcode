@@ -1,6 +1,6 @@
 package com.leetcode.linkedlistcycle;
 
-import com.leetcode.common.ListNode;
+import com.leetcode.util.ListNode;
 
 /**
  * Created by titan-developer on 8/18/14.

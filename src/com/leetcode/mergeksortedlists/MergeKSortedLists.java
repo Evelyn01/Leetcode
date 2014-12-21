@@ -1,6 +1,6 @@
 package com.leetcode.mergeksortedlists;
 
-import com.leetcode.common.ListNode;
+import com.leetcode.util.ListNode;
 
 import java.util.ArrayList;
 import java.util.List;

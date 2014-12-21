@@ -1,8 +1,8 @@
 package com.leetcode.listtobst;
 
-import com.leetcode.common.ListNode;
-import com.leetcode.common.TreeNode;
-import com.leetcode.common.TreeNodePrinter;
+import com.leetcode.util.ListNode;
+import com.leetcode.util.TreeNode;
+import com.leetcode.util.TreeNodePrinter;
 
 /**
  * Created by titan-developer on 11/12/14.
