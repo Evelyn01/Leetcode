@@ -47,7 +47,7 @@ class A implements Cloneable{
         System.out.println("clone method of A: " + obj);
 
         A a = (A)obj;
-        a.val = this.val;
+        //a.val = this.val; //don't need call this explicitly.
 
         return a;
     }
@@ -70,7 +70,7 @@ class B extends A {
         System.out.println("clone method of B: " + obj);
 
         B b = (B)obj;
-        b.i = this.i;
+        //b.i = this.i; //don't need call this explicitly.
         return b;
     }
 }
