@@ -2,6 +2,7 @@ package com.leetcode.generateparenthesis;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 /**
  * Created by bod on 10/23/14.
@@ -12,7 +13,7 @@ public class GenerateParenthesis {
     public static void main(String[] strings) {
 
         GenerateParenthesis parenthesisList = new GenerateParenthesis();
-        List<String> list = parenthesisList.generateParenthesis(4);
+        List<String> list = parenthesisList.generateParenthesis(3);
         for (int i = 0 ; i < list.size() ; i ++) {
             System.out.println(i + " : " + list.get(i));
         }
@@ -23,8 +24,37 @@ public class GenerateParenthesis {
             return null;
         }
 
-        List<String> list = recursiveGenerateParenthesis(n);
+        List<String> list = generateParenthesisStack(n);
 
+        return list;
+    }
+
+    public List<String> generateParenthesisStack(int n) {
+        ArrayList<String> list = new ArrayList<String>();
+        Stack<String> stack = new Stack<String>();
+        Stack<Integer> validationStack = new Stack<Integer>();
+        stack.push("(");
+        validationStack.push(0);
+        while(stack.size() != 0)
+        {
+            String s = stack.pop();
+            int v = validationStack.pop();
+            if(s.length() == n * 2)
+            {
+                list.add(s);
+                continue;
+            }
+            if(s.length() - v < n)
+            {
+                stack.push(s + "(");
+                validationStack.push(v);
+            }
+            if(2 * v < s.length())
+            {
+                stack.push(s + ")");
+                validationStack.push(v+1);
+            }
+        }
         return list;
     }
 
