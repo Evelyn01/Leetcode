@@ -17,6 +17,24 @@ public class SwapNodesInPairs {
         ListNode.print(head);
     }
 
+    public ListNode swapPairsNew(ListNode head) {
+        ListNode dummy = new ListNode(-1);
+        dummy.next = head;
+        ListNode curr = dummy;
+
+        while(curr.next != null && curr.next.next != null) {
+            ListNode first = curr.next;
+            ListNode second = first.next;
+            ListNode third = second.next;
+
+            curr.next = second;
+            second.next = first;
+            first.next = third;
+            curr = first;
+        }
+        return dummy.next;
+    }
+
     public ListNode swapPairs(ListNode head) {
 
         ListNode fakeHead = new ListNode(-1);
