@@ -66,7 +66,6 @@ public class SortColors {
                 A[++i] = 0;
             }
             else if (v == 1) {
-
                 A[++j] = 1;
             }
         }
