@@ -21,23 +21,27 @@ public class ListNode {
         int index = state.indexOf("->");
         int cursor = 0;
         ListNode head = null, last = null;
-        while (index != -1) {
-            String valStr = state.substring(cursor, index);
-            ListNode temp = new ListNode(Integer.valueOf(valStr));
-            if (head == null) {
-                head = temp;
-                last = temp;
-            } else {
-                last.next = temp;
-                last = temp;
+        if (index < 0) {
+            head = new ListNode(Integer.valueOf(state));
+        } else {
+            while (index != -1) {
+                String valStr = state.substring(cursor, index);
+                ListNode temp = new ListNode(Integer.valueOf(valStr));
+                if (head == null) {
+                    head = temp;
+                    last = temp;
+                } else {
+                    last.next = temp;
+                    last = temp;
+                }
+                cursor = index + 2;
+                index = state.indexOf("->", cursor);
             }
-            cursor = index + 2;
-            index = state.indexOf("->", cursor);
-        }
 
-        if (last != null && cursor < state.length()) {
-            String valStr = state.substring(cursor);
-            last.next = new ListNode(Integer.valueOf(valStr));
+            if (last != null && cursor < state.length()) {
+                String valStr = state.substring(cursor);
+                last.next = new ListNode(Integer.valueOf(valStr));
+            }
         }
 
         return head;
