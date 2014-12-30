@@ -1,6 +1,7 @@
 package com.practise1;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -11,8 +12,13 @@ public class TestPractise {
 
     public static void main(String[] strings) {
         TestPractise testPractise = new TestPractise();
-        //outputList(testPractise.findSubstring("barfoothefoobarman", new String[]{"foo", "bar"}));
-        outputList(testPractise.findSubstring("abababab", new String[]{"a", "b", "a"}));
+//        int[] a = {1, 2, 3, 5, 6, 7, 8};
+//        int[] a = {1, 2, 3};
+//        int[] a = {3, 2, 1};
+        int[] a = {4, 2, 4, 4, 3};
+
+        System.out.println(testPractise.trailingZeroes(23));
+        System.out.println(Arrays.toString(a));
     }
 
     public static <E> void outputList(List<E> list) {
@@ -22,41 +28,11 @@ public class TestPractise {
         System.out.println();
     }
 
-    public List<Integer> findSubstring(String S, String[] L) {
-        List<Integer> ret = new ArrayList<Integer>();
-        if (S == null || S.length() == 0) return ret;
-
-        HashMap<String, Integer> map = new HashMap<String, Integer>();
-        HashMap<String, Integer> curr = new HashMap<String, Integer>();
-        int count = 0;
-
-        for (String str : L) {
-            int v = map.containsKey(str) ? map.get(str) : 0;
-            map.put(str, v + 1);
+    public int trailingZeroes(int n) {
+        int result = 0;
+        for (int i = 5; n / i > 0; i *= 5) {
+            result += (n / i);
         }
-        int len = L[0].length();
-        for (int i = 0; i < len; i ++) {
-            for (int j = i; j < S.length(); j += len) {
-                if (j + (L.length - count) * len > S.length()) break;
-                String tmp = S.substring(j, j + len);
-                if (map.containsKey(tmp) && (!curr.containsKey(tmp) || curr.get(tmp) < map.get(tmp))) {
-                    int v = curr.containsKey(tmp) ? curr.get(tmp) : 0;
-                    curr.put(tmp, v + 1);
-                    count ++;
-                    if (count == L.length) {
-                        int index = j + len - L.length * len;
-                        j = index;
-                        ret.add(index);
-                        count = 0;
-                        curr.clear();
-                    }
-                } else {
-                    j -= count * len;
-                    count = 0;
-                    curr.clear();
-                }
-            }
-        }
-        return ret;
+        return result;
     }
 }
