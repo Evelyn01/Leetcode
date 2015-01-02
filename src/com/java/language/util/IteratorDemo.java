@@ -18,6 +18,24 @@ public class IteratorDemo {
         al.add("D");
         al.add("F");
 
+        ListIterator litr = al.listIterator();
+        int count = 0;
+        while (litr.hasNext() && count ++ < 3) {
+            Object obj = litr.next();
+            System.out.println(obj);
+            System.out.println("indexOf : " + al.indexOf(obj));
+            System.out.println("previousIndex : " + litr.previousIndex());
+            System.out.println("nextIndex : " + litr.nextIndex());
+        }
+        System.out.println("previousIndex : " + litr.previousIndex());
+        System.out.println(litr.previous());
+        System.out.println("nextIndex : " + litr.nextIndex());
+        System.out.println(litr.next());
+
+        //remove E
+        litr.remove();
+        litr.add("X");
+
         // Use iterator to display contents of al
         System.out.print("Original contents of al: ");
         Iterator itr = al.iterator();
@@ -28,7 +46,7 @@ public class IteratorDemo {
         System.out.println();
 
         // Modify objects being iterated
-        ListIterator litr = al.listIterator();
+        litr = al.listIterator();
         while(litr.hasNext()) {
             Object element = litr.next();
             litr.set(element + "+");
@@ -42,7 +60,7 @@ public class IteratorDemo {
         System.out.println();
 
         // Now, display the list backwards
-        System.out.print("Modified list backwards: ");
+        System.out.print("Traversal list backwards: ");
         while(litr.hasPrevious()) {
             Object element = litr.previous();
             System.out.print(element + " ");
