@@ -10,6 +10,8 @@ public class OrderedPair<K, V> implements Pair<K, V> {
     public static void main(String[] strings) {
         //OrderedPair<Integer, Integer> pairs = new OrderedPair<Integer, Integer>("", 2);
         OrderedPair<Integer, Integer> pairs = new OrderedPair<Integer, Integer>(1, 2);
+        OrderedPair<Integer, OrderedPair<Integer, Integer>> pairs2 =
+                new OrderedPair<Integer, OrderedPair<Integer, Integer>>(1, new OrderedPair<Integer, Integer>(1, 1));
     }
 
     private K key;
