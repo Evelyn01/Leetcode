@@ -10,6 +10,7 @@ public class TestRawType {
         testRawType.test1();
         testRawType.test2();
         testRawType.test3();
+        testRawType.testGenericMethod("a");
     }
 
     void test1() {
@@ -39,5 +40,9 @@ public class TestRawType {
 
     Box createBox(){
         return new Box();
+    }
+
+    <T> void testGenericMethod(T a) {
+        System.out.println(a.getClass());
     }
 }
