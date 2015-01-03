@@ -30,6 +30,7 @@ public class TestRawType {
         Box<Integer> intBox = new Box<Integer>();
         Box rawBox = intBox;
         rawBox.set("abc");  // warning: unchecked invocation to set(T)
+        //intBox.set("abc"); //compile error here.
         System.out.println(intBox.get());
     }
 
@@ -44,5 +45,10 @@ public class TestRawType {
 
     <T> void testGenericMethod(T a) {
         System.out.println(a.getClass());
+    }
+
+    public static <K, V> boolean compare(Pair<K, V> p1, Pair<K, V> p2) {
+        return p1.getKey().equals(p2.getKey()) &&
+                p1.getValue().equals(p2.getValue());
     }
 }
