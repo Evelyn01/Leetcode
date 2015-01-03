@@ -27,6 +27,7 @@ public class SubtypesTest {
         BoxTest boxTest = new BoxTest();
 //        boxTest.setBox(new Box<Integer>());//compile error here;
 //        boxTest.setBox(new Box<Double>());//compile error here;
+        boxTest.setBoundBox(new Box<Integer>());// use wildcard here, no error.
 
 
         PayloadList<String, Integer> integerPayloadList = null;
@@ -51,6 +52,10 @@ class BoxTest {
     }
 
     void setList(List<String> list) {
+
+    }
+
+    void setBoundBox(Box<? extends Number> box) {
 
     }
 }
