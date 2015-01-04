@@ -18,6 +18,14 @@ public class UpperWildCard {
         List<Double> ld = Arrays.asList(1.2, 2.3, 3.5);
         output(ld);
         System.out.println("sum = " + sumOfList(ld));
+        //outputList(ld); //error compile
+
+        List<Object> lo = Arrays.<Object>asList(new Integer(10), new Double(1.0d));
+        output(lo);
+    }
+
+    public static void outputList(List<Object> list) {
+
     }
 
     public static <T> void output(List<T> list) {
