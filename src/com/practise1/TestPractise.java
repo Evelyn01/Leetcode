@@ -10,14 +10,8 @@ public class TestPractise {
 
     public static void main(String[] strings) {
         TestPractise testPractise = new TestPractise();
-//        int[] a = {1, 2, 3, 5, 6, 7, 8};
-//        int[] a = {1, 2, 3};
-//        int[] a = {3, 2, 1};
-        int[] a = {-2, -3, -4, 0, -1};
-
-        //System.out.println(testPractise.multiply("-12345", "-6789"));
-        System.out.println(testPractise.countAndSay(2));
-        System.out.println(Arrays.toString(a));
+        List<List<Integer>> ret = testPractise.permute(new int[]{1, 2, 3});
+        outputList(ret);
     }
 
     public static <E> void outputList(List<E> list) {
@@ -27,34 +21,61 @@ public class TestPractise {
         System.out.println();
     }
 
-    public String countAndSay(int n) {
-        StringBuffer ret = new StringBuffer();
-        ret.append('1');
-        int i = 2;
-        while (i <= n) {
-            int len = ret.length();
-            int index = len - 1;
-            int count = 0;
-            char last_c = '0';
-            while(index >= 0) {
-                char c = ret.charAt(index);
-                if (c == last_c || last_c == '0') {
-                    last_c = c;
-                    count ++;
-                } else {
-                    ret.delete(index + 1, index + count + 1);
-                    ret.insert(index + 1, last_c);
-                    ret.insert(index + 1, (char)(count + '0'));
-                    last_c = c;
-                    count = 1;
-                }
-                index --;
-            }
-            ret.delete(index + 1, index + count + 1);
-            ret.insert(0, last_c);
-            ret.insert(0, (char)(count + '0'));
-            i ++;
+    public List<List<Integer>> permute(int[] num) {
+        List<List<Integer>> ret = new ArrayList<List<Integer>>();
+        if (num == null || num.length == 0) return ret;
+        if (num.length == 1) {
+            List<Integer> list = Arrays.asList(num[0]);
+            ret.add(list);
+            return ret;
         }
-        return ret.toString();
+        Arrays.sort(num);
+        addToList(ret, num);
+        while(next(num)) {
+            addToList(ret, num);
+        }
+        return ret;
+    }
+
+    void addToList(List<List<Integer>> ret, int[] a) {
+        List<Integer> list = new ArrayList<Integer>();
+        for (int v : a) {
+            list.add(v);
+        }
+        ret.add(list);
+    }
+
+    boolean next(int[] a) {
+        int i = a.length - 2;
+        while (i >= 0) {
+            if (a[i] < a[i + 1]) {
+                findAndSwap(a, i + 1, i);
+                reverse(a, i + 1, a.length - 1);
+                return true;
+            }
+            i --;
+        }
+        return false;
+    }
+
+    void findAndSwap(int[] a, int index, int target) {
+        for (int i = a.length - 1; i >= index; i --) {
+            if (a[i] > a[target]) {
+                int tmp = a[target];
+                a[target] = a[i];
+                a[i] = tmp;
+                break;
+            }
+        }
+    }
+
+    void reverse(int[] a, int from, int to) {
+        while(from < to) {
+            int tmp = a[to];
+            a[to] = a[from];
+            a[from] = tmp;
+            from ++;
+            to --;
+        }
     }
 }
