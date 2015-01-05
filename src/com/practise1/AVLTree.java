@@ -5,8 +5,7 @@ import java.util.Queue;
 
 
 public class AVLTree<T extends Comparable<T>> {
-    private AVLTreeNode<T> mRoot; // ����
-
+    private AVLTreeNode<T> mRoot;
     public AVLTreeNode<T> getRoot() {
         return this.mRoot;
     }
