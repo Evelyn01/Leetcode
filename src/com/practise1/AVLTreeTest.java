@@ -20,9 +20,9 @@ public class AVLTreeTest {
 
         tree.levelOrder1();
 
-        tree.levelOrder2();
-
-        tree.levelOrder3();
+//        tree.levelOrder2();
+//
+//        tree.levelOrder3();
     }
 
 }

@@ -348,7 +348,6 @@ public class AVLTree<T extends Comparable<T>> {
                 queue.offer(nextNode.right);
 
             prevNode = nextNode;
-
         }
 
     }
