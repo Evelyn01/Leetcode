@@ -20,8 +20,8 @@ public class TestPractise {
         };
 
         TestPractise testPractise = new TestPractise();
-        List<Integer> ret = testPractise.spiralOrder(a);
-        outputList(ret);
+        //List<Integer> ret = testPractise.spiralOrder(a);
+        //outputList(ret);
     }
 
     public static <E> void outputList(List<E> list) {
@@ -31,59 +31,47 @@ public class TestPractise {
         System.out.println();
     }
 
-    public List<Integer> spiralOrder(int[][] matrix) {
-        List<Integer> ret = new ArrayList<Integer>();
-        if (matrix == null || matrix.length == 0 || matrix[0].length == 0) return ret;
-        int x = 0, y = 0, direction = 0, left = 0, top = 0, right = matrix[0].length - 1, bottom = matrix.length - 1;
-        ret.add(matrix[y][x]);
-        while(ret.size() < matrix.length * matrix[0].length) {
-            boolean isMove = false;
-            while(!isMove) {
-                switch(direction) {
-                    case 0: {
-                        if (x < right) {
-                            isMove = true;
-                            x ++;
-                        } else {
-                            top ++;
-                            direction = 1;
-                        }
-                        break;
-                    }
-                    case 1: {
-                        if (y < bottom) {
-                            isMove = true;
-                            y ++;
-                        } else{
-                            right --;
-                            direction = 2;
-                        }
-                        break;
-                    }
-                    case 2: {
-                        if (x > left) {
-                            isMove = true;
-                            x --;
-                        } else {
-                            bottom --;
-                            direction = 3;
-                        }
-                        break;
-                    }
-                    case 3: {
-                        if (y > top) {
-                            isMove = true;
-                            y --;
-                        } else {
-                            left ++;
-                            direction = 0;
-                        }
-                        break;
-                    }
-                }
-                if (isMove) ret.add(matrix[y][x]);
+    public List<Interval> merge(List<Interval> intervals) {
+        List<Interval> ret = new LinkedList<Interval>();
+        if (intervals == null || intervals.size() == 0) return ret;
+
+        Collections.sort(intervals, new Comparator<Interval>() {
+            @Override
+            public int compare(Interval o1, Interval o2) {
+                return Integer.valueOf(o1.start).compareTo(o2.start);
+            }
+        });
+
+        int start = intervals.get(0).start, end = intervals.get(0).end;
+        for (Interval interval : intervals) {
+            if (interval.start <= end) {
+                end = Math.max(end, interval.end);
+            } else {
+                ret.add(new Interval(start, end));
+                start = interval.start;
+                end = interval.end;
             }
         }
+
+        ret.add(new Interval(start, end));
+
         return ret;
     }
+
+    public static class Interval {
+        public int start;
+        public int end;
+
+        public Interval() {
+            start = 0;
+            end = 0;
+        }
+
+        public Interval(int s, int e) {
+            start = s;
+            end = e;
+        }
+    }
 }
+
+
