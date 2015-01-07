@@ -1,5 +1,7 @@
 package com.java.language.util.generic;
 
+import java.util.List;
+
 /**
  * Created by titan-developer on 1/2/15.
  */
@@ -15,9 +17,13 @@ public class BoundedBox<T> {
         return t;
     }
 
-    public <U extends Number> void inspect(U u){
+    public <U extends Integer> void inspect(U u){
         System.out.println("T: " + t.getClass().getName());
         System.out.println("U: " + u.getClass().getName());
+    }
+
+    public void test(List<? extends Number> number) {
+
     }
 
     public static void main(String[] args) {

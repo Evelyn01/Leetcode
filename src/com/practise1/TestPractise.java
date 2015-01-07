@@ -10,11 +10,17 @@ public class TestPractise {
 
     public static void main(String[] strings) {
 
-        int[] a = {1, 2, 3};
-        List list = Arrays.asList(a);
+        int[][] a = {
+                {1, 2, 3, 4, 5},
+                {6, 7, 8, 9, 10},
+                {11, 12, 13, 14, 15},
+                {16, 17, 18, 19, 20},
+                {21, 22, 23, 24, 25},
+
+        };
 
         TestPractise testPractise = new TestPractise();
-        List<List<Integer>> ret = testPractise.permute(new int[]{1, 2, 3});
+        List<Integer> ret = testPractise.spiralOrder(a);
         outputList(ret);
     }
 
@@ -25,74 +31,59 @@ public class TestPractise {
         System.out.println();
     }
 
-    public List<List<Integer>> permute(int[] num) {
-        List<List<Integer>> ret = new ArrayList<List<Integer>>();
-        if (num == null || num.length == 0) return ret;
-        if (num.length == 1) {
-            List<Integer> list = Arrays.asList(num[0]);
-            ret.add(list);
-            return ret;
-        }
-        Arrays.sort(num);
-        addToList(ret, num);
-        while(next(num)) {
-            addToList(ret, num);
+    public List<Integer> spiralOrder(int[][] matrix) {
+        List<Integer> ret = new ArrayList<Integer>();
+        if (matrix == null || matrix.length == 0 || matrix[0].length == 0) return ret;
+        int x = 0, y = 0, direction = 0, left = 0, top = 0, right = matrix[0].length - 1, bottom = matrix.length - 1;
+        ret.add(matrix[y][x]);
+        while(ret.size() < matrix.length * matrix[0].length) {
+            boolean isMove = false;
+            while(!isMove) {
+                switch(direction) {
+                    case 0: {
+                        if (x < right) {
+                            isMove = true;
+                            x ++;
+                        } else {
+                            top ++;
+                            direction = 1;
+                        }
+                        break;
+                    }
+                    case 1: {
+                        if (y < bottom) {
+                            isMove = true;
+                            y ++;
+                        } else{
+                            right --;
+                            direction = 2;
+                        }
+                        break;
+                    }
+                    case 2: {
+                        if (x > left) {
+                            isMove = true;
+                            x --;
+                        } else {
+                            bottom --;
+                            direction = 3;
+                        }
+                        break;
+                    }
+                    case 3: {
+                        if (y > top) {
+                            isMove = true;
+                            y --;
+                        } else {
+                            left ++;
+                            direction = 0;
+                        }
+                        break;
+                    }
+                }
+                if (isMove) ret.add(matrix[y][x]);
+            }
         }
         return ret;
-    }
-
-    void addToList(List<List<Integer>> ret, int[] a) {
-        List<Integer> list = new ArrayList<Integer>();
-        for (int v : a) {
-            list.add(v);
-        }
-        ret.add(list);
-    }
-
-    boolean next(int[] a) {
-        int i = a.length - 2;
-        while (i >= 0) {
-            if (a[i] < a[i + 1]) {
-                findAndSwap(a, i + 1, i);
-                reverse(a, i + 1, a.length - 1);
-                return true;
-            }
-            i --;
-        }
-        return false;
-    }
-
-    void findAndSwap(int[] a, int index, int target) {
-        for (int i = a.length - 1; i >= index; i --) {
-            if (a[i] > a[target]) {
-                int tmp = a[target];
-                a[target] = a[i];
-                a[i] = tmp;
-                break;
-            }
-        }
-    }
-
-    void reverse(int[] a, int from, int to) {
-        while(from < to) {
-            int tmp = a[to];
-            a[to] = a[from];
-            a[from] = tmp;
-            from ++;
-            to --;
-        }
-    }
-
-
-    public void rotate(int[][] matrix) {
-        if (matrix == null || matrix.length <= 1) return;
-
-        int n = matrix.length;
-
-        for (int i = 0; i < n / 2; i ++) {
-            for (int j = i; j < n - i - 1; j ++) {
-
-            }
-        }
     }
 }

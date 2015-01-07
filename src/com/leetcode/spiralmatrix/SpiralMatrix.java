@@ -24,67 +24,58 @@ public class SpiralMatrix {
     }
 
     public List<Integer> spiralOrder(int[][] matrix) {
-        List<Integer> list = new ArrayList<Integer>();
-
-        if (matrix == null || matrix.length == 0) {
-            return list;
-        }
-
-        int l = matrix.length;
-        int left = 0, right = matrix[0].length - 1, top = 0, bottom = l - 1;
-        int orientation = 0; //0 -> right, 1 -> bottom, 2 -> left, 3 -> up.
-
-        int i = 0, j = 0;
-
-        while (true) {
-            list.add(matrix[i][j]);
-
-            int tryTimes = 0;
-            while (tryTimes < 2) {
-                if (orientation == 0) {
-                    if (j + 1 <= right) {
-                        j++;
+        List<Integer> ret = new ArrayList<Integer>();
+        if (matrix == null || matrix.length == 0 || matrix[0].length == 0) return ret;
+        int x = 0, y = 0, direction = 0, left = 0, top = 0, right = matrix[0].length - 1, bottom = matrix.length - 1;
+        ret.add(matrix[y][x]);
+        while(ret.size() < matrix.length * matrix[0].length) {
+            boolean isMove = false;
+            while(!isMove) {
+                switch(direction) {
+                    case 0: {
+                        if (x < right) {
+                            isMove = true;
+                            x ++;
+                        } else {
+                            top ++;
+                            direction = 1;
+                        }
                         break;
-                    } else {
-                        top ++;
-                        orientation ++;
-                        tryTimes ++;
                     }
-                } else if (orientation == 1) {
-                    if (i + 1 <= bottom) {
-                        i ++;
+                    case 1: {
+                        if (y < bottom) {
+                            isMove = true;
+                            y ++;
+                        } else{
+                            right --;
+                            direction = 2;
+                        }
                         break;
-                    } else {
-                        right --;
-                        orientation ++;
-                        tryTimes ++;
                     }
-                } else if (orientation == 2) {
-                    if (j - 1 >= left) {
-                        j --;
+                    case 2: {
+                        if (x > left) {
+                            isMove = true;
+                            x --;
+                        } else {
+                            bottom --;
+                            direction = 3;
+                        }
                         break;
-                    } else {
-                        bottom --;
-                        orientation ++;
-                        tryTimes ++;
                     }
-                } else {
-                    if (i - 1 >= top) {
-                        i --;
+                    case 3: {
+                        if (y > top) {
+                            isMove = true;
+                            y --;
+                        } else {
+                            left ++;
+                            direction = 0;
+                        }
                         break;
-                    } else {
-                        left ++;
-                        orientation = 0;
-                        tryTimes ++;
                     }
                 }
-            }
-
-            if (tryTimes >= 2) {
-                break;
+                if (isMove) ret.add(matrix[y][x]);
             }
         }
-
-        return list;
+        return ret;
     }
 }
