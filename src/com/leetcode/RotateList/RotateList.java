@@ -9,20 +9,16 @@ public class RotateList {
 
     public static void main(String[] strings) {
 
-        ListNode head1 = new ListNode(1);
-//        head1.next = new ListNode(3);
-//        head1.next.next = new ListNode(5);
-//        head1.next.next.next = new ListNode(7);
-//        head1.next.next.next.next = new ListNode(10);
+        ListNode ori = ListNode.createList("1->2->3->4->5");
+        RotateList rotateList = new RotateList();
+        ListNode rotatee = rotateList.rotateRight(ori, 3);
+        ListNode.print(rotatee);
 
-        RotateList rotatee = new RotateList();
-
-        ListNode node = rotatee.rotateRight(head1, 1);
-
-        while (node != null) {
-            System.out.print(node.val + ", ");
-            node = node.next;
+        int i;
+        for (i = 1; i < 11; i++) {
+            System.out.println("Count is: " + i);
         }
+        System.out.println("Last Count is: " + i );
     }
 
     /**
