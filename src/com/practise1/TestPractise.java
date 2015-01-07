@@ -9,6 +9,10 @@ import java.util.*;
 public class TestPractise {
 
     public static void main(String[] strings) {
+
+        int[] a = {1, 2, 3};
+        List list = Arrays.asList(a);
+
         TestPractise testPractise = new TestPractise();
         List<List<Integer>> ret = testPractise.permute(new int[]{1, 2, 3});
         outputList(ret);
@@ -76,6 +80,19 @@ public class TestPractise {
             a[from] = tmp;
             from ++;
             to --;
+        }
+    }
+
+
+    public void rotate(int[][] matrix) {
+        if (matrix == null || matrix.length <= 1) return;
+
+        int n = matrix.length;
+
+        for (int i = 0; i < n / 2; i ++) {
+            for (int j = i; j < n - i - 1; j ++) {
+
+            }
         }
     }
 }
