@@ -11,14 +11,14 @@ public class RotateList {
 
         ListNode ori = ListNode.createList("1->2->3->4->5");
         RotateList rotateList = new RotateList();
-        ListNode rotatee = rotateList.rotateRight(ori, 3);
+        ListNode rotatee = rotateList.rotateRight(ori, 5);
         ListNode.print(rotatee);
 
         int i;
         for (i = 1; i < 11; i++) {
             System.out.println("Count is: " + i);
         }
-        System.out.println("Last Count is: " + i );
+        System.out.println("Last Count is: " + i);
     }
 
     /**
@@ -50,6 +50,7 @@ public class RotateList {
         for (i = 0; fast.next != null; i++)//Get the total length
             fast = fast.next;
 
+        if (n % i == 0) return dummy.next;
         for (int j = i - n % i; j > 0; j--) //Get the i-n%i th node
             slow = slow.next;
 
