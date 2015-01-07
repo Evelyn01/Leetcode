@@ -17,6 +17,7 @@ public class HeapPollution {
         ArrayBuilder.addToList(stringListB, "Ten", "Eleven", "Twelve");
         List<List<String>> listOfStringLists =
                 new ArrayList<List<String>>();
+        ArrayBuilder.addToList(stringListA, stringListB);
         ArrayBuilder.addToList(listOfStringLists,
                 stringListA, stringListB);
 
@@ -25,6 +26,12 @@ public class HeapPollution {
 }
 
 class ArrayBuilder {
+
+    public static <T> void addToList (List<T> listArg, List<T> elements) {
+        for (T x : elements) {
+            listArg.add(x);
+        }
+    }
 
     public static <T> void addToList (List<T> listArg, T... elements) {
         for (T x : elements) {
