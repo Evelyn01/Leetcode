@@ -8,7 +8,7 @@ public class PermutationSequence {
 
     public static void main(String[] strings) {
         PermutationSequence permutationSequence = new PermutationSequence();
-        System.out.println(permutationSequence.getPermutation(4, 10));
+        System.out.println(permutationSequence.getPermutation(1, 1));
     }
 
     String getPermutation(int n, int k) {
