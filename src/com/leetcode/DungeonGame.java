@@ -1,12 +1,9 @@
-package com.practise1;
-
-import java.math.BigInteger;
-import java.util.*;
+package com.leetcode;
 
 /**
- * Created by titan-developer on 12/29/14.
+ * Created by bod on 1/7/2015.
  */
-public class TestPractise {
+public class DungeonGame {
 
     public static void main(String[] strings) {
 
@@ -17,15 +14,8 @@ public class TestPractise {
 
         };
 
-        TestPractise testPractise = new TestPractise();
+        DungeonGame testPractise = new DungeonGame();
         System.out.println(testPractise.calculateMinimumHP(a));
-    }
-
-    public static <E> void outputList(List<E> list) {
-        for (E elem : list) {
-            System.out.print(elem + ", ");
-        }
-        System.out.println();
     }
 
     public int calculateMinimumHP(int[][] dungeon) {
@@ -49,5 +39,3 @@ public class TestPractise {
         return dp[0][0];
     }
 }
-
-
