@@ -18,7 +18,7 @@ public class TestPractise {
         };
 
         TestPractise testPractise = new TestPractise();
-        System.out.println(testPractise.getPermutation(1, 1));
+        System.out.println(testPractise.minWindow("", ""));
     }
 
     public static <E> void outputList(List<E> list) {
@@ -28,24 +28,23 @@ public class TestPractise {
         System.out.println();
     }
 
-    public String getPermutation(int n, int k) {
-        if (n <= 0 || k <= 0) return "";
-        int f = 1;
-        k --;
-        char[] arr = new char[n];
-        for (int i = 0; i < n; i ++) {
-            arr[i] = (char)('0' + i + 1);
-            f *= i + 1;
+    public String minWindow(String S, String T) {
+        if (S == null || T == null || T.length() == 0) return "";
+        HashMap<Character, Integer> map = new HashMap<Character, Integer>();
+        HashMap<Character, Integer> current = new HashMap<Character, Integer>();
+        for (int i = 0; i < T.length(); i ++) {
+            char c = T.charAt(i);
+            int v = map.containsKey(c) ? map.get(c) : 0;
+            map.put(c, v + 1);
         }
-        for (int i = 0; i < n ; i ++) {
-            f /= n - i;
-            int index = k / f;
-            char c = arr[i + index];
-            System.arraycopy(arr, i, arr, i + 1, index);
-            arr[i] = c;
-            k %= f;
+        int last = -1, count = 0;
+        for (int i = 0; i < S.length(); i ++) {
+            char c = S.charAt(i);
+            if (map.containsKey(c)) {
+
+            }
         }
-        return new String(arr);
+        return "";
     }
 }
 
