@@ -3,7 +3,7 @@ package com.leetcode.setmatrixzeros;
 /**
  * Created by titan-developer on 11/7/14.
  */
-public class SetMatrixZeros {
+public class    SetMatrixZeros {
 
     public static void main(String[] strings) {
 

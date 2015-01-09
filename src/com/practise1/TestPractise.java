@@ -11,14 +11,17 @@ public class TestPractise {
     public static void main(String[] strings) {
 
         int[][] a = {
-                {-2, -3, 3},
-                {-5, -10, 1},
-                {10, 30, -5},
+                {0, 1},
 
         };
 
+        char[][] b = {
+                {'a'},
+        };
+
         TestPractise testPractise = new TestPractise();
-        System.out.println(testPractise.minWindow("", ""));
+        System.out.println(testPractise.exist(b, "a"));
+        System.out.println();
     }
 
     public static <E> void outputList(List<E> list) {
@@ -28,23 +31,36 @@ public class TestPractise {
         System.out.println();
     }
 
-    public String minWindow(String S, String T) {
-        if (S == null || T == null || T.length() == 0) return "";
-        HashMap<Character, Integer> map = new HashMap<Character, Integer>();
-        HashMap<Character, Integer> current = new HashMap<Character, Integer>();
-        for (int i = 0; i < T.length(); i ++) {
-            char c = T.charAt(i);
-            int v = map.containsKey(c) ? map.get(c) : 0;
-            map.put(c, v + 1);
-        }
-        int last = -1, count = 0;
-        for (int i = 0; i < S.length(); i ++) {
-            char c = S.charAt(i);
-            if (map.containsKey(c)) {
-
+    public boolean exist(char[][] board, String word) {
+        if (board == null || board.length == 0 || board[0].length == 0) return false;
+        if (word.length() == 0) return true;
+        for (int i = 0; i < board.length; i ++) {
+            for (int j = 0; j < board[0].length; j ++) {
+                if (dfs(board, i, j, word, 0)) return true;
             }
         }
-        return "";
+        return false;
+    }
+
+    boolean dfs(char[][] board, int i, int j, String target, int index) {
+        if(index == target.length()) return true;
+        char c = target.charAt(index);
+        boolean isSucc = false;
+        if (board[i][j] == c) {
+            if (index + 1 == target.length()) return true;
+            board[i][j] = ' ';
+            if (i > 0)
+                isSucc = dfs(board, i - 1, j, target, index + 1);
+            if (!isSucc && j < board[0].length - 1)
+                isSucc = dfs(board, i, j + 1, target, index + 1);
+            if (!isSucc && i < board.length - 1)
+                isSucc = dfs(board, i + 1, j, target, index + 1);
+            if (!isSucc && j > 0)
+                isSucc = dfs(board, i, j - 1, target, index + 1);
+            board[i][j] = c;
+        }
+
+        return isSucc;
     }
 }
 
