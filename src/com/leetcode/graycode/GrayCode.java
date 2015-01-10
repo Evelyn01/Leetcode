@@ -31,6 +31,29 @@ public class GrayCode {
         return arr;
     }
 
+    public List<Integer> grayCodeNew(int n) {
+        List<Integer> ret = new ArrayList<Integer>();
+        ret.add(0);
+        if (n <= 0) return ret;
+        boolean[] set = new boolean[1 << n];
+        set[0] = true;
+        int count = 1, current = 0;
+        while (count < set.length) {
+            for (int i = 0; i < n; i ++) {
+                int mask = 1 << i;
+                int v = current ^ mask;
+                if (!set[v]) {
+                    set[v] = true;
+                    count ++;
+                    current = v;
+                    ret.add(v);
+                    break;
+                }
+            }
+        }
+        return ret;
+    }
+
     public List<Integer> grayCodeBackTrack(int n) {
         List<Integer> list = new ArrayList<Integer>();
         if (n <= 0) {

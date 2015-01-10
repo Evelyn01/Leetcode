@@ -24,7 +24,7 @@ public class TestPractise {
         };
 
         TestPractise testPractise = new TestPractise();
-        System.out.println(testPractise.partition(ListNode.createList("2->1"), 2));
+        outputList(testPractise.grayCode(3));
         System.out.println();
     }
 
@@ -35,25 +35,27 @@ public class TestPractise {
         System.out.println();
     }
 
-    public ListNode partition(ListNode head, int x) {
-        //At tahoe
-        if (head == null) return head;
-        ListNode dummyLeft = new ListNode(-1);
-        ListNode dummyRight = new ListNode(-1);
-        ListNode left = dummyLeft, right = dummyRight;
-        while (head != null) {
-            if (head.val < x) {
-                left.next = head;
-                left = head;
-            } else {
-                right.next = head;
-                right = head;
+    public List<Integer> grayCode(int n) {
+        List<Integer> ret = new ArrayList<Integer>();
+        if (n <= 0) return ret;
+        ret.add(0);
+        boolean[] set = new boolean[1 << n];
+        set[0] = true;
+        int count = 1, current = 0;
+        while (count < set.length) {
+            for (int i = 0; i < n; i ++) {
+                int mask = 1 << i;
+                int v = current ^ mask;
+                if (!set[v]) {
+                    set[v] = true;
+                    count ++;
+                    current = v;
+                    ret.add(v);
+                    break;
+                }
             }
-            head = head.next;
         }
-        left.next = dummyRight.next;
-        dummyRight.next = null;
-        return dummyLeft.next;
+        return ret;
     }
 }
 
