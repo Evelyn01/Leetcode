@@ -9,6 +9,7 @@ public class ScrambleString {
 
     public static void main(String[] strings) {
         ScrambleString scrambleString = new ScrambleString();
+        System.out.println(scrambleString.isScramble("abc", "abc"));
         System.out.println(scrambleString.isScramble("great", "rgeat"));
         System.out.println(scrambleString.isScrambleDP("great", "rgeat"));
     }
@@ -31,10 +32,13 @@ public class ScrambleString {
     }
 
     public boolean isScrambleDP(String s1, String s2) {
-        if (s1 == null || s2 == null || s1.length() != s2.length())
-            return false;
-        if (s1.length() == 0)
-            return true;
+        if (s1 == null || s2 == null || s1.length() != s2.length()) return false;
+        if (s1.length() == 0 || s1.equals(s2)) return true;
+        char[] c1 = s1.toCharArray();
+        char[] c2 = s2.toCharArray();
+        Arrays.sort(c1);
+        Arrays.sort(c2);
+        if (!Arrays.equals(c1, c2)) return false;
         boolean[][][] res = new boolean[s1.length()][s2.length()][s1.length() + 1];
         for (int i = 0; i < s1.length(); i++) {
             for (int j = 0; j < s2.length(); j++) {
