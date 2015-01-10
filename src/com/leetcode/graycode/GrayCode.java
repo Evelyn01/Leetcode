@@ -31,6 +31,18 @@ public class GrayCode {
         return arr;
     }
 
+    public ArrayList<Integer> grayCode3rd(int n) {
+        ArrayList<Integer> arr = new ArrayList<Integer>();
+        arr.add(0);
+        for (int i = 0; i < n; i++) {
+            int inc = 1 << i;
+            for (int j = arr.size() - 1; j >= 0; j--) {
+                arr.add(arr.get(j) + inc);
+            }
+        }
+        return arr;
+    }
+
     public List<Integer> grayCodeNew(int n) {
         List<Integer> ret = new ArrayList<Integer>();
         ret.add(0);
@@ -39,12 +51,12 @@ public class GrayCode {
         set[0] = true;
         int count = 1, current = 0;
         while (count < set.length) {
-            for (int i = 0; i < n; i ++) {
+            for (int i = 0; i < n; i++) {
                 int mask = 1 << i;
                 int v = current ^ mask;
                 if (!set[v]) {
                     set[v] = true;
-                    count ++;
+                    count++;
                     current = v;
                     ret.add(v);
                     break;
@@ -69,11 +81,11 @@ public class GrayCode {
     }
 
     private boolean helper(List<Integer> list, HashSet<Integer> set, int current, int n) {
-        if (list.size() == (1 << n) ) {
+        if (list.size() == (1 << n)) {
             return true;
         }
 
-        for (int i = 0; i < n; i ++) {
+        for (int i = 0; i < n; i++) {
             int tmp;
             if ((current & (1 << i)) == 0) {
                 tmp = current + (1 << i);
