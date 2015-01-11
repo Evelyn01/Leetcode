@@ -34,7 +34,6 @@ public class PreorderTravsal {
             if (root.right != null) {
                 stack.push(root);
             }
-
             root = root.left;
             if (root == null && !stack.isEmpty()) {
                 root = stack.pop().right;
