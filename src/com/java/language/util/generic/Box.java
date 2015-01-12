@@ -1,5 +1,8 @@
 package com.java.language.util.generic;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by titan-developer on 1/2/15.
  */
@@ -13,5 +16,9 @@ public class Box<T> {
 
     public T get() {
         return t;
+    }
+
+    public List<T> getList() {
+        return new ArrayList<T>();
     }
 }
