@@ -21,4 +21,9 @@ public class Box<T> {
     public List<T> getList() {
         return new ArrayList<T>();
     }
+
+    public <E> List<E> getFirst(List<E> eList) {
+        eList.remove(0);
+        return eList;
+    }
 }
