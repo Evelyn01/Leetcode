@@ -10,7 +10,15 @@ public class TestRawType {
         testRawType.test1();
         testRawType.test2();
         testRawType.test3();
-        testRawType.testGenericMethod("a");
+
+        Pair<Integer, String> p1 = new OrderedPair<Integer, String>(1, "apple");
+        Pair<Integer, String> p2 = new OrderedPair<Integer, String>(2, "pear");
+        Pair<Integer, Integer> p3 = new OrderedPair<Integer, Integer>(1, 1);
+        boolean same = TestRawType.<Integer, String>compare(p1, p2);
+        same = TestRawType.compare(p1, p2);
+        //same = TestRawType.compare(p1, p3); //p3 compile error
+        //same = TestRawType.<Integer, Integer>compare(p1, p3); //p1 compile error
+        //same = TestRawType.<Object, Object>compare(p1, p2); //p1, p2 compile error
     }
 
     void test1() {
