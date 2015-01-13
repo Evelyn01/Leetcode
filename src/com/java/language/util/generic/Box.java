@@ -26,4 +26,8 @@ public class Box<T> {
         eList.remove(0);
         return eList;
     }
+
+    public <U extends Integer> void set(U value) {
+
+    }
 }

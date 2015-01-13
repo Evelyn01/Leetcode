@@ -1,50 +1,60 @@
-package com.practise1;
+package com.leetcode.uniquebst2;
 
-import com.leetcode.util.ListNode;
 import com.leetcode.util.TreeNode;
 import com.leetcode.util.TreeNodePrinter;
 
-import java.math.BigInteger;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
- * Created by titan-developer on 12/29/14.
+ * Created by titan-developer on 11/12/14.
+ * https://oj.leetcode.com/problems/unique-binary-search-trees-ii/
  */
-public class TestPractise {
+public class UniqueBST2 {
 
     public static void main(String[] strings) {
+        UniqueBST2 uniqueBST2 = new UniqueBST2();
 
-        char[][] a = {
-                {'0', '0', '0'},
-                {'0', '0', '0'},
-                {'0', '0', '0'},
+        List<TreeNode> list = uniqueBST2.generateTrees(3);
 
-        };
-
-        char[][] b = {
-                {'a'},
-        };
-
-        TestPractise testPractise = new TestPractise();
-        outputTree(testPractise.generateTrees(0));
-        System.out.println();
-    }
-
-    private static void outputTree(List<TreeNode> treeNodes) {
-        for (TreeNode root : treeNodes) {
+        for (TreeNode root : list) {
             TreeNodePrinter.printNode(root);
-            System.out.println("------------------");
         }
-    }
-
-    public static <E> void outputList(List<E> list) {
-        for (E elem : list) {
-            System.out.print(elem + ", ");
-        }
-        System.out.println();
     }
 
     public List<TreeNode> generateTrees(int n) {
+        List<TreeNode>[] result = new List[n + 1];
+        result[0] = new ArrayList<TreeNode>();
+        result[0].add(null);
+
+        for (int len = 1; len <= n; len++) {
+            result[len] = new ArrayList<TreeNode>();
+            for (int j = 0; j < len; j++) {
+                for (TreeNode nodeL : result[j]) {
+                    for (TreeNode nodeR : result[len - j - 1]) {
+                        TreeNode node = new TreeNode(j + 1);
+                        node.left = nodeL;
+                        node.right = clone(nodeR, j + 1);
+                        result[len].add(node);
+                    }
+                }
+            }
+        }
+        return result[n];
+    }
+
+    private TreeNode clone(TreeNode n, int offset) {
+        if (n == null)
+            return null;
+        TreeNode node = new TreeNode(n.val + offset);
+        node.left = clone(n.left, offset);
+        node.right = clone(n.right, offset);
+        return node;
+    }
+
+    //-------------------------------------------------------------
+
+    public List<TreeNode> generateTreesRecursive(int n) {
         List<TreeNode> ret;
         if (n == 0) {
             ret = new ArrayList<TreeNode>();
@@ -101,5 +111,3 @@ public class TestPractise {
         }
     }
 }
-
-

@@ -40,4 +40,23 @@ public class ValidBinarySearchTree {
         }
         return isValid;
     }
+
+
+    int lastVal = Integer.MIN_VALUE;
+    boolean isFirst = true;
+    public boolean isValidBSTNews(TreeNode root) {
+        return helper(root);
+    }
+
+    boolean helper(TreeNode root) {
+        if (root == null) return true;
+        boolean isValid = helper(root.left);
+        if (isValid) {
+            if (!isFirst && root.val <= lastVal) return false;
+            lastVal = root.val;
+            isFirst = false;
+        }
+        if (isValid) isValid = helper(root.right);
+        return isValid;
+    }
 }
