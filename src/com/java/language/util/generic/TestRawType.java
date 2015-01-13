@@ -1,5 +1,9 @@
 package com.java.language.util.generic;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by titan-developer on 1/2/15.
  */
@@ -19,6 +23,10 @@ public class TestRawType {
         //same = TestRawType.compare(p1, p3); //p3 compile error
         //same = TestRawType.<Integer, Integer>compare(p1, p3); //p1 compile error
         //same = TestRawType.<Object, Object>compare(p1, p2); //p1, p2 compile error
+
+
+        //List<String> list = pick("1", new ArrayList<String>());
+        Serializable serializable = pick("1", new ArrayList<String>());
     }
 
     void test1() {
@@ -58,5 +66,9 @@ public class TestRawType {
     public static <K, V> boolean compare(Pair<K, V> p1, Pair<K, V> p2) {
         return p1.getKey().equals(p2.getKey()) &&
                 p1.getValue().equals(p2.getValue());
+    }
+
+    public static <T> T pick(T a1, T a2) {
+        return a2;
     }
 }
