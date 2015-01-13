@@ -33,6 +33,34 @@ public class RecoverBinarySTree {
         TreeNodePrinter.printNode(treeNode3);
     }
 
+    //------------------------------------------------
+    TreeNode first, second, last;
+    public void recoverTreeNew(TreeNode root) {
+        inOrder(root);
+        int v1 = first.val;
+        first.val = second.val;
+        second.val = v1;
+    }
+
+    void inOrder(TreeNode root) {
+        if (root == null) return;
+        inOrder(root.left);
+        if (last == null) {
+            last = root;
+        } else {
+            if (root.val < last.val) {
+                if (first == null && second == null) {
+                    first = last;
+                    second = root;
+                } else {
+                    second = root;
+                }
+            }
+            last = root;
+        }
+        inOrder(root.right);
+    }
+
     public void recoverTree(TreeNode root) {
         TreeNode[] lastNodes = new TreeNode[1];
         TreeNode[] swapNodes = new TreeNode[1];

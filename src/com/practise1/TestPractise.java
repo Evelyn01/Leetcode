@@ -1,6 +1,9 @@
 package com.practise1;
 
 import com.leetcode.util.ListNode;
+import com.leetcode.util.TreeNode;
+import com.leetcode.util.TreeNodeCreator;
+import com.leetcode.util.TreeNodePrinter;
 
 import java.math.BigInteger;
 import java.util.*;
@@ -23,8 +26,11 @@ public class TestPractise {
                 {'a'},
         };
 
+        TreeNode treeNode = TreeNodeCreator.createTreeNode("2, 3, 1");
+
         TestPractise testPractise = new TestPractise();
-        outputList(testPractise.grayCode(3));
+        testPractise.recoverTree(treeNode);
+        TreeNodePrinter.printNode(treeNode);
         System.out.println();
     }
 
@@ -35,27 +41,31 @@ public class TestPractise {
         System.out.println();
     }
 
-    public List<Integer> grayCode(int n) {
-        List<Integer> ret = new ArrayList<Integer>();
-        if (n <= 0) return ret;
-        ret.add(0);
-        boolean[] set = new boolean[1 << n];
-        set[0] = true;
-        int count = 1, current = 0;
-        while (count < set.length) {
-            for (int i = 0; i < n; i ++) {
-                int mask = 1 << i;
-                int v = current ^ mask;
-                if (!set[v]) {
-                    set[v] = true;
-                    count ++;
-                    current = v;
-                    ret.add(v);
-                    break;
+    TreeNode first, second, last;
+    public void recoverTree(TreeNode root) {
+        inOrder(root);
+        int v1 = first.val;
+        first.val = second.val;
+        second.val = v1;
+    }
+
+    void inOrder(TreeNode root) {
+        if (root == null) return;
+        inOrder(root.left);
+        if (last == null) {
+            last = root;
+        } else {
+            if (root.val < last.val) {
+                if (first == null && second == null) {
+                    first = last;
+                    second = root;
+                } else {
+                    second = root;
                 }
             }
+            last = root;
         }
-        return ret;
+        inOrder(root.right);
     }
 }
 
