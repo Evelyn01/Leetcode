@@ -1,4 +1,4 @@
-package com.leetcode.uniquesearchtrees2;
+package com.leetcode.uniquebst2;
 
 import com.leetcode.util.TreeNode;
 import com.leetcode.util.TreeNodePrinter;
@@ -10,12 +10,12 @@ import java.util.List;
  * Created by titan-developer on 11/12/14.
  * https://oj.leetcode.com/problems/unique-binary-search-trees-ii/
  */
-public class UniqueSearchTrees2 {
+public class UniqueBST2 {
 
     public static void main(String[] strings) {
-        UniqueSearchTrees2 uniqueSearchTrees2 = new UniqueSearchTrees2();
+        UniqueBST2 uniqueBST2 = new UniqueBST2();
 
-        List<TreeNode> list = uniqueSearchTrees2.generateTrees(3);
+        List<TreeNode> list = uniqueBST2.generateTrees(3);
 
         for (TreeNode root : list) {
             TreeNodePrinter.printNode(root);

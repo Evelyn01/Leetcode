@@ -1,13 +1,13 @@
-package com.leetcode.uniquesearchtrees;
+package com.leetcode.uniquebst;
 
 /**
  * Created by titan-developer on 11/9/14.
  * https://oj.leetcode.com/problems/unique-binary-search-trees/
  */
-public class UniqueBinarySearchTrees {
+public class UniqueBST {
 
     public static void main(String[] strings) {
-        UniqueBinarySearchTrees uniqueTrees = new UniqueBinarySearchTrees();
+        UniqueBST uniqueTrees = new UniqueBST();
         System.out.println(uniqueTrees.numTrees(3));
     }
 
