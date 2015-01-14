@@ -3,6 +3,7 @@ package com.java.language.util;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 /**
  * Created by bod on 1/12/2015.
@@ -19,6 +20,7 @@ public class CalendarTest {
         int hour = cal.get(Calendar.HOUR);
         int minute = cal.get(Calendar.MINUTE);
         int second = cal.get(Calendar.SECOND);
+        System.out.println(cal.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.SHORT, Locale.US));
 
         System.out.println(year + ", " + month + ", " + day_of_month + ", " + day_of_week + ", " + hour + ", " + minute + ", " + second);
 
