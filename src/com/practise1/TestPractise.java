@@ -2,6 +2,7 @@ package com.practise1;
 
 import com.leetcode.util.ListNode;
 import com.leetcode.util.TreeNode;
+import com.leetcode.util.TreeNodeCreator;
 import com.leetcode.util.TreeNodePrinter;
 
 import java.math.BigInteger;
@@ -22,11 +23,16 @@ public class TestPractise {
         };
 
         char[][] b = {
-                {'a'},
+                {'X', 'O', 'X'},
+                {'O', 'X', 'O'},
+                {'X', 'O', 'X'},
         };
 
         TestPractise testPractise = new TestPractise();
-        outputTree(testPractise.generateTrees(0));
+        testPractise.solve(b);
+        for (char[] arr : b) {
+            System.out.println(arr);
+        }
         System.out.println();
     }
 
@@ -44,59 +50,69 @@ public class TestPractise {
         System.out.println();
     }
 
-    public List<TreeNode> generateTrees(int n) {
-        List<TreeNode> ret;
-        if (n == 0) {
-            ret = new ArrayList<TreeNode>();
-            ret.add(null);
-        } else {
-            ret = helper(1, n);
+    public void solve(char[][] board) {
+        if (board == null || board.length == 0 || board[0].length == 0) return;
+        int m = board.length, n = board[0].length;
+        for (int i = 0; i < m; i ++) {
+            char c = board[i][0];
+            if (c == 'O') {
+                bfs(board, i, 0);
+            }
+            c = board[i][n - 1];
+            if (c == 'O') {
+                bfs(board, i, n - 1);
+            }
         }
-        return ret;
+
+        for (int i = 0; i < n; i ++) {
+            char c = board[0][i];
+            if (c == 'O') {
+                bfs(board, 0, i);
+            }
+            c = board[m - 1][i];
+            if (c == 'O') {
+                bfs(board, m - 1, i);
+            }
+        }
+
+        for (int i = 0; i < m; i ++) {
+            for (int j = 0; j < n; j ++) {
+                if (board[i][j] == '2') {
+                    board[i][j] = 'O';
+                } else if (board[i][j] == 'O') {
+                    board[i][j] = 'X';
+                }
+            }
+        }
     }
 
-    List<TreeNode> helper(int from, int to) {
-        List<TreeNode> ret = new ArrayList<TreeNode>();
-
-        if (from == to) {
-            TreeNode root = new TreeNode(from);
-            ret.add(root);
-            return ret;
-        }
-
-        for (int left = 0; left < (to - from + 1); left ++) {
-            int rootVal = from + left;
-            List<TreeNode> leftList = null, rightList = null;
-            int right = to - from - left;
-            if (left > 0) {
-                leftList = helper(from, from + left - 1);
+    void bfs(char[][] board, int i, int j) {
+        board[i][j] = '2';
+        int m = board.length, n = board[0].length;
+        Queue<Integer> queue = new ArrayDeque<Integer>();
+        queue.add(n * i + j);
+        while (!queue.isEmpty()) {
+            int pos = queue.poll();
+            int x = pos / n;
+            int y = pos % n;
+            if (x > 0 && board[x - 1][y] == 'O') {
+                board[x - 1][y] = '2';
+                queue.add((x - 1) * n + y);
             }
-            if (right > 0) {
-                rightList = helper(from + left + 1, to);
-            }
-            if (leftList == null) {
-                leftList = new ArrayList<TreeNode>();
-                leftList.add(null);
-            }
-            if (rightList == null) {
-                rightList = new ArrayList<TreeNode>();
-                rightList.add(null);
-            }
-            collect(leftList, rootVal, rightList, ret);
-        }
 
-        return ret;
-    }
+            if (y > 0 && board[x][y - 1] == 'O') {
+                board[x][y - 1] = '2';
+                queue.add(x * n + y - 1);
+            }
 
-    void collect(List<TreeNode> leftList, int rootVal, List<TreeNode> rightList, List<TreeNode> ret) {
-        for (int i = 0; i < leftList.size(); i ++) {
-            for (int j = 0; j < rightList.size(); j ++) {
-                TreeNode root = new TreeNode(rootVal);
-                TreeNode leftNode = leftList.get(i);
-                TreeNode rightNode = rightList.get(j);
-                root.left = leftNode;
-                root.right = rightNode;
-                ret.add(root);
+            if (x < m - 1 && board[x + 1][y] == 'O') {
+                board[x + 1][y] = '2';
+                queue.add((x + 1) * n + y);
+            }
+
+            if (y < n - 1 && board[x][y + 1] == 'O') {
+                board[x][y + 1] = '2';
+                queue.add(x * n + y + 1);
             }
         }
     }
