@@ -16,6 +16,30 @@ public class GasStation {
         System.out.println(gasStation.canCompleteCircuit(gas, cost));
     }
 
+    public int canCompleteCircuitNew(int[] gas, int[] cost) {
+        if (gas == null || cost == null || gas.length == 0 || cost.length == 0 || gas.length != cost.length) return -1;
+        int remain = 0, lastStart = -1, start = 0, len = gas.length;
+
+        while (lastStart < start) {
+            int i = 0;
+            remain = 0;
+            boolean isSucc = true;
+            for (i = start; i <= start + len; i ++) {
+                int index = i % len;
+                if (remain + gas[index] < cost[index]) {
+                    isSucc = false;
+                    break;
+                }
+                remain += gas[index] - cost[index];
+            }
+            if (isSucc) return start;
+            lastStart = start;
+            start = (i + 1) % len;
+        }
+
+        return -1;
+    }
+
     public int canCompleteCircuit(int[] gas, int[] cost) {
         if (gas == null || gas.length == 0 || cost == null || cost.length == 0 || gas.length != cost.length)
             return -1;

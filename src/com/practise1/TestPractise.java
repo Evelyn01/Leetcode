@@ -28,8 +28,11 @@ public class TestPractise {
                 {'X', 'O', 'X'},
         };
 
+        int[] gas = {1, 2};
+        int[] cost = {2, 1};
+
         TestPractise testPractise = new TestPractise();
-        testPractise.solve(b);
+        System.out.println(testPractise.canCompleteCircuit(gas, cost));
         for (char[] arr : b) {
             System.out.println(arr);
         }
@@ -50,71 +53,28 @@ public class TestPractise {
         System.out.println();
     }
 
-    public void solve(char[][] board) {
-        if (board == null || board.length == 0 || board[0].length == 0) return;
-        int m = board.length, n = board[0].length;
-        for (int i = 0; i < m; i ++) {
-            char c = board[i][0];
-            if (c == 'O') {
-                bfs(board, i, 0);
-            }
-            c = board[i][n - 1];
-            if (c == 'O') {
-                bfs(board, i, n - 1);
-            }
-        }
+    public int canCompleteCircuit(int[] gas, int[] cost) {
+        if (gas == null || cost == null || gas.length == 0 || cost.length == 0 || gas.length != cost.length) return -1;
+        int remain = 0, lastStart = -1, start = 0, len = gas.length;
 
-        for (int i = 0; i < n; i ++) {
-            char c = board[0][i];
-            if (c == 'O') {
-                bfs(board, 0, i);
-            }
-            c = board[m - 1][i];
-            if (c == 'O') {
-                bfs(board, m - 1, i);
-            }
-        }
-
-        for (int i = 0; i < m; i ++) {
-            for (int j = 0; j < n; j ++) {
-                if (board[i][j] == '2') {
-                    board[i][j] = 'O';
-                } else if (board[i][j] == 'O') {
-                    board[i][j] = 'X';
+        while (lastStart < start) {
+            int i = 0;
+            remain = 0;
+            boolean isSucc = true;
+            for (i = start; i <= start + len; i ++) {
+                int index = i % len;
+                if (remain + gas[index] < cost[index]) {
+                    isSucc = false;
+                    break;
                 }
+                remain += gas[index] - cost[index];
             }
+            if (isSucc) return start;
+            lastStart = start;
+            start = (i + 1) % len;
         }
-    }
 
-    void bfs(char[][] board, int i, int j) {
-        board[i][j] = '2';
-        int m = board.length, n = board[0].length;
-        Queue<Integer> queue = new ArrayDeque<Integer>();
-        queue.add(n * i + j);
-        while (!queue.isEmpty()) {
-            int pos = queue.poll();
-            int x = pos / n;
-            int y = pos % n;
-            if (x > 0 && board[x - 1][y] == 'O') {
-                board[x - 1][y] = '2';
-                queue.add((x - 1) * n + y);
-            }
-
-            if (y > 0 && board[x][y - 1] == 'O') {
-                board[x][y - 1] = '2';
-                queue.add(x * n + y - 1);
-            }
-
-            if (x < m - 1 && board[x + 1][y] == 'O') {
-                board[x + 1][y] = '2';
-                queue.add((x + 1) * n + y);
-            }
-
-            if (y < n - 1 && board[x][y + 1] == 'O') {
-                board[x][y + 1] = '2';
-                queue.add(x * n + y + 1);
-            }
-        }
+        return -1;
     }
 }
 
