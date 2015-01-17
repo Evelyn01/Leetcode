@@ -32,7 +32,7 @@ public class TestPractise {
         int[] cost = {2, 1};
 
         TestPractise testPractise = new TestPractise();
-        System.out.println(testPractise.canCompleteCircuit(gas, cost));
+        System.out.println(testPractise.candy(gas));
         for (char[] arr : b) {
             System.out.println(arr);
         }
@@ -53,28 +53,25 @@ public class TestPractise {
         System.out.println();
     }
 
-    public int canCompleteCircuit(int[] gas, int[] cost) {
-        if (gas == null || cost == null || gas.length == 0 || cost.length == 0 || gas.length != cost.length) return -1;
-        int remain = 0, lastStart = -1, start = 0, len = gas.length;
-
-        while (lastStart < start) {
-            int i = 0;
-            remain = 0;
-            boolean isSucc = true;
-            for (i = start; i <= start + len; i ++) {
-                int index = i % len;
-                if (remain + gas[index] < cost[index]) {
-                    isSucc = false;
-                    break;
-                }
-                remain += gas[index] - cost[index];
-            }
-            if (isSucc) return start;
-            lastStart = start;
-            start = (i + 1) % len;
+    public int candy(int[] rates) {
+        if (rates == null) {
+            return 0;
         }
 
-        return -1;
+        int[] candy = new int[rates.length];
+        candy[0] = 1;
+        for (int i = 1; i < rates.length; i ++) {
+            if (rates[i] <= rates[i - 1]) {
+                candy[i] = 1;
+
+            } else {
+                candy[i] = candy[i - 1] + 1;
+            }
+        }
+
+        int ret = 0;
+        for (int i = 0; i < candy.length; i ++) ret += candy[i];
+        return ret;
     }
 }
 
