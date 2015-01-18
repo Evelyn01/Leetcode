@@ -22,6 +22,7 @@ public class TestPractise {
 
         };
 
+
         char[][] b = {
                 {'X', 'O', 'X'},
                 {'O', 'X', 'O'},
