@@ -40,98 +40,62 @@ public class CopyRandomListSolution {
     }
 
 
-    HashMap<RandomListNode, RandomListNode> hashMap;
-
     public RandomListNode copyRandomList(RandomListNode head) {
-        if (head == null) {
-            return head;
-        }
-
-        hashMap = new HashMap<RandomListNode, RandomListNode>();
-
+        if (head == null) return head;
         RandomListNode newHead = new RandomListNode(head.label);
-
-        RandomListNode dest = newHead;
-
-        hashMap.put(head, newHead);
-
-        RandomListNode ori = head.next;
-
-        while (ori != null) {
-            RandomListNode temp = new RandomListNode(ori.label);
-
-            hashMap.put(ori, temp);
-
-            dest.next = temp;
-
-            dest = temp;
-
+        HashMap<RandomListNode, RandomListNode> map = new HashMap<RandomListNode, RandomListNode>();
+        map.put(head, newHead);
+        RandomListNode ori = head, dest = newHead;
+        while (ori.next != null) {
+            RandomListNode newNode = new RandomListNode(ori.next.label);
+            map.put(ori.next, newNode);
+            dest.next = newNode;
+            dest = newNode;
             ori = ori.next;
         }
 
         ori = head;
         dest = newHead;
-
-        while (ori != null && dest != null) {
+        while (ori != null) {
             if (ori.random != null) {
-                RandomListNode random = hashMap.get(ori.random);
-                if (random != null) {
-                    dest.random = random;
-                }
+                dest.random = map.get(ori.random);
             }
-
             ori = ori.next;
             dest = dest.next;
         }
-
         return newHead;
     }
 
-    public RandomListNode copyRandomListExtra1Space(RandomListNode head) {
+    public RandomListNode copyRandomListNeat(RandomListNode head) {
         if (head == null) {
             return head;
         }
-
         RandomListNode ori = head;
-
         while (ori != null) {
             RandomListNode copy = new RandomListNode(ori.label);
-
             RandomListNode next = ori.next;
-
             ori.next = copy;
-
             copy.next = next;
-
             ori = next;
         }
-
         ori = head;
-
         while (ori != null) {
             if (ori.random == null) {
                 ori.next.random = null;
             } else {
                 ori.next.random = ori.random.next;
             }
-
             ori = ori.next.next;
         }
-
         ori = head;
-
         RandomListNode newHead = ori.next;
-
         RandomListNode current = newHead;
-
         while (true) {
             ori.next = current.next;
             ori = ori.next;
-
             if (ori == null) {
                 break;
             }
-
             current.next = ori.next;
             current = current.next;
         }
