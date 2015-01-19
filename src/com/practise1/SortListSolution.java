@@ -17,89 +17,67 @@ public class SortListSolution {
     }
 
     public ListNode sortList(ListNode head) {
+        if (head == null) return head;
+        int len = getLength(head);
+        ListNode dummy = new ListNode(-1);
+        dummy.next = head;
 
-        int span = 1, length = -1, total = 0, count;
-
-        ListNode current;
-
-        ListNode leftList = null, rightList = null, lastTail = null;
-
-        while (length < 0 || span < length) {
-            count = 0;
-            current = head;
-            head = null;
-            while (current != null) {
-                if (length < 0)
-                    total++;
-
-                count++;
-                if (leftList == null && count == 1) {
-                    leftList = current;
-                } else if (rightList == null && count == 1) {
-                    rightList = current;
-                }
-
-                ListNode next = current.next;
-                if (count == span || next == null) {
-                    count = 0;
-                    current.next = null;
-
-                    if (rightList != null || next == null) {
-                        MergeResult result = merge(leftList, rightList);
-
-                        if (head == null) {
-                            head = result.head;
-                        } else if (lastTail != null) {
-                            lastTail.next = result.head;
-                        }
-
-                        result.tail.next = next;
-
-                        lastTail = result.tail;
-
-                        leftList = rightList = null;
-                    }
-                }
-
-                current = next;
+        for (int span = 1; span < len; span *= 2) {
+            ListNode last = dummy;
+            while (last.next != null) {
+                last = merge(last, span);
             }
-
-            if (length < 0) {
-                length = total;
-            }
-
-            span *= 2;
         }
-
-        return head;
+        return dummy.next;
     }
 
-    private MergeResult merge(ListNode leftList, ListNode rigthList) {
-        ListNode dummyNode = new ListNode(-1);
-
-        ListNode current = dummyNode;
-        while (leftList != null || rigthList != null) {
-
-            if (rigthList == null || (leftList != null && leftList.val < rigthList.val)) {
-                current.next = leftList;
-                leftList = leftList.next;
-            } else{
-                current.next = rigthList;
-                rigthList = rigthList.next;
+    private ListNode merge(ListNode pre, int span) {
+        ListNode first = null, second = null, curr = pre.next, tail;
+        int count = 0;
+        while (curr != null && count < span * 2) {
+            if (first == null) first = curr;
+            if (count == span) second = curr;
+            ListNode next = curr.next;
+            count ++;
+            if (count == span) curr.next = null;
+            if (count == span * 2) curr.next = null;
+            curr = next;
+        }
+        tail = curr;
+        curr = pre;
+        while (first != null && second != null) {
+            if (first.val < second.val) {
+                curr.next = first;
+                first = first.next;
+            } else {
+                curr.next = second;
+                second = second.next;
             }
-
-            current = current.next;
+            curr = curr.next;
         }
 
-        MergeResult result = new MergeResult();
-        result.head = dummyNode.next;
-        result.tail = current;
+        while (first != null) {
+            curr.next = first;
+            curr = first;
+            first = first.next;
+        }
 
-        return result;
+        while (second != null) {
+            curr.next = second;
+            curr = second;
+            second = second.next;
+        }
+
+        curr.next = tail;
+        return curr;
     }
 
-    static class MergeResult {
-        ListNode head;
-        ListNode tail;
+    int getLength(ListNode head) {
+        int len = 0;
+        while (head != null) {
+            len ++;
+            head = head.next;
+        }
+        return len;
     }
 }
