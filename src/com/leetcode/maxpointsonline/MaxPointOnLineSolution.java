@@ -85,7 +85,7 @@ public class MaxPointOnLineSolution {
     }
 
     public int maxPoints(Point[] points) {
-        //duplicate points, vertical line
+        //duplicate points, vertical line, 0.0d
         if (points == null || points.length == 0) return 0;
         HashMap<Double, Integer> map = new HashMap<Double, Integer>();
         int ret = 0;
