@@ -32,9 +32,9 @@ public class AllocateDeallocate {
     int size, end;
     int[] arr;
     Random random;
-    HashMap<Integer, List<Integer>> map;
+    HashMap<Integer, Set<Integer>> map;
     public AllocateDeallocate(int size) {
-        map = new HashMap<Integer, List<Integer>>();
+        map = new HashMap<Integer, Set<Integer>>();
         random = new Random();
         //arr = new int[]{1, 2, 2, 3, 3, 5, 6, 7};
         arr = new int[size];
@@ -52,11 +52,11 @@ public class AllocateDeallocate {
         arr[index] = arr[end - 1];
         arr[end - 1] = num;
         end --;
-        List<Integer> indice;
+        Set<Integer> indice;
         if (map.containsKey(num)) {
             indice = map.get(num);
         } else {
-            indice = new ArrayList<Integer>();
+            indice = new HashSet<Integer>();
             map.put(num, indice);
         }
         indice.add(end);
@@ -67,8 +67,11 @@ public class AllocateDeallocate {
     void deallocate(int num) {
         if (end == size) return;
         if (map.containsKey(num)) {
-            List<Integer> indice = map.get(num);
-            int lastIndex = indice.remove(indice.size() - 1);
+            Set<Integer> indice = map.get(num);
+            Iterator<Integer> iterator = indice.iterator();
+
+            int lastIndex = iterator.next();
+            iterator.remove();
             int in = arr[lastIndex];
             int out = arr[end];
             arr[end] = in;
@@ -79,13 +82,7 @@ public class AllocateDeallocate {
             if (in != out) {
                 indice = map.get(out);
                 indice.add(lastIndex);
-                Iterator<Integer> iterator = indice.iterator();
-                while (iterator.hasNext()) {
-                    if (iterator.next() == end) {
-                        iterator.remove();
-                        break;
-                    }
-                }
+                indice.remove(end);
             }
             end ++;
         }
