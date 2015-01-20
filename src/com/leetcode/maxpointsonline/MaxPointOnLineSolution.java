@@ -85,64 +85,40 @@ public class MaxPointOnLineSolution {
     }
 
     public int maxPoints(Point[] points) {
-        if (points == null)
-            return 0;
-
-        if (points.length == 1)
-            return 1;
-
-        if (points.length == 2)
-            return 2;
-
-        HashMap<Double, Integer> hashMap = new HashMap<Double, Integer>();
-        int max = 0;
-        for (int i = 0; i < points.length; i++) {
-            hashMap.clear();
-            int localMax = 0;
-            int vertical = 1;
-            int overlap = 0;
-            for (int j = 0; j < points.length; j++) {
-                if (i != j) {
-                    if (points[i].x == points[j].x) { //vertical line case
-                        vertical++;
-                        if (points[i].y == points[j].y) {
-                            overlap++;
-                        }
-                    } else {
-                        double slope = calcSlope(points[i], points[j]);
-                        int count = 1;
-                        if (hashMap.containsKey(slope)) {
-                            count = hashMap.get(slope);
-                        }
-
-                        count++;
-                        if (count > localMax) {
-                            localMax = count;
-                        }
-                        hashMap.put(slope, count);
-                    }
+        //duplicate points, vertical line
+        if (points == null || points.length == 0) return 0;
+        HashMap<Double, Integer> map = new HashMap<Double, Integer>();
+        int ret = 0;
+        for (int i = 0; i < points.length; i ++) {
+            map.clear();
+            int dup = 1;
+            for (int j = i + 1; j < points.length; j ++) {
+                if (i == j) continue;
+                //same points
+                if (points[i].x == points[j].x && points[i].y == points[j].y) {
+                    dup ++;
+                } else {
+                    double slope = calcSlope(points[i], points[j]);
+                    int count = map.containsKey(slope) ? map.get(slope) : 0;
+                    count++;
+                    map.put(slope, count);
                 }
             }
-
-            localMax += overlap;
-
-            if (localMax > max) {
-                max = localMax;
-            }
-
-            if (vertical > max) {
-                max = vertical;
+            if (dup > ret) ret = dup;
+            Iterator<Integer> iterator = map.values().iterator();
+            while(iterator.hasNext()) {
+                int count = iterator.next();
+                if (count + dup > ret) ret = count + dup;
             }
         }
-
-        return max;
+        return ret;
     }
 
     double calcSlope(Point a, Point b) {
-        return ((double) b.y - (double) a.y) / ((double) b.x - (double) a.x);
+        if (a.x == b.x) return Double.MAX_VALUE;
+        if (a.y == b.y) return 0.0d;
+        return (double) (a.y - b.y) / (double) (a.x - b.x);
     }
-
-
     /**
      * Definition for a point.
      */
