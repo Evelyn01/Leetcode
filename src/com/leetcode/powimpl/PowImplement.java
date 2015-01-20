@@ -8,6 +8,7 @@ public class PowImplement {
     public static void main(String[] strings) {
         PowImplement pow = new PowImplement();
         System.out.println(pow.pow(2.0d, - 2));
+        pow.power(2, 7);
     }
 
     public double pow(double x, int m) {
@@ -23,6 +24,17 @@ public class PowImplement {
             else
                 return (temp * temp) / x;
         }
+    }
+
+    double power(double x, int n) {
+        double result = 1;
+        while(n > 0) {
+            if((n & 1) > 0)
+                result *= x;
+            x *= x;
+            n >>= 1;
+        }
+        return result;
     }
 
 }
