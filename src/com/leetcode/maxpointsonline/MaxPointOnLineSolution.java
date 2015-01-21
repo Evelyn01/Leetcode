@@ -14,6 +14,11 @@ public class MaxPointOnLineSolution {
         MaxPointOnLineSolution maxPointOnLineSolution = new MaxPointOnLineSolution();
         int max = maxPointOnLineSolution.maxPoints2(points);
         System.out.println(max);
+
+        int a = 5;
+        System.out.println(a);
+        System.out.println(~a);
+        System.out.println(Integer.toBinaryString(-6));
     }
 
     private static Point[] initTestPoints3() {
