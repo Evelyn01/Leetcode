@@ -44,7 +44,10 @@ public class TestPractise {
         char[] buf = new char[100];
         ListNode head = ListNode.createList("2->3->1->6->5->7->4");
         TestPractise testPractise = new TestPractise();
-        System.out.println(testPractise.maxPoints(points));
+//        System.out.println(testPractise.search(new int[]{3, 4, 5, 6, 1, 2}, 1));
+//        System.out.println(testPractise.search(new int[]{3, 4, 5, 6, 1, 2}, 0));
+//        System.out.println(testPractise.search(new int[]{3, 4, 5, 6, 1, 2}, 7));
+        System.out.println(testPractise.findMin(new int[]{2, 3, 4, 1}));
     }
 
     private static void outputTree(List<TreeNode> treeNodes) {
@@ -79,42 +82,22 @@ public class TestPractise {
         }
     }
 
-    public int maxPoints(Point[] points) {
-        //duplicate points, vertical line
-        if (points == null || points.length == 0) return 0;
-        HashMap<Double, Integer> map = new HashMap<Double, Integer>();
-        int ret = 0;
-        for (int i = 0; i < points.length; i ++) {
-            map.clear();
-            int dup = 1;
-            for (int j = i + 1; j < points.length; j ++) {
-                if (i == j) continue;
-                //same points
-                if (points[i].x == points[j].x && points[i].y == points[j].y) {
-                    dup ++;
-                } else {
-                    double slope = calcSlope(points[i], points[j]);
-                    int count = map.containsKey(slope) ? map.get(slope) : 0;
-                    count++;
-                    map.put(slope, count);
-                }
-            }
-            if (dup > ret) ret = dup;
-            Iterator<Integer> iterator = map.values().iterator();
-            while(iterator.hasNext()) {
-                int count = iterator.next();
-                if (count + dup > ret) ret = count + dup;
+    public int findMin(int[] num) {
+        if (num == null || num.length == 0) return Integer.MIN_VALUE;
+        int l = 0, r = num.length - 1;
+        if (num[l] <= num[r]) return num[l];
+        while (l <= r) {
+            int m = l + (r - l) / 2;
+            if (m > 0 && num[m] < num[m - 1]) return num[m];
+            if (m < num.length - 1 && num[m] > num[m + 1]) return num[m + 1];
+            if (num[l] <= num[m]) { //lower bound sorted
+                l = m;
+            } else {
+                r = m;
             }
         }
-        return ret;
+        return num[num.length - 1];
     }
-
-    double calcSlope(Point a, Point b) {
-        if (a.x == b.x) return Double.MAX_VALUE;
-        if (a.y == b.y) return 0.0d;
-        return (double) (a.y - b.y) / (double) (a.x - b.x);
-    }
-
 }
 
 
