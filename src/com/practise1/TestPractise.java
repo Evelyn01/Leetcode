@@ -26,13 +26,21 @@ public class TestPractise {
                 {'X', 'O', 'X'},
         };
 
-        int a1[] = {};
-        int b1[] = {1, 2, 3, 4, 5};
+        int a0[] = {3, 4};
+        int b0[] = {};
+
+        int a1[] = {1, 3, 5, 7, 9};
+        int b1[] = {6, 8, 10, 12, 14};
+
+        int a2[] = {1, 1};
+        int b2[] = {1, 1};
+
+        int a3[] = {};
+        int b3[] = {1, 2, 3, 4, 5};
 
         TestPractise testPractise = new TestPractise();
-        System.out.println(testPractise.findMedianSortedArrays(a1, b1));
-//        for (int i = 1; i <= a1.length + b1.length; i ++)
-//            System.out.println(testPractise.findKth(a1, b1, i));
+        int[] ret = testPractise.searchRange(new int[]{1, 1, 2}, 1);
+        System.out.println(ret);
     }
 
     private static void outputTree(List<TreeNode> treeNodes) {
@@ -49,51 +57,44 @@ public class TestPractise {
         System.out.println();
     }
 
-    public double findMedianSortedArrays(int A[], int B[]) {
-        int m = A.length;
-        int n = B.length;
-
-        if ((m + n) % 2 == 0) {
-            return (kthSmallest(A, B, (m + n) / 2) + kthSmallest(A, B, (m + n) / 2 + 1)) * 0.5;
-        } else {
-            return kthSmallest(A, B, (m + n) / 2 + 1) * 1.0;
-        }
-    }
-
-    public int kthSmallest(int[] A, int[] B, int k) {
-        if (A == null || B == null || k > A.length + B.length || k <= 0)
-            throw new IllegalArgumentException();
-        int aLow = 0, bLow = 0, aLen = A.length, bLen = B.length;
-
-        while (aLen > 0 || bLen > 0) {
-            int i = (int) ((double) ((k - 1) * aLen / (aLen + bLen)));
-            int j = k - 1 - i;
-
-            int Ai_1 = aLow + i == 0 ? Integer.MIN_VALUE : A[aLow + i - 1];
-            int Ai = aLow + i == A.length ? Integer.MAX_VALUE : A[aLow + i];
-
-            int Bj_1 = bLow + j == 0 ? Integer.MIN_VALUE : B[bLow + j - 1];
-            int Bj = bLow + j == B.length ? Integer.MAX_VALUE : B[bLow + j];
-
-            if (Bj_1 <= Ai && Ai <= Bj)
-                return Ai;
-            else if (Ai_1 <= Bj && Bj <= Ai)
-                return Bj;
-
-            if (Ai < Bj_1) {
-                aLow = aLow + i + 1;
-                aLen = aLen - i - 1;
-                bLen = j;
-                k = k - i - 1;
+    public int[] searchRange(int[] A, int target) {
+        int[] ret = new int[2];
+        ret[0] = -1;
+        ret[1] = -1;
+        int left = 0, right = A.length - 1;
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+            if (A[mid] == target) {
+                if (mid == 0 || A[mid] != A[mid - 1]) {
+                    ret[0] = mid;
+                    ret[1] = mid;
+                    left = mid;
+                    break;
+                } else {
+                    right = mid - 1;
+                }
+            } else if (A[mid] > target) {
+                right = mid - 1;
             } else {
-                aLen = i;
-                bLow = bLow + j + 1;
-                bLen = bLen - j - 1;
-                k = k - j - 1;
+                left = mid + 1;
             }
         }
 
-        return Integer.MIN_VALUE;
+        right = A.length - 1;
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+            if (A[mid] == target) {
+                if (mid == A.length - 1 || A[mid] != A[mid + 1]) {
+                    ret[1] = mid;
+                    break;
+                } else {
+                    left = mid + 1;
+                }
+            } else {
+                right = mid - 1;
+            }
+        }
+        return ret;
     }
 
 }
