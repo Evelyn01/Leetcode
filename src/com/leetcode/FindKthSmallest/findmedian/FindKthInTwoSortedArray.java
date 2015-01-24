@@ -17,6 +17,7 @@ public class FindKthInTwoSortedArray {
 
         FindKthInTwoSortedArray findKthInTwoSortedArray = new FindKthInTwoSortedArray();
         System.out.println(findKthInTwoSortedArray.kthSmallestDirectSearch(a, b, 5));
+        System.out.println(findKthInTwoSortedArray.findKthIterative(a, b, 5));
     }
 
     //-----------------------------------------------------------------------------
