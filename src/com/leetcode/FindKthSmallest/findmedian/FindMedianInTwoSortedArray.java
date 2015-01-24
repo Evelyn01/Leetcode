@@ -1,6 +1,4 @@
-package com.leetcode.findmedian;
-
-import java.util.ArrayList;
+package com.leetcode.FindKthSmallest.findmedian;
 
 /**
  * Created by bod on 9/9/14.
